@@ -1,0 +1,43 @@
+<nav class="nav-bar navbar-expand">
+  <ul class="nav navbar-nav">
+    <li class="nav-item">
+      <a (click)="onToggleMenuSidebar()" class="nav-link" role="button"
+      ><i class="fas fa-bars"></i
+      ></a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/']" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/blank']" class="nav-link">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<form *ngIf="false" [formGroup]="searchForm" class="form-inline ml-3">
+  <div class="input-group input-group-sm">
+    <input
+      aria-label="Search"
+      class="form-control form-control-navbar"
+      placeholder="Search"
+      type="search"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-navbar" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+<ul class="navbar-nav ml-auto">
+  <!--  <app-messages></app-messages>
+    <app-notifications></app-notifications>
+    <app-language></app-language>-->
+  <app-user></app-user>
+  <!-- <li class="nav-item">
+       <button class="nav-link" (click)="onToggleControlSidebar()">
+           <i class="fas fa-th-large"></i>
+       </button>
+   </li>-->
+</ul>

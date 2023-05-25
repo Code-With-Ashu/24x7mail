@@ -1,0 +1,19 @@
+<div class="row row-cols-1 g-1 p-1">
+  <div class="col text-end">
+    <button (click)="gotoBack()" class="btn btn-danger btn-sm">
+      <i class="fas fa-arrow-circle-left"></i> Back
+    </button>
+  </div>
+</div>
+
+<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-1">
+  <ng-container *ngFor="let menu of submenu">
+    <div (click)="gotoPage(menu)" class="col text-center align-items-center">
+      <div class="card cards h-100 p-1 border-0 cardBgUnset">
+        <div class="card-body border rounded">
+          <img alt="" class="img-fluid" src="https://img.icons8.com/clouds/100/000000/box.png">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

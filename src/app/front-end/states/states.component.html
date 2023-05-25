@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row vmb-back-yellow text-white">
+    <div class="col-md-6 my-auto">
+      <div class="w-50 mx-auto text-center">
+        <!--        <p class="text-left">Home / Welcome Partner</p>-->
+        <h1 class="text-left">{{locationName}}</h1>
+      </div>
+    </div>
+    <div class="col-md-6 m-0 d-none d-sm-none d-lg-block" id="map">
+    </div>
+
+  </div>
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4">
+      <div class="card cursor h-100 shadow-none" [routerLink]="'/'+frontEndRoutesPath.cities">
+        <div class="card-body text-center">
+          <img alt="..." class="img-fluid s-img" src="assets/img/miami-banner.jpg" style="width: 300px; height: 150px;">
+          <h5 class="h5 vmb-text-yellow font-weight-bold">Miami</h5>
+          <!-- <p class="card-text">
+             It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+             online system to view reports, conversions and payouts.
+           </p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

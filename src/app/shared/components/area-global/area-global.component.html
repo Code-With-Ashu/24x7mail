@@ -1,0 +1,111 @@
+<form [formGroup]="regionForm">
+  <div class="mb-1 row">
+    <label class="col-md-4">Country</label>
+    <div class="col-md-8">
+      <p-dropdown (onChange)="countryWiseStateList($event.value,true)" [filter]="true"
+                  [options]="countryList" [resetFilterOnHide]="true" class="p-fluid dropdown-sm" filterBy="country_name"
+                  formControlName="countrysrno" optionLabel="country_name" optionValue="srno"
+                  placeholder="Select a Country">
+        <ng-template let-country pTemplate="countryList">
+          <div>{{country.country_name}}</div>
+        </ng-template>
+      </p-dropdown>
+      <div class="error-feedback">
+        <ng-container *ngFor="let validation of _appService.validationMsg().selection">
+          <div
+            *ngIf="f['countrysrno'].hasError(validation.type) && (f['countrysrno']['dirty'] || f['countrysrno']['touched'])">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-1 row">
+    <label class="col-md-4">State</label>
+    <div class="col-md-8">
+      <p-dropdown (onChange)="stateWiseDistrictList( $event.value,true)" [filter]="true"
+                  [options]="stateList" [resetFilterOnHide]="true" class="dropdown-sm p-fluid" filterBy="onlyname"
+                  formControlName="statesrno" optionLabel="onlyname" optionValue="onlysrno"
+                  placeholder="Select a State">
+        <ng-template let-state pTemplate="stateList">
+          <div>{{state.onlyname}}</div>
+        </ng-template>
+      </p-dropdown>
+      <div class="error-feedback">
+        <ng-container *ngFor="let validation of _appService.validationMsg().selection">
+          <div
+            *ngIf="f['statesrno'].hasError(validation.type) && (f['statesrno']['dirty'] || f['statesrno']['touched'])">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-1 row align-items-center">
+    <label class="col-md-4">District</label>
+    <div class="col-md-8">
+      <p-dropdown (onChange)="districtWiseTalukaList($event.value, true)" [filter]="true"
+                  [options]="districtList" [resetFilterOnHide]="true" class="dropdown-sm p-fluid" filterBy="onlyname"
+                  formControlName="districtsrno" optionLabel="onlyname" optionValue="onlysrno"
+                  placeholder="Select a District">
+        <ng-template let-district pTemplate="districtList">
+          <div>{{district.onlyname}}</div>
+        </ng-template>
+      </p-dropdown>
+      <div class="error-feedback">
+        <ng-container *ngFor="let validation of _appService.validationMsg().selection">
+          <div
+            *ngIf="f['districtsrno'].hasError(validation.type) && (f['districtsrno']['dirty'] || f['districtsrno']['touched'])">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-1 row align-items-center">
+    <label class="col-md-4">Taluka</label>
+    <div class="col-md-8">
+      <p-dropdown (onChange)="talukaWiseAreaList($event.value)" [filter]="true" [options]="talukaList"
+                  [resetFilterOnHide]="true" class="dropdown-sm p-fluid" filterBy="onlyname"
+                  formControlName="talukasrno"
+                  optionLabel="onlyname" optionValue="onlysrno" placeholder="Select a Taluka">
+        <ng-template let-taluka pTemplate="talukaList">
+          <div>{{taluka.onlyname}}</div>
+        </ng-template>
+      </p-dropdown>
+      <div class="error-feedback">
+        <ng-container *ngFor="let validation of _appService.validationMsg().selection">
+          <div
+            *ngIf="f['talukasrno'].hasError(validation.type) && (f['talukasrno']['dirty'] || f['talukasrno']['touched'])">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-1 row align-items-center">
+    <label class="col-md-4">Area</label>
+    <div class="col-md-8">
+      <p-dropdown (onChange)="sendRegion()" [filter]="true" [options]="areaList" [resetFilterOnHide]="true"
+                  class="dropdown-sm p-fluid"
+                  filterBy="onlyname" formControlName="mst_area_srno" optionLabel="onlyname" optionValue="onlysrno"
+                  placeholder="Select a Area">
+        <ng-template let-area pTemplate="areaList">
+          <div>{{area.onlyname}}</div>
+        </ng-template>
+      </p-dropdown>
+      <div class="error-feedback">
+        <ng-container *ngFor="let validation of _appService.validationMsg().selection">
+          <div
+            *ngIf="f['mst_area_srno'].hasError(validation.type) && (f['mst_area_srno']['dirty'] || f['mst_area_srno']['touched'])">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</form>

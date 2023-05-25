@@ -1,0 +1,89 @@
+<div class="card card-outline card-navy shadow">
+  <div class="card-header text-center">
+    <a> <img class="img-fluid" src="assets/img/24x7-logo1.png" style="width: 160px;height: 58px;"/></a>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="loginByAuth(loginForm.value)" [formGroup]="loginForm">
+      <div class="input-group mb-3">
+        <input
+          [ngClass]="{ 'is-invalid':f['email'].invalid  && (f['email'].touched || f['email'].dirty), 'is-valid':f['email'].valid }"
+          class="form-control" formControlName="email" placeholder="Enter Email Id"
+          type="text"/>
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-user p-1"></span>
+          </div>
+        </div>
+        <ng-container *ngFor="let validation of validationMessage.email">
+          <div *ngIf="f['email'].hasError(validation.type)" class="invalid-feedback">{{validation.message}}</div>
+        </ng-container>
+      </div>
+
+      <div class="input-group mb-3">
+        <input
+          [ngClass]="{'is-invalid':f['password'].invalid  && (f['password'].touched || f['password'].dirty), 'is-valid':f['password'].valid }"
+          [type]="_appService.passwordType" class="form-control" formControlName="password"
+          placeholder="Enter Password"/>
+        <div (click)='_appService.hideShowPassword()' class="input-group-append">
+          <div class="input-group-text">
+            <i [ngClass]="_appService.passwordIcon" class="fas"></i>
+          </div>
+        </div>
+        <ng-container *ngFor="let validation of validationMessage.password">
+          <div *ngIf="f['password'].hasError(validation.type)" class="invalid-feedback">{{validation.message}}</div>
+        </ng-container>
+      </div>
+
+      <div class="form-check form-check-inline w-100 justify-content-between">
+        <div class="small text-gray-dark">
+          <input class="form-check-input ml-1" id="inlineCheckbox1" type="checkbox" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">Remember me </label>
+        </div>
+        <a class="text-right small text-gray-dark" href="">Forgot your Password?</a>
+      </div>
+
+      <button [disabled]="loginForm.invalid || isAuthLoading" class="btn btn-block btn-primary mt-3" type="submit">
+         <span *ngIf="isAuthLoading" aria-hidden="true" class="spinner-border spinner-border-sm"
+               role="status"></span> Sign In
+      </button>
+
+      <div class="my-4">
+        <div class="ordiv"><span>Or log in with</span></div>
+      </div>
+
+      <div class="row">
+        <div class="col ">
+          <img alt="" class="img-fluid cursor" src="assets/img/google.png"/>
+        </div>
+        <div class="col">
+          <img alt="" class="img-fluid cursor" src="assets/img/facbook.png"/>
+        </div>
+        <div class="col">
+          <img alt="" class="img-fluid cursor" src="assets/img/apple.png"/>
+        </div>
+      </div>
+      <div class="text-center">
+        <!-- [routerLink]="'/'+frontEndRoutesPath.requestLocation" -->
+        <p>Dont have an account? <a [routerLink]="'/'+frontEndRoutesPath.requestLocation">Sign Up</a></p>
+      </div>
+
+      <!-- <div class="row">
+         <div class="col-7">
+         </div>
+         &lt;!&ndash; /.col &ndash;&gt;
+         <div class="col-5">
+           &lt;!&ndash;<pf-button [block]="true" [disabled]="true" [loading]="isAuthLoading" [type]="'submit'">Sign
+             In
+           </pf-button>&ndash;&gt;
+           &lt;!&ndash; <button [disabled]="loginForm.invalid" class="btn btn-primary float-right" type="submit">
+              <span *ngIf="isAuthLoading" aria-hidden="true" class="spinner-border spinner-border-sm"
+                    role="status"></span> Sign In
+            </button>&ndash;&gt;
+         </div>
+         &lt;!&ndash; /.col &ndash;&gt;
+       </div>-->
+    </form>
+
+  </div>
+  <!-- /.login-card-body -->
+</div>

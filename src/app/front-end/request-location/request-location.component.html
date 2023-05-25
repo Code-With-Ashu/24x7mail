@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <div class="row vmb-back-yellow text-white">
+    <div class="col-md-6 my-auto">
+      <div class="w-50 mx-auto text-center p-fluid">
+        <!--        <p class="text-left">Home / Welcome Partner</p>-->
+        <h2 class="text-left">Request your Locations</h2>
+        <!--        <input class="form-control" placeholder="City, State or Zip code" type="text">-->
+        <p-autoComplete (completeMethod)="search($event)" (onSelect)="onSelect($event)" [(ngModel)]="selectedAddress"
+                        [showClear]="true"
+                        [suggestions]="addresses" field="place_name" placeholder="City, State or Zip Code">
+          <ng-template let-address pTemplate="item">
+            <div class="flex text-left gap-2">
+              <div><i class="pi pi-map-marker"></i> {{ address.place_name }}</div>
+            </div>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+    </div>
+    <div class="col-md-6 m-0 d-none d-sm-none d-lg-block partner-header">
+    </div>
+
+  </div>
+</div>
+<div class="container py-4">
+  <div class="section">
+    <h3 class="text-center font-weight-bold">Request Your Location</h3>
+    <form class="py-2">
+      <div class="row my-2">
+        <div class="col">
+          <label>Name</label>
+          <input class="form-control" placeholder="Name" type="text">
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input class="form-control" placeholder="Email" type="text">
+        </div>
+        <div class="col">
+          <label>Phone</label>
+          <input class="form-control" placeholder="Phone" type="text">
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-primary ">Request Location</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <div class="section my-5">
+    <h2 class="text-center font-weight-bold">Choose your virtual address</h2>
+    <p class="text-center font-weight-bold">Choose from our company-managed locations or an address near you</p>
+    <div class="row row-cols-1 row-cols-md-3">
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/florida-banner.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">Florida</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/atlanta.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">Altanta</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/georgia.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">Georgia</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/northCarolina.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">North Carolina</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/newYork.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">New York</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/california.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">California</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/texas.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">Texas</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card cursor h-100 shadow-none" [routerLink]="'/'+ frontEndRoutesPath.states">
+          <div class="card-body text-center overflow-hidden">
+            <img alt="..." class="img-fluid s-img" src="assets/img/michigan.jpg"
+                 style="width: 310px; height: 150px;">
+            <h5 class="h5 vmb-text-yellow font-weight-bold">Michigan</h5>
+            <!-- <p class="card-text">
+               It doesn't cost anything to join and you will be approved within a few days. We will provide you with an
+               online system to view reports, conversions and payouts.
+             </p>-->
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

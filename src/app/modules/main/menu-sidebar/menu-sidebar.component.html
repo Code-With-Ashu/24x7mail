@@ -1,0 +1,56 @@
+<!-- Brand Logo -->
+<a class="brand-link text-center">
+  <!-- <pf-image
+     alt=""
+     class="brand-image"
+     height="33"
+     rounded
+     src="assets/img/logo.png"
+     style="opacity: 0.8"
+     width="33"
+   ></pf-image>-->
+  <span class="brand-text font-weight-light">Virtual-Mail-Box</span>
+</a>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <!-- Sidebar user (optional) -->
+  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <pf-image
+        [src]="user.picture"
+        alt="User Image"
+        class="img-circle"
+        fallback-src="assets/img/default-profile.png"
+        height="34"
+        rounded
+        width="34"
+      ></pf-image>
+    </div>
+    <div class="info">
+      <a class="d-block">
+        {{ user.email }}
+      </a>
+    </div>
+  </div>
+
+  <div class="form-inline">
+    <!--    <app-sidebar-search></app-sidebar-search>-->
+  </div>
+
+  <!-- Sidebar Menu -->
+  <!--    <nav class="mt-2" style="overflow-y: hidden">-->
+  <nav class="mt-2">
+    <ul
+      class="nav nav-pills nav-sidebar flex-column"
+      data-accordion="false"
+      data-widget="treeview"
+      role="menu"
+    >
+      <app-menu-item
+        *ngFor="let item of menu"
+        [menuItem]="item"
+      ></app-menu-item>
+    </ul>
+  </nav>
+</div>

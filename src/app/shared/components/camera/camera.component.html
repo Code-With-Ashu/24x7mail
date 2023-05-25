@@ -1,0 +1,23 @@
+<div *ngIf="errors.length === 0" class="text-center">
+  <div class="mt-1">
+    <webcam (cameraSwitched)="cameraWasSwitched($event)" (imageCapture)="handleImage($event)"
+            (initError)="handleInitError($event)" *ngIf="showWebcam"
+            [allowCameraSwitch]="allowCameraSwitch"
+            [height]="200" [switchCamera]="nextWebcamObservable" [trigger]="triggerObservable"
+            [videoOptions]="videoOptions"
+            [width]="500"></webcam>
+  </div>
+  <!--<div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸</div>-->
+  <div (click)="triggerSnapshot();" class="btn btn-primary btn-sm" title="Take Picture">Take a picture</div>
+  <button (click)="closeCamera()" class="btn btn-danger btn-sm ms-2">Close</button>
+  <!--		<div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>-->
+</div>
+
+<!--<h4 *ngIf="errors.length > 0">Messages:</h4>
+<ul *ngFor="let error of errors">
+	<li>{{error | json}}</li>
+</ul>-->
+
+<div *ngIf="errors.length > 0" class="alert-warning p-1 fs-6 text-danger mt-1 rounded">
+  Webcam Not found!
+</div>

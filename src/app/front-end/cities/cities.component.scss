@@ -1,0 +1,21 @@
+
+.address-box {
+  background: #fff;
+  /* overflow: hidden; */
+  transition: all ease-in-out 0.5s;
+  padding: 0.8rem 1rem;
+  color: #1a1a1a;
+  border: 2px dashed #1e56a0;
+  display: inline-block;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.partner-header {
+  /* Full height */
+  height: 350px;
+  /* Center and scale the image nicely */
+  background: url('/assets/img/miami-banner.jpg') no-repeat center;
+  background-size: cover;
+}
+

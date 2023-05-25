@@ -1,0 +1,20 @@
+<form [formGroup]="businessForm">
+  <div class="row">
+    <div class="col-md-12">
+      <label class="small">Business</label>
+      <p-dropdown (onChange)="getBusiness($event)" [filter]="true" [options]="businessList"
+                  [resetFilterOnHide]="true"
+                  class="p-fluid dropdown-sm" filterBy="business_name" formControlName="business"
+                  optionLabel="business_name"
+                  placeholder="Select Business"></p-dropdown>
+      <div class="error-feedback">
+        <ng-container *ngFor="let validation of _appService.validationMsg().selection">
+          <div
+            *ngIf="f['business'].hasError(validation.type) && (f['business']['dirty'] || f['business']['touched'] || f['business']['untouched'])">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</form>

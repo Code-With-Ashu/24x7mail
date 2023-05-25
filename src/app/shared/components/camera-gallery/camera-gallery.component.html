@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center">
+  <button (click)="checkPlatformAndOpenCamera()" class="btn btn-primary btn-sm me-2">
+    <label class="cursor">
+      <i class="fas fa-camera"></i> Camera
+    </label>
+  </button>
+
+  <button (click)="showWebCamera = false; file.click()" class="btn btn-warning btn-sm">
+    <input #file (change)="handleFileInput($event)" accept=".jpg,.jpeg,.png" style="display:none" type="file">
+    <label class="cursor">
+      <i class="fa-solid fa-image"></i> Gallery
+    </label>
+  </button>
+</div>
+
+<app-camera (cameraClosed)="cameraCloseHandler($event)" (pictureTaken)="getWebcamImage($event)"
+            *ngIf="showWebCamera"></app-camera>
+
+<div *ngIf="imgBase64Source.length !== 0" class="row mt-1 p-1 border rounded text-center g-1 bg-light">
+  <div *ngFor="let source of imgBase64Source; let i = index;"
+       class="col-sm-6 col-md-4 col-lg-3 p-1">
+    <div class="card border border-light rounded">
+      <div class="card-body">
+        <p-image [preview]="true" [src]="source.preview" alt="Image" height="150" width="150"></p-image>
+        <i (click)="removeImage(i)" class="fas fa-trash text-danger position-absolute cursor"></i>
+      </div>
+    </div>
+  </div>
+</div>

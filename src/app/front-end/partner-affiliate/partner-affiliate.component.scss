@@ -1,0 +1,17 @@
+.partner-header {
+  /* Full height */
+  height: 350px;
+  /* Center and scale the image nicely */
+  background: url('/assets/img/affiliate_cover-1024x460.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.card-overlay {
+  /* Full height */
+  /* Center and scale the image nicely */
+  background: linear-gradient(
+      rgba(31, 148, 230, 0.5),
+      rgba(31, 148, 230, 0.5)
+  ) no-repeat center;
+  background-size: cover;
+}
