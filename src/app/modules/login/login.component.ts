@@ -6,12 +6,14 @@ import {HttpApiService} from '@/shared/services/http-api.service';
 import {Router} from '@angular/router';
 import {CustomValidator} from '@/shared/services/validation';
 import {frontEndRoutesPath, routesPath} from '@/shared/routes-path';
+import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
   @HostBinding('class') class = 'login-box';
   loginForm: UntypedFormGroup;
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     public _appService: AppService,
     private _http: HttpApiService,
-    private router: Router
+    private router: Router,
+    private authService: SocialAuthService
   ) {
   }
 
@@ -69,6 +72,30 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.isAuthLoading = false;
           this._appService.setPasswordEyeIcon();
         }, // completeHandler
+      });
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(user => {
+        // Handle successful sign-in
+        console.log(user);
+      })
+      .catch(err => {
+        // Handle error
+        console.error(err);
+      });
+  }
+
+  signInWithFacebook(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then(user => {
+        // Handle successful sign-in
+        console.log(user);
+      })
+      .catch(err => {
+        // Handle error
+        console.error(err);
       });
   }
 

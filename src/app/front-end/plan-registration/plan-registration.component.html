@@ -1,4 +1,4 @@
-<div class="container">
+ <!-- <div class="container">
   <h2><strong>Sign Up Your User Account</strong></h2>
   <p>Fill all form field to go to next step</p>
 
@@ -145,12 +145,7 @@
             <span *ngIf="isAuthLoading" aria-hidden="true" class="spinner-border spinner-border-sm"></span> Next
           </button>
         </div>
-        <!-- <div class="form-group">
-           <label for="exampleInputEmail1">Email address</label>
-           <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email"/>
-         </div>
-         <button (click)="next()" class="btn btn-primary">Next</button>-->
-      </div>
+</div>
       <div class="content" id="test-l-2">
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
@@ -163,7 +158,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
@@ -177,166 +172,216 @@
         <div class="row">
           <div class="col-md-12 mx-0">
             <form id="msform">
-              &lt;!&ndash; progressbar &ndash;&gt;
               <ul id="progressbar">
-                <li class="active" id="account"><strong>Account</strong></li>
+                <li id="account" class="active"><strong>Account</strong></li>
+                <li id="payment"><strong>Personal</strong></li>
                 <li id="payment"><strong>Payment</strong></li>
                 <li id="confirm"><strong>Finish</strong></li>
               </ul>
-
-              &lt;!&ndash; fieldsets &ndash;&gt;
-              <fieldset>
-                <div class="form-card">
-                  <h2 class="fs-title">Account Information</h2>
-                  <form (ngSubmit)="registerUser(registerForm.value)" [formGroup]="registerForm">
-                    <label class="form-label">Account Type</label>
-                    <div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" formControlName="accountType" id="individual" type="radio"
-                               value="individual">
-                        <label class="form-check-label" for="individual">Individual</label>
+              <div class="bs-stepper-content">
+                <!-- <form (ngSubmit)="registerUser(registerForm.value)" [formGroup]="registerForm"> -->
+                <fieldset style="position: relative; opacity: 1;" id="test-l-1">
+                  <div class="form-card">
+                    <form [formGroup]="registerForm">
+                    <h2 class="fs-title">Account Information</h2>
+                      <label class="form-label">Account Type</label>
+                      <div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="accountType" id="individual" type="radio"
+                            value="individual">
+                          <label class="form-check-label" for="individual">Individual</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="accountType" id="business" type="radio"
+                            value="business">
+                          <label class="form-check-label" for="business">Business</label>
+                        </div>
                       </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" formControlName="accountType" id="business" type="radio"
-                               value="business">
-                        <label class="form-check-label" for="business">Business</label>
+
+                      <input
+                        [ngClass]="{ 'is-invalid':f['email'].invalid  && (f['email'].touched || f['email'].dirty), 'is-valid':f['email'].valid }"
+                        class="form-control" formControlName="email" placeholder="Enter Email Id" type="text" />
+                      <ng-container *ngFor="let validation of validationMessage.email">
+                        <div *ngIf="f['email'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input
+                        [ngClass]="{ 'is-invalid':f['username'].invalid  && (f['username'].touched || f['username'].dirty), 'is-valid':f['username'].valid }"
+                        class="form-control" formControlName="username" placeholder="Enter User Name" type="text" />
+                      <ng-container *ngFor="let validation of validationMessage.default">
+                        <div *ngIf="f['username'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input
+                        [ngClass]="{ 'is-invalid':f['password'].invalid  && (f['password'].touched || f['password'].dirty), 'is-valid':f['password'].valid }"
+                        class="form-control" formControlName="password" placeholder="Password" type="password" />
+                      <ng-container *ngFor="let validation of validationMessage.default">
+                        <div *ngIf="f['password'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+                      <ng-container *ngFor="let validation of validationMessage.password">
+                        <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input
+                        [ngClass]="{ 'is-invalid':f['confirm'].invalid  && (f['confirm'].touched || f['confirm'].dirty), 'is-valid':f['confirm'].valid }"
+                        class="form-control" formControlName="confirm" placeholder="Confirm Password"
+                        type="password" />
+                      <ng-container *ngFor="let validation of validationMessage.default">
+                        <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+                      <ng-container *ngFor="let validation of validationMessage.password">
+                        <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input id="flexCheckDefault" type="checkbox" value="">
+                      <label for="flexCheckDefault">
+                        I Accept the Mail <a href="">Terms and Conditions</a>
+                      </label>
+                    </form>
+                  </div>  
+                  <button class="next action-button" type="button" (click)="next()" [disabled]="!registerForm.valid && validatePassword()">Next Step</button>
+                </fieldset>
+                <fieldset style="position: relative; opacity: 1;" id="test-l-1">
+                  <div class="form-card">
+                    <form [formGroup]="personalInformationForm">
+                    <h2 class="fs-title">Personal Information</h2>
+                      <input
+                        [ngClass]="{ 'is-invalid':p['fname'].invalid  && (p['fname'].touched || p['fname'].dirty), 'is-valid':p['fname'].valid }"
+                        class="form-control" formControlName="fname" placeholder="Enter First Name" type="text" />
+                      <ng-container *ngFor="let validation of validationMessage.default">
+                        <div *ngIf="p['fname'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input
+                        [ngClass]="{ 'is-invalid':p['lname'].invalid  && (p['lname'].touched || p['lname'].dirty), 'is-valid':p['lname'].valid }"
+                        class="form-control" formControlName="lname" placeholder="Enter Last Name" type="text" />
+                      <ng-container *ngFor="let validation of validationMessage.default">
+                        <div *ngIf="p['lname'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input
+                        [ngClass]="{ 'is-invalid':p['phone'].invalid  && (p['phone'].touched || p['phone'].dirty), 'is-valid':p['phone'].valid }"
+                        class="form-control" formControlName="phone" placeholder="Enter Mobile No." type="text" />
+                      <ng-container *ngFor="let validation of validationMessage.number">
+                        <div *ngIf="p['phone'].hasError(validation.type)" class="invalid-feedback">
+                          {{validation.message}}</div>
+                      </ng-container>
+
+                      <input
+                      [ngClass]="{ 'is-invalid':p['contactNo'].invalid  && (p['contactNo'].touched || p['contactNo'].dirty), 'is-valid':p['contactNo'].valid }"
+                         class="form-control" formControlName="contactNo" placeholder="Enter contact No Id" type="text" />
+                      <ng-container *ngFor="let validation of validationMessage.number">
+                      <div *ngIf="p['contactNo'].hasError(validation.type)" class="invalid-feedback">
+                        {{validation.message}}</div>
+                      </ng-container>
+                    </form>
+                  </div>
+                  <button class="next action-button" type="button" (click)="next()" [disabled]="!personalInformationForm.valid">Next Step</button>
+                </fieldset>
+                <fieldset id="test-l-2">
+                  <div class="form-card">
+                    <h2 class="fs-title">Payment Information</h2>
+                    <h5>Your Subscription</h5>
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                        <div class="card">
+                          <div class="card-body">
+                            <h3 class="text-center text-primary">{{planList.name}}</h3>
+                            <h4 class="text-center text-primary">$ {{planList.price}}</h4>
+            
+                            <div>
+                              Incoming Mail {{planList.incoming_mail}} Items /Month <br>
+                              Open and Scan {{planList.open_scan}} Items <br>
+                              Recipients {{planList.recipients}}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <input
-                      [ngClass]="{ 'is-invalid':f['fname'].invalid  && (f['fname'].touched || f['fname'].dirty), 'is-valid':f['fname'].valid }"
-                      class="form-control" formControlName="fname" placeholder="Enter First Name"
-                      type="text"/>
-                    <ng-container *ngFor="let validation of validationMessage.default">
-                      <div *ngIf="f['email'].hasError(validation.type)"
-                           class="invalid-feedback">{{validation.message}}</div>
-                    </ng-container>
-
-                    <input
-                      [ngClass]="{ 'is-invalid':f['lname'].invalid  && (f['lname'].touched || f['lname'].dirty), 'is-valid':f['lname'].valid }"
-                      class="form-control" formControlName="lname" placeholder="Enter Last Name"
-                      type="text"/>
-                    <ng-container *ngFor="let validation of validationMessage.default">
-                      <div *ngIf="f['lname'].hasError(validation.type)"
-                           class="invalid-feedback">{{validation.message}}</div>
-                    </ng-container>
-
-                    <input
-                      [ngClass]="{ 'is-invalid':f['email'].invalid  && (f['email'].touched || f['email'].dirty), 'is-valid':f['email'].valid }"
-                      class="form-control" formControlName="email" placeholder="Enter Email Id"
-                      type="text"/>
-                    <ng-container *ngFor="let validation of validationMessage.email">
-                      <div *ngIf="f['email'].hasError(validation.type)"
-                           class="invalid-feedback">{{validation.message}}</div>
-                    </ng-container>
-
-                    <input
-                      [ngClass]="{ 'is-invalid':f['phone'].invalid  && (f['phone'].touched || f['phone'].dirty), 'is-valid':f['phone'].valid }"
-                      class="form-control" formControlName="phone" placeholder="Enter Mobile No."
-                      type="text"/>
-                    <ng-container *ngFor="let validation of validationMessage.number">
-                      <div *ngIf="f['phone'].hasError(validation.type)"
-                           class="invalid-feedback">{{validation.message}}</div>
-                    </ng-container>
-
-                    <input
-                      [ngClass]="{ 'is-invalid':f['username'].invalid  && (f['username'].touched || f['username'].dirty), 'is-valid':f['username'].valid }"
-                      class="form-control" formControlName="username" placeholder="Enter Last Name"
-                      type="text"/>
-                    <ng-container *ngFor="let validation of validationMessage.default">
-                      <div *ngIf="f['username'].hasError(validation.type)"
-                           class="invalid-feedback">{{validation.message}}</div>
-                    </ng-container>
-
-                    <input
-                      [ngClass]="{ 'is-invalid':f['password'].invalid  && (f['password'].touched || f['password'].dirty), 'is-valid':f['password'].valid }"
-                      class="form-control" formControlName="password" placeholder="Enter Last Name"
-                      type="text"/>
-                    <ng-container *ngFor="let validation of validationMessage.default">
-                      <div *ngIf="f['password'].hasError(validation.type)"
-                           class="invalid-feedback">{{validation.message}}</div>
-                    </ng-container>
-
-                    <input id="flexCheckDefault" type="checkbox" value="">
-                    <label for="flexCheckDefault">
-                      I Accept the Mail <a href="">Terms and Conditions</a>
-                    </label>
-                  </form>
-                </div>
-                <button class="next action-button" type="submit">Next Step</button>
-              </fieldset>
-
-              <fieldset>
-                <div class="form-card">
-                  <h2 class="fs-title">Payment Information</h2>
-                  <div class="radio-group">
-                    <div class='radio' data-value="credit">
-                      <img alt="" height="100px" src="https://i.imgur.com/XzOzVHZ.jpg" width="200px">
+                    <div class="radio-group">
+                      <div class='radio' data-value="credit">
+                        <img alt="" height="100px" src="https://i.imgur.com/XzOzVHZ.jpg" width="200px">
+                      </div>
+                      <div class='radio' data-value="paypal">
+                        <img alt="" height="100px" src="https://i.imgur.com/jXjwZlj.jpg" width="200px">
+                      </div>
+                      <br>
                     </div>
-                    <div class='radio' data-value="paypal">
-                      <img alt="" height="100px" src="https://i.imgur.com/jXjwZlj.jpg" width="200px">
+                    <label class="pay">Card Holder Name*</label>
+                    <input name="holdername" placeholder="" type="text" />
+                    <div class="row">
+                      <div class="col-9">
+                        <label class="pay">Card Number*</label>
+                        <input name="cardno" placeholder="" type="text" />
+                      </div>
+                      <div class="col-3">
+                        <label class="pay">CVC*</label>
+                        <input name="cvcpwd" placeholder="***" type="password" />
+                      </div>
                     </div>
-                    <br>
-                  </div>
-                  <label class="pay">Card Holder Name*</label>
-                  <input name="holdername" placeholder="" type="text"/>
-                  <div class="row">
-                    <div class="col-9">
-                      <label class="pay">Card Number*</label>
-                      <input name="cardno" placeholder="" type="text"/>
-                    </div>
-                    <div class="col-3">
-                      <label class="pay">CVC*</label>
-                      <input name="cvcpwd" placeholder="***" type="password"/>
+                    <div class="row">
+                      <div class="col-3">
+                        <label class="pay">Expiry Date*</label>
+                      </div>
+                      <div class="col-9">
+                        <select class="list-dt" id="month" name="expmonth">
+                          <option selected>Month</option>
+                          <option>January</option>
+                          <option>February</option>
+                          <option>March</option>
+                          <option>April</option>
+                          <option>May</option>
+                          <option>June</option>
+                          <option>July</option>
+                          <option>August</option>
+                          <option>September</option>
+                          <option>October</option>
+                          <option>November</option>
+                          <option>December</option>
+                        </select>
+                        <select class="list-dt" id="year" name="expyear">
+                          <option selected>Year</option>
+                          <option>2023</option>
+                          <option>2024</option>
+                          <option>2025</option>
+                          <option>2026</option>
+                          <option>2027</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-3">
-                      <label class="pay">Expiry Date*</label>
+                  <input class="previous action-button-previous" name="previous" type="button" value="Previous" />
+                  <input class="next action-button" name="make_payment" type="button" value="Confirm" (click)="registerUser(registerForm.value)" 
+                  type="submit"/>
+                </fieldset>
+                <fieldset id="test-l-3">
+                  <div class="form-card">
+                    <h2 class="fs-title text-center">Success !</h2>
+                    <br><br>
+                    <div class="row justify-content-center">
+                      <div class="col-3">
+                        <img class="fit-image" src="https://img.icons8.com/color/96/000000/ok&#45;&#45;v2.png">
+                      </div>
                     </div>
-                    <div class="col-9">
-                      <select class="list-dt" id="month" name="expmonth">
-                        <option selected>Month</option>
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
-                      </select>
-                      <select class="list-dt" id="year" name="expyear">
-                        <option selected>Year</option>
-                      </select>
+                    <br><br>
+                    <div class="row justify-content-center">
+                      <div class="col-7 text-center">
+                        <h5>You Have Successfully Signed Up</h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <input class="previous action-button-previous" name="previous" type="button" value="Previous"/>
-                <input class="next action-button" name="make_payment" type="button" value="Confirm"/>
-              </fieldset>
-
-              <fieldset>
-                <div class="form-card">
-                  <h2 class="fs-title text-center">Success !</h2>
-                  <br><br>
-                  <div class="row justify-content-center">
-                    <div class="col-3">
-                      <img class="fit-image" src="https://img.icons8.com/color/96/000000/ok&#45;&#45;v2.png">
-                    </div>
-                  </div>
-                  <br><br>
-                  <div class="row justify-content-center">
-                    <div class="col-7 text-center">
-                      <h5>You Have Successfully Signed Up</h5>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
+              <!-- </div> -->
             </form>
           </div>
         </div>
