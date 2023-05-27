@@ -158,11 +158,9 @@
       </div>
     </div>
   </div>
-</div> -->
+</div> 
+&lt;!&ndash; MultiStep Form &ndash;&gt;-->
 
-
-
-&lt;!&ndash; MultiStep Form &ndash;&gt;
 <div class="container-fluid" id="grad1" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <div class="row justify-content-center mt-0">
     <div class="col mb-2-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
@@ -188,13 +186,13 @@
                       <div>
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" formControlName="accountType" id="individual" type="radio"
-                            value="individual">
-                          <label class="form-check-label" for="individual">Individual</label>
+                            value="individual" style="margin-bottom: 10px;">
+                          <label class="form-check-label bottom-margin" for="individual">Individual</label>
                         </div>
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" formControlName="accountType" id="business" type="radio"
-                            value="business">
-                          <label class="form-check-label" for="business">Business</label>
+                            value="business" style="margin-bottom: 10px;">
+                          <label class="form-check-label bottom-margin" for="business">Business</label>
                         </div>
                       </div>
 
@@ -217,35 +215,32 @@
                       <input
                         [ngClass]="{ 'is-invalid':f['password'].invalid  && (f['password'].touched || f['password'].dirty), 'is-valid':f['password'].valid }"
                         class="form-control" formControlName="password" placeholder="Password" type="password" />
-                      <ng-container *ngFor="let validation of validationMessage.default">
-                        <div *ngIf="f['password'].hasError(validation.type)" class="invalid-feedback">
-                          {{validation.message}}</div>
-                      </ng-container>
                       <ng-container *ngFor="let validation of validationMessage.password">
                         <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
                           {{validation.message}}</div>
                       </ng-container>
-
+                      
                       <input
                         [ngClass]="{ 'is-invalid':f['confirm'].invalid  && (f['confirm'].touched || f['confirm'].dirty), 'is-valid':f['confirm'].valid }"
                         class="form-control" formControlName="confirm" placeholder="Confirm Password"
                         type="password" />
-                      <ng-container *ngFor="let validation of validationMessage.default">
-                        <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
-                          {{validation.message}}</div>
-                      </ng-container>
                       <ng-container *ngFor="let validation of validationMessage.password">
                         <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
                           {{validation.message}}</div>
                       </ng-container>
+                      <!-- <ng-container *ngFor="let validation of validationMessage.password"> 
+                        <div *ngIf="f['confirm'].errors.confirmedValidator">Password and Confirm Password must be match.</div> -->
+                      <!-- </ng-container> -->
 
-                      <input id="flexCheckDefault" type="checkbox" value="">
-                      <label for="flexCheckDefault">
-                        I Accept the Mail <a href="">Terms and Conditions</a>
-                      </label>
+                      <!-- <div class="form-check">
+                        <input id="flexCheckDefault" type="checkbox" value="">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          I Accept the Mail <a href="">Terms and Conditions</a>
+                        </label>
+                      </div> -->
                     </form>
                   </div>  
-                  <button class="next action-button" type="button" (click)="next()" [disabled]="!registerForm.valid && validatePassword()">Next Step</button>
+                  <button class="next action-button" type="button" (click)="next()" [disabled]="!registerForm.valid">Next Step</button>
                 </fieldset>
                 <fieldset style="position: relative; opacity: 1;" id="test-l-1">
                   <div class="form-card">

@@ -52,6 +52,7 @@ export const validationMessage = {
   ],
   'password': [
     {type: 'required', message: 'Password is required.'},
+    {type: 'matchPassword', message: 'Password and Confirm password must match'}
   ],
   'address': [
     {type: 'required', message: 'Address is required.'}

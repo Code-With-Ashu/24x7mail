@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {validationMessage} from '@/shared/services/validation-message';
 import {CustomValidator} from '@/shared/services/validation';
 import Stepper from 'bs-stepper';
 import {AppService} from '@/shared/services/app.service';
 import {HttpApiService} from '@/shared/services/http-api.service';
 import {PromiseApiService} from '@/shared/services/promise-api.service';
+import { ConfirmedValidator } from '@/shared/services/mobie-match';
 
 declare var $: any;
 
@@ -25,9 +26,27 @@ export class PlanRegistrationComponent implements OnInit {
   constructor(
     private _appService: AppService,
     private _http: HttpApiService,
-    private _promiseService: PromiseApiService
+    private _promiseService: PromiseApiService,
+    private fb: FormBuilder
   ) {
-    this.registerFormController();
+
+    this.registerForm = fb.group({
+      accountType: new FormControl('individual'),
+      username: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
+      password: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
+      confirm: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
+      email: new FormControl('', Validators.compose([CustomValidator.emailValidator])),  
+    }, { 
+      validator: ConfirmedValidator('password', 'confirm')
+    })
+  
+    this.personalInformationForm = new FormGroup({
+      fname: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
+      lname: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
+      phone: new FormControl('', Validators.compose([CustomValidator.numericValidator])),
+      contactNo: new FormControl('', Validators.compose([CustomValidator.numericValidator])),
+    })
+    // this.registerFormController();
     this.planList = history.state.plan;
   }
 
@@ -109,37 +128,6 @@ export class PlanRegistrationComponent implements OnInit {
     })
   }
 
-  registerFormController() {
-    this.registerForm = new FormGroup({
-      accountType: new FormControl('individual'),
-      username: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      password: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      confirm: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      email: new FormControl('', Validators.compose([CustomValidator.emailValidator])),      
-    });
-
-    this.personalInformationForm = new FormGroup({
-      fname: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      lname: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      phone: new FormControl('', Validators.compose([CustomValidator.numericValidator])),
-      contactNo: new FormControl('', Validators.compose([CustomValidator.numericValidator])),
-    })
-  }
-
-  validatePassword() {
-    console.log(this.f['confirm'].value);
-    console.log(this.f['password'].value);
-    if(this.f['confirm'].value === this.f['password'].value) {
-      console.log("Equal")
-      // validationMessage.password
-      return true;
-    }
-    else {
-      console.log("Not Equal");
-      return false;
-    }
-  }
-
   registerUser(formValue: any) {
     const data = {...this.registerForm.value, ...this.personalInformationForm.value};
     data.plan_id = this.planList._id;
@@ -162,4 +150,16 @@ export class PlanRegistrationComponent implements OnInit {
   next() {
     this.stepper.next();
   }
+}
+
+function matchValidator(
+  control: AbstractControl,
+  controlTwo: AbstractControl
+): ValidatorFn {
+  return () => {
+    if (control.value !== controlTwo.value)
+      return { match_error: 'Value does not match' };
+    
+    return null;
+  };
 }
