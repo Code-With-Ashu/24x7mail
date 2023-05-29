@@ -12,7 +12,8 @@ export const mail = {
   assign_mail: 'assign-mail',
   returned: 'returned',
   mail_management: 'mail-management',
-  pending: 'pending'
+  pending: 'pending',
+  packages:'packages'
 };
 
 export const customer = {

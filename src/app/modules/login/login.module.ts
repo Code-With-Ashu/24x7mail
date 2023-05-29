@@ -24,20 +24,20 @@ import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-s
       provide: 'SocialAuthServiceConfig',
       useValue: {
         autoLogin: false,
-        // providers: [
-        //   {
-        //     id: GoogleLoginProvider.PROVIDER_ID,
-        //     provider: new GoogleLoginProvider('380290845662-s8qo1lae8uqn9hj9a1f2ltrs4msv1u3p.apps.googleusercontent.com')
-        //   },
-        //   {
-        //     id: FacebookLoginProvider.PROVIDER_ID,
-        //     provider: new FacebookLoginProvider('<YOUR_FACEBOOK_APP_ID>')
-        //   },
-        //   {
-        //     id: FacebookLoginProvider.PROVIDER_ID,
-        //     provider: new FacebookLoginProvider('<YOUR_FACEBOOK_APP_ID>')
-        //   }
-        // ]
+        providers: [
+          // {
+          //   id: GoogleLoginProvider.PROVIDER_ID,
+          //   provider: new GoogleLoginProvider('719665211882-fqf161pnfl2kiokod0i8uu1ul3anbo41.apps.googleusercontent.com')
+          // },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('<YOUR_FACEBOOK_APP_ID>')
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('<YOUR_FACEBOOK_APP_ID>')
+          }
+        ]
       } as SocialAuthServiceConfig,
     }
   ]

@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {Component, ElementRef, HostBinding, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, UntypedFormGroup, Validators} from '@angular/forms';
 import {AppService} from '@/shared/services/app.service';
 import {validationMessage} from '@/shared/services/validation-message';
@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {CustomValidator} from '@/shared/services/validation';
 import {frontEndRoutesPath, routesPath} from '@/shared/routes-path';
 import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+declare const gapi: any;
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   validationMessage = validationMessage;
   protected readonly routesPath = routesPath;
   frontEndRoutesPath = frontEndRoutesPath;
-  
+  @ViewChild('loginRef', { static: true }) loginElement: ElementRef;
+  auth2: any;
+
   constructor(
     private renderer: Renderer2,
     public _appService: AppService,
@@ -38,7 +41,39 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.renderer.addClass(document.querySelector('app-root'), 'login-page');
     this.loginFormController();
+    this.loadGoogleSdk();
+
   }
+
+  loadGoogleSdk() {
+
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({
+        client_id: '719665211882-fqf161pnfl2kiokod0i8uu1ul3anbo41.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        scope: 'profile email'
+      });
+      this.googleLogin(this.loginElement.nativeElement);
+    });
+  }
+
+  public googleLogin(element) {
+    // GOOGLE LOGIN
+    this.auth2.attachClickHandler(element, {},
+      (googleUser) => {
+ 
+        console.log("G login success",googleUser)
+   
+      }, (error) => {
+        console.log(error)
+      });
+  }
+
+  ngAfterViewInit() {
+    this.loadGoogleSdk();
+  }
+
+  
 
   loginFormController() {
     this.loginForm = new FormGroup({
@@ -75,17 +110,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
   }
 
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then(user => {
-        // Handle successful sign-in
-        console.log(user);
-      })
-      .catch(err => {
-        // Handle error
-        console.error(err);
-      });
-  }
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+  //     .then(user => {
+  //       // Handle successful sign-in
+  //       console.log(user);
+  //     })
+  //     .catch(err => {
+  //       // Handle error
+  //       console.error(err);
+  //     });
+  // }
 
   signInWithFacebook(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)

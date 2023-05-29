@@ -21,6 +21,7 @@ import {AuthInterceptor} from '@/shared/guards/auth.inteceptor';
 import {LottieModule} from 'ngx-lottie';
 import player from 'lottie-web';
 import {SharedModule} from '@/shared/shared.module';
+import { SocialLoginModule,SocialAuthServiceConfig } from 'angularx-social-login';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -45,9 +46,24 @@ export function playerFactory() {
       preventDuplicates: true
     }),
     LottieModule.forRoot({player: playerFactory}),
-    SharedModule
+    SharedModule,
+    SocialLoginModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          // {
+          //   id: AppleLoginProvider.PROVIDER_ID,
+          //   provider: new AppleLoginProvider(
+          //     'com.laytrip.laytrips'
+          //   ),
+          // },
+        ] 
+      } as SocialAuthServiceConfig,
+    },
     AuthGuard,
     NonAuthGuard,
     [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

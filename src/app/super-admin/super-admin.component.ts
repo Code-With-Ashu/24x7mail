@@ -49,10 +49,16 @@ export class SuperAdminComponent implements OnInit {
     return {
       [this.adminRoutes.mail]: [
         {
-          text: 'Request',
+          text: 'Package',
           link: `${mailPath}/${mail.request}`,
           iconClass: 'fas fa-home',
           status: true,
+        },
+        {
+          text: 'Request',
+          link: `${mailPath}/${mail.request}`,
+          iconClass: 'fas fa-home',
+          status: false,
         },
         {
           text: 'Upload New Mail',

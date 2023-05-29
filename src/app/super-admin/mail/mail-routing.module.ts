@@ -8,6 +8,8 @@ import {AssignMailComponent} from '@/super-admin/mail/assign-mail/assign-mail.co
 import {ReturnedComponent} from '@/super-admin/mail/returned/returned.component';
 import {MailManagementComponent} from '@/super-admin/mail/mail-management/mail-management.component';
 import {PendingComponent} from '@/super-admin/mail/outgoing-mail/pending/pending.component';
+import { PackageListComponent } from './package/package-list/package-list.component';
+import { PackageAddComponent } from './package/package-add/package-add.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,9 @@ const routes: Routes = [
       {path: mail.returned, component: ReturnedComponent},
       {path: mail.mail_management, component: MailManagementComponent},
       {path: mail.pending, component: PendingComponent},
+      {path: mail.packages, component: PackageListComponent},
+      {path: mail.packages+'/add', component: PackageAddComponent},
+
     ]
   },
 ];
