@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SuperAdminComponent} from './super-admin.component';
 import {superAdminRoutes} from '@/super-admin/router-path-super-admin';
+import { PackageListComponent } from './mail/package/package-list/package-list.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: superAdminRoutes.settings,
         loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+      },
+      {
+        path: superAdminRoutes.admin,
+        component: PackageListComponent
       }
     ]
   },

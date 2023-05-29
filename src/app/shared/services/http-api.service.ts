@@ -41,4 +41,8 @@ export class HttpApiService {
   postAjaxMethod(url: any, data: any) {
     return this._http.post(url, JSON.stringify(data));
   }
+
+  forgotPassword(email: string) {
+    return this._http.post(`${this.baseUrl}user/forgot-password`, email);
+  }
 }

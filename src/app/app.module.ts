@@ -22,6 +22,8 @@ import {LottieModule} from 'ngx-lottie';
 import player from 'lottie-web';
 import {SharedModule} from '@/shared/shared.module';
 import { SocialLoginModule,SocialAuthServiceConfig } from 'angularx-social-login';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -47,7 +49,9 @@ export function playerFactory() {
     }),
     LottieModule.forRoot({player: playerFactory}),
     SharedModule,
-    SocialLoginModule
+    SocialLoginModule,
+    DialogModule,
+    ButtonModule
   ],
   providers: [
     {
