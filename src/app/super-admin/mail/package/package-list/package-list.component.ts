@@ -9,7 +9,8 @@ import { PackageService } from './package.services';
 export class PackageListComponent {
 
   packages:any;
-
+  editPackage: boolean;
+  addPackage: boolean;
   constructor(
     private packageService: PackageService,
   ){
@@ -31,6 +32,12 @@ export class PackageListComponent {
     });
   }
 
+  showDialog(){
+    this.editPackage = true;
+  }
 
+  showNewPackage(){
+    this.addPackage = true;
+  }
 
 }

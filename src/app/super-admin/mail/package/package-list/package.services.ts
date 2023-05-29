@@ -9,33 +9,42 @@ import { catchError, retry } from 'rxjs/operators';
 
 export class PackageService {
 
-    constructor(
-        private http: HttpClient    
-        ) {
+  constructor(private http: HttpClient) { }
 
-        }
+  handleError(error) {
 
-        handleError(error) {
+    let errorMessage = {};
+    if (error.status == 0) {
+      console.log("API Server is not responding")
+    }
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = { message: error.error.message };
+    } else {
+      // server-side error
+      errorMessage = { status: error.status, message: error.error.message };
+    }
+    return throwError(errorMessage);
+  }
 
-            let errorMessage = {};
-            if (error.status == 0) {
-              console.log("API Server is not responding")
-            }
-            if (error.error instanceof ErrorEvent) {
-              // client-side error
-              errorMessage = { message: error.error.message };
-            } else {
-              // server-side error
-              errorMessage = { status: error.status, message: error.error.message };
-            }
-            return throwError(errorMessage);
-          }
-        
-        getPackageList() {
-            return this.http.get(`https://api.24x7mail.com/package`)
-              .pipe(
-                catchError(this.handleError)
-              );
-          }
-        
-      }
+  getPackageList() {
+    return this.http.get(`https://api.24x7mail.com/package`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getPackageById(id: any) {
+    return this.http.get(`https://api.24x7mail.com/package/` + id)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  savePackage(payload: any) {
+    return this.http.post(`https://api.24x7mail.com/package`, payload)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+}

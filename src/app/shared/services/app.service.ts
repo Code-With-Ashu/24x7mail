@@ -12,7 +12,7 @@ declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class AppService {  
   user: any = {
     picture: 'assets/img/default-profile.png',
     email: 'Admin@gmail.com'
@@ -70,7 +70,8 @@ export class AppService {
 
   logout() {
     localStorage.removeItem('user-info');
-    this.router.navigate(['/' + routesPath.login]).then();
+    // this.router.navigate(['/' + routesPath.login]).then();
+    this.router.navigate(['/']).then();
   }
 
   dataTableOptions() {

@@ -1,1 +1,34 @@
-<p>package-edit works!</p>
+<div style="width: 300px">
+    <form [formGroup]="packageEditForm">
+        <!-- type":"monthly",
+    "features_id":"646ca2f0297c8f8035968a00",
+    "name":"starter",
+    "price":7,
+    "incoming_mail":20, -->
+
+        <div class="mb-3">
+            <label class="form-label">Type</label>
+            <input type="text" formControlName="type" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="text" formControlName="price" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Incoming Mail</label>
+            <input type="text" formControlName="incomingMail" class="form-control">
+        </div>
+        <div style="float: right;">
+        
+        <p-button class="mr-3" (click)="saveEdit()"> Save </p-button>
+        <p-button styleClass="p-button-secondary">Cancel</p-button>
+    </div>
+    </form>
+</div>

@@ -39,7 +39,7 @@
           <input class="form-check-input ml-1" id="inlineCheckbox1" type="checkbox" value="option1">
           <label class="form-check-label" for="inlineCheckbox1">Remember me </label>
         </div>
-        <a class="text-right small text-gray-dark" href="">Forgot your Password?</a>
+        <a class=" cursor-pointer text-right small text-gray-dark "  (click)="showDialog()">Forgot your Password?</a>
       </div>
 
       <button [disabled]="loginForm.invalid || isAuthLoading" class="btn btn-block btn-primary mt-3" type="submit">
@@ -47,16 +47,16 @@
                role="status"></span> Sign In
       </button>
 
-      <div class="my-4">
+      <!-- <div class="my-4">
         <div class="ordiv"><span>Or log in with</span></div>
-      </div>
+      </div> -->
 
-      <div class="row">
+      <!--<div class="row">
         <div class="col">
-          <!-- <button type="button" (click)="signInWithGoogle()" class="btn btn-primary">Sign In With Google</button> -->
+           <button type="button" (click)="signInWithGoogle()" class="btn btn-primary">Sign In With Google</button> -->
 
-          <a  class="g-signin2  social-btn  loginBtn--google" #loginRef ><img alt="" class="img-fluid cursor" src="assets/img/google.png"/>
-            </a>
+          <!-- <a  class="g-signin2  social-btn  loginBtn--google" #loginRef ><img alt="" class="img-fluid cursor" src="assets/img/google.png"/>
+            </a> -->
 
           <!-- <div id="g_id_onload" data-client_id="380290845662-s8qo1lae8uqn9hj9a1f2ltrs4msv1u3p.apps.googleusercontent.com"
             data-context="signin" data-ux_mode="popup" data-login_uri="http://localhost:4200/#/login" data-auto_select="true"
@@ -66,18 +66,17 @@
           <!-- <div class="g_id_signin" data-type="standard" data-shape="sqaure" data-theme="outline" data-text="signin"
             data-size="large" data-logo_alignment="left">
           </div> -->
-          <!-- <img alt="" class="img-fluid cursor" src="assets/img/google.png"/> -->
-        </div>
-        <div class="col">
+          <!-- <img alt="" class="img-fluid cursor" src="assets/img/google.png"/>
+        </div> -->
+        <!-- <div class="col">
           <img alt="" class="img-fluid cursor" src="assets/img/facbook.png"/>
-        </div>
+        </div> 
         <div class="col">
           <img alt="" class="img-fluid cursor" src="assets/img/apple.png"/>
         </div>
-      </div>
+      </div>-->
       <div class="text-center">
-        <!-- [routerLink]="'/'+frontEndRoutesPath.requestLocation" -->
-        <p>Dont have an account? <a [routerLink]="'/'+frontEndRoutesPath.requestLocation">Sign Up</a></p>
+        <p>Don't have an account? <a [routerLink]="'/'+frontEndRoutesPath.requestLocation">Sign Up</a> to become customer</p>
       </div>
 
       <!-- <div class="row">
@@ -100,3 +99,11 @@
   </div>
   <!-- /.login-card-body -->
 </div>
+<p-dialog 
+          header="Forgot Password"
+          [(visible)]="BasicShow"
+          [draggable]="false" 
+          [resizable]="false"
+          [position]="'top'">
+          <app-forgot-password></app-forgot-password>
+        </p-dialog>
