@@ -1,6 +1,6 @@
 <div style="width: 300px">
-    <form [formGroup]="addPackageForm">
-
+    <form [formGroup]="packageEditForm">
+      
         <div class="mb-3">
             <label class="form-label">Type</label>
             <select formControlName="type" class="form-control" >
@@ -25,16 +25,16 @@
             <input type="text" formControlName="incoming_mail" class="form-control">
         </div>
         <div class="mb-3">
-            <label class="form-label">Incoming Mail</label>
+            <label class="form-label">Open Scan</label>
             <input type="text" formControlName="open_scan" class="form-control">
         </div>
         <div class="mb-3">
-            <label class="form-label">Incoming Mail</label>
+            <label class="form-label">Recipients</label>
             <input type="text" formControlName="recipients" class="form-control">
         </div>
         <div style="float: right;">
         
-        <p-button class="mr-3" (click)="save()"> Add </p-button>
+        <p-button class="mr-3" (click)="saveEdit()"> Save </p-button>
     </div>
     </form>
 </div>

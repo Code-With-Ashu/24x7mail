@@ -13,13 +13,10 @@ export const mail = {
   assign_mail: 'assign-mail',
   returned: 'returned',
   mail_management: 'mail-management',
-  pending: 'pending',
-  packages:'packages'
+  pending: 'pending'
 };
 
-export const admin = {
-  packages:'packages'
-};
+
 
 export const customer = {
   inbox: 'inbox',
@@ -38,3 +35,6 @@ export const settings = {
 };
 
 
+export const admin = {
+  packages:'packages'
+};

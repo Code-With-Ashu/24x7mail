@@ -9,9 +9,6 @@ import { AssignMailComponent } from './assign-mail/assign-mail.component';
 import { ReturnedComponent } from './returned/returned.component';
 import { MailManagementComponent } from './mail-management/mail-management.component';
 import { PendingComponent } from './outgoing-mail/pending/pending.component';
-import { PackageListComponent } from './package/package-list/package-list.component';
-import { PackageAddComponent } from './package/package-add/package-add.component';
-import { PackageEditComponent } from './package/package-edit/package-edit.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,11 +24,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AssignMailComponent,
     ReturnedComponent,
     MailManagementComponent,
-    PendingComponent,
-    PackageListComponent,
-    PackageAddComponent,
-    PackageEditComponent,
-  
+    PendingComponent
+
   ],
   imports: [
     CommonModule,

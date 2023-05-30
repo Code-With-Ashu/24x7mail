@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { PackageService } from './package.services';
 
-import { ConfirmationService, MessageService } from 'primeng/api';
-
 @Component({
   selector: 'app-package-list',
   templateUrl: './package-list.component.html',
@@ -21,7 +19,7 @@ export class PackageListComponent {
   
   
   constructor(
-    private packageService: PackageService,
+    private packageService: PackageService
   
   ){
 

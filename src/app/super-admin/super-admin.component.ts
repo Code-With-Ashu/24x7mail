@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {customer, mail, reports, settings, superAdminRoutes} from '@/super-admin/router-path-super-admin';
+import {admin, customer, mail, reports, settings, superAdminRoutes} from '@/super-admin/router-path-super-admin';
 import {AppService} from '@/shared/services/app.service';
 
 @Component({
@@ -41,19 +41,22 @@ export class SuperAdminComponent implements OnInit {
   }
 
   mailBoxMenu() {
+    const adminPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.admin}`;
     const mailPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.mail}`;
     const reportsPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.report}`;
     const settingsPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.settings}`;
     const customerPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.customer}`;
 
     return {
-      [this.adminRoutes.mail]: [
+      [this.adminRoutes.admin]: [
         {
-          text: 'Package',
-          link: `${mailPath}/${mail.packages}`,
+          text: 'Packages',
+          link: `${adminPath}/${admin.packages}`,
           iconClass: 'fas fa-home',
           status: true,
         },
+      ],      
+      [this.adminRoutes.mail]: [
         {
           text: 'Request',
           link: `${mailPath}/${mail.request}`,
