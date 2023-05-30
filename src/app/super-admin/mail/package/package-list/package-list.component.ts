@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
 import { PackageService } from './package.services';
 
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-package-list',
   templateUrl: './package-list.component.html',
-  styleUrls: ['./package-list.component.scss']
+  styleUrls: ['./package-list.component.scss'],
+  providers: [ ]
+
 })
 export class PackageListComponent {
 
-  packages:any;
+  packages=[];
   editPackage: boolean;
   closeResult = '';
-
+  loading= true;
   addPackage: boolean;
+  deletePopup = false;
+  
+  
   constructor(
     private packageService: PackageService,
-
+  
   ){
 
   }
@@ -26,13 +32,23 @@ export class PackageListComponent {
     this.getPackageList();
   }
 
+  dialogInfoUpdate(newItem: string) {
+
+    this.editPackage = false;
+    if(newItem == 'saved-success'){
+      this.addPackage = false;
+      this.getPackageList();
+    }
+
+  }
 
   getPackageList(){
+    this.loading = true;
     this.packageService.getPackageList().subscribe((res: any) => {
       this.packages = res.data;
-      
+      this.loading = false;
     }, err => {
-
+      this.loading = false;
     });
   }
 
@@ -40,11 +56,29 @@ export class PackageListComponent {
     this.editPackage = true;
   }
 
+  closePackageDialog(){
+    this.editPackage = false;
+  }
+
   showNewPackage(){
     this.addPackage = true;
   }
-
+  showDeleteDialog(){
+    this.deletePopup = true;
+  }
   
-  
+  delete(event: Event, isDelete) {    
+    this.deletePopup = false;
+    if(isDelete == 'YES'){
+      this.deletePopup = false;
 
+      this.packageService.deletePackage().subscribe((res: any) => {
+        this.loading = false;
+        this.getPackageList();
+      }, err => {
+        this.loading = false;
+      });
+    }
+
+  }
 }

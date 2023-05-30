@@ -15,6 +15,9 @@ import { PackageEditComponent } from './package/package-edit/package-edit.compon
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentModule } from '@/shared/components/component.module';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PendingComponent,
     PackageListComponent,
     PackageAddComponent,
-    PackageEditComponent
+    PackageEditComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -36,8 +40,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    ComponentModule,
+    ToastModule,
+    ConfirmDialogModule
   ]
+
 })
 export class MailModule {
 }

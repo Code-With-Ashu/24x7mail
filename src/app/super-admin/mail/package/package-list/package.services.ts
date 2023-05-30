@@ -47,4 +47,11 @@ export class PackageService {
         catchError(this.handleError)
       );
   }
+
+  deletePackage() {
+    return this.http.delete(`https://api.24x7mail.com/package`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }

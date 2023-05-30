@@ -1,6 +1,7 @@
 import { Component , Input} from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { PackageService } from '../package-list/package.services';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-package-edit',
@@ -11,6 +12,7 @@ import { PackageService } from '../package-list/package.services';
 export class PackageEditComponent {
 
   @Input() _id: any = null;
+  @Output() newItemEvent = new EventEmitter<string>();
 
   packageEditForm: FormGroup;
 
@@ -27,7 +29,9 @@ export class PackageEditComponent {
       type: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
-      incomingMail: new FormControl('', Validators.required)
+      incoming_mail: new FormControl('', Validators.required),
+      open_scan: new FormControl('', Validators.required),
+      recipients: new FormControl('', Validators.required)
     });
 
     this.getPackageById()
@@ -47,10 +51,14 @@ export class PackageEditComponent {
     this.packageEditForm.get('type').setValue(this.packages.type);
     this.packageEditForm.get('name').setValue(this.packages.name);
     this.packageEditForm.get('price').setValue(this.packages.price);
-    this.packageEditForm.get('incomingMail').setValue(this.packages.incoming_mail);
+    this.packageEditForm.get('incoming_mail').setValue(this.packages.incoming_mail);
+    this.packageEditForm.get('open_scan').setValue(this.packages.incoming_mail);
+    this.packageEditForm.get('recipients').setValue(this.packages.incoming_mail);
   }
 
   saveEdit() {
+    this.newItemEvent.emit('edited-success');
+
     this.packageService.savePackage(this.packageEditForm.value).subscribe((res: any) => {
       console.log(res.data)
       // this.packages = res.data;

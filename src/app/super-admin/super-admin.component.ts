@@ -50,7 +50,7 @@ export class SuperAdminComponent implements OnInit {
       [this.adminRoutes.mail]: [
         {
           text: 'Package',
-          link: `${mailPath}/${mail.request}`,
+          link: `${mailPath}/${mail.packages}`,
           iconClass: 'fas fa-home',
           status: true,
         },

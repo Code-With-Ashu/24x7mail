@@ -3,7 +3,11 @@
 
         <div class="mb-3">
             <label class="form-label">Type</label>
-            <input type="text" formControlName="type" class="form-control">
+            <select formControlName="type" class="form-control" >
+                <option value="">Select Loan Type</option>                                            
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
         </div>
 
         <div class="mb-3">
@@ -18,12 +22,19 @@
 
         <div class="mb-3">
             <label class="form-label">Incoming Mail</label>
-            <input type="text" formControlName="incomingMail" class="form-control">
+            <input type="text" formControlName="incoming_mail" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Incoming Mail</label>
+            <input type="text" formControlName="open_scan" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Incoming Mail</label>
+            <input type="text" formControlName="recipients" class="form-control">
         </div>
         <div style="float: right;">
         
-        <p-button class="mr-3" (click)="save()"> Save </p-button>
-        <p-button styleClass="p-button-secondary">Cancel</p-button>
+        <p-button class="mr-3" (click)="save()"> Add </p-button>
     </div>
     </form>
 </div>

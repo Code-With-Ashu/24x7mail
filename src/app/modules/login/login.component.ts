@@ -94,6 +94,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         next: (res: any) => {
           if (res.status) {
             localStorage.setItem('user-info', JSON.stringify(res));
+            localStorage.setItem('auth-token', res.token);
+
             this._appService.toastService('success', 'Login successfully.');
             this._appService.rootNavigation();
             return;
