@@ -6,12 +6,14 @@ import {LoginComponent} from '@modules/login/login.component';
 import {SharedModule} from '@/shared/shared.module';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { ForgotPasswordComponent } from '@modules/forgot-password/forgot-password.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

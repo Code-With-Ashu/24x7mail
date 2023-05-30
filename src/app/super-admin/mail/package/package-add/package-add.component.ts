@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { PackageService } from '../package-list/package.services';
 
 @Component({
   selector: 'app-package-add',
@@ -9,36 +8,28 @@ import { Location } from '@angular/common';
   styleUrls: ['./package-add.component.scss']
 })
 export class PackageAddComponent {
-  public form: FormGroup;
-  submitted = false;
-  show: boolean = false;
-  confirm_show: boolean = false;
-  public pageName: string = 'Package';
-  customer_id:string;
-  customer_loan_id:string;
-  errorMessage='';
+  addPackageForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private _location:Location,
-    private route: ActivatedRoute
-  ){
+  constructor(private packageService: PackageService){}
 
+  packages : any;
+
+  ngOnInit() {
+    this.addPackageForm = new FormGroup({
+      type: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
+      incomingMail: new FormControl('', Validators.required)
+    });
   }
 
-  ngOnInit(): void {
-  
+  save() {
+    this.packageService.savePackage(this.addPackageForm.value).subscribe((res: any) => {
+      console.log(res.data)
+      // this.packages = res.data;
+      
+    }, err => {
 
-    this.form = this.formBuilder.group({      
-      notes:['',Validators.required],
-    })
-  }
-
-  onSubmit(): void {
-  }
-
-  back(){
-    this._location.back();
+    });
   }
 }

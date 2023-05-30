@@ -37,6 +37,7 @@
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@ngrx/store": "14.3.0",
+    "@popperjs/core": "^2.11.8",
     "@profabric/angular-components": "0.1.2",
     "angular-datatables": "^15.0.0",
     "angularx-social-login": "^4.1.0",

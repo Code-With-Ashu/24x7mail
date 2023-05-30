@@ -44,6 +44,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
+            <li (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.admin}"
+                class="nav-item cursor">
+              <a class="nav-link">Admin</a>
+            </li>
             <li (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.mail}"
                 class="nav-item cursor">
               <a class="nav-link">Mail</a>

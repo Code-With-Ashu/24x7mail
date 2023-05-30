@@ -17,6 +17,8 @@ import {PaginatorModule} from 'primeng/paginator';
 import {TableModule} from 'primeng/table';
 import {ActiveDropdownPipe} from './pipe/active-dropdown.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 const modules: any = [
   CommonModule,
@@ -31,7 +33,9 @@ const modules: any = [
   TooltipModule,
   ScrollTopModule,
   AutoCompleteModule,
-  HttpClientModule
+  HttpClientModule,
+  DialogModule,
+  ButtonModule
 ];
 
 const others: any = [

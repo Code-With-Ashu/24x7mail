@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PackageService } from './package.services';
 
+
 @Component({
   selector: 'app-package-list',
   templateUrl: './package-list.component.html',
@@ -9,9 +10,13 @@ import { PackageService } from './package.services';
 export class PackageListComponent {
 
   packages:any;
+  editPackage: boolean;
+  closeResult = '';
 
+  addPackage: boolean;
   constructor(
     private packageService: PackageService,
+
   ){
 
   }
@@ -31,6 +36,15 @@ export class PackageListComponent {
     });
   }
 
+  showDialog(){
+    this.editPackage = true;
+  }
 
+  showNewPackage(){
+    this.addPackage = true;
+  }
+
+  
+  
 
 }

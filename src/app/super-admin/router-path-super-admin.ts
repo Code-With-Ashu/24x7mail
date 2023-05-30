@@ -3,7 +3,8 @@ export const superAdminRoutes = {
   mail: 'mail',
   customer: 'customer',
   report: 'reports',
-  settings: 'settings'
+  settings: 'settings',
+  admin: 'admin'
 };
 
 export const mail = {
@@ -13,6 +14,10 @@ export const mail = {
   returned: 'returned',
   mail_management: 'mail-management',
   pending: 'pending',
+  packages:'packages'
+};
+
+export const admin = {
   packages:'packages'
 };
 

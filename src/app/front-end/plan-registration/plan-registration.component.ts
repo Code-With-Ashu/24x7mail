@@ -35,16 +35,19 @@ export class PlanRegistrationComponent implements OnInit {
       username: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
       password: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
       confirm: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      email: new FormControl('', Validators.compose([CustomValidator.emailValidator])),  
+      email: new FormControl('', Validators.compose([CustomValidator.emailValidator])), 
+      fname: new FormControl(''),
+      lname: new FormControl(''),
+      phone: new FormControl(''), 
     }, { 
       validator: ConfirmedValidator('password', 'confirm')
     })
   
     this.personalInformationForm = new FormGroup({
-      fname: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      lname: new FormControl('', Validators.compose([CustomValidator.noSpaceWithReqValidator])),
-      phone: new FormControl('', Validators.compose([CustomValidator.numericValidator])),
-      contactNo: new FormControl('', Validators.compose([CustomValidator.numericValidator])),
+      fname: new FormControl(''),
+      lname: new FormControl(''),
+      phone: new FormControl(''),
+      contactNo: new FormControl(''),
     })
     // this.registerFormController();
     this.planList = history.state.plan;
@@ -129,7 +132,7 @@ export class PlanRegistrationComponent implements OnInit {
   }
 
   registerUser(formValue: any) {
-    const data = {...this.registerForm.value, ...this.personalInformationForm.value};
+    const data = {...this.registerForm.value};
     data.plan_id = this.planList._id;
     console.log(data)
 
