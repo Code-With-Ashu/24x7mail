@@ -10,6 +10,7 @@ import {MailManagementComponent} from '@/super-admin/mail/mail-management/mail-m
 import {PendingComponent} from '@/super-admin/mail/outgoing-mail/pending/pending.component';
 import { PackageListComponent } from './package/package-list/package-list.component';
 import { PackageAddComponent } from './package/package-add/package-add.component';
+import { PackageEditComponent } from './package/package-edit/package-edit.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       {path: mail.pending, component: PendingComponent},
       {path: mail.packages, component: PackageListComponent},
       {path: mail.packages+'/add', component: PackageAddComponent},
+      {path: mail.packages+'/edit', component: PackageEditComponent},
 
     ]
   },
