@@ -7,4 +7,8 @@ import {Component} from '@angular/core';
 })
 export class UploadNewMailComponent {
 
+  isPackageSelect : boolean = false;
+  onChangeSelectItemType(item){
+    this.isPackageSelect = (item.target.value == 'package') ? true : false;   
+  }
 }
