@@ -44,7 +44,7 @@ export class AppService {
   }
 
   getToken() {
-    return (this.userDetails()) ? `Bearer ${this.userDetails().token}` : '';
+    return (this.userDetails()) ? `${this.userDetails().token}` : '';
   }
 
   userDetails() {

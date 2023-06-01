@@ -10,6 +10,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     DialogModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    NgxPaginationModule
   ]
  
 })

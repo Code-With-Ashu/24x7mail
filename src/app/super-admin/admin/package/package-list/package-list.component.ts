@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PackageService } from './package.services';
+import { AppService } from '@/shared/services/app.service';
 
 @Component({
   selector: 'app-package-list',
@@ -16,28 +17,34 @@ export class PackageListComponent {
   loading= true;
   addPackage: boolean;
   deletePopup = false;
-  
+  p: number = 1;
+
   
   constructor(
-    private packageService: PackageService
-  
+    private packageService: PackageService,
+    public _appService: AppService,
+
   ){
 
   }
 
-
+  
   ngOnInit() {
     this.getPackageList();
   }
 
-  dialogInfoUpdate(newItem: string) {
+  dialogInfoUpdate(info:any) {
+    
+    this.editPackage = false;  
 
-    this.editPackage = false;
-    if(newItem == 'saved-success'){
+    if(info.status == 'success'){
       this.addPackage = false;
-      this.getPackageList();
+    } else  if(info.status == 'error'){
+      this.editPackage = false;
     }
-
+    
+    this._appService.toastService(info.status, info.error_message);
+    this.getPackageList();
   }
 
   getPackageList(){
@@ -50,7 +57,9 @@ export class PackageListComponent {
     });
   }
 
-  showDialog(){
+  selectPackageInfo = {};
+  showDialog(event,_package){
+    this.selectPackageInfo = _package;
     this.editPackage = true;
   }
 
@@ -61,22 +70,25 @@ export class PackageListComponent {
   showNewPackage(){
     this.addPackage = true;
   }
-  showDeleteDialog(){
+  showDeleteDialog(id){
+   
     this.deletePopup = true;
   }
   
-  delete(event: Event, isDelete) {    
-    this.deletePopup = false;
-    if(isDelete == 'YES'){
-      this.deletePopup = false;
+  delete(event: Event, isDelete, packageId ='') {    
+    this.loading = true;
 
-      this.packageService.deletePackage().subscribe((res: any) => {
+    if(isDelete == 'YES'){
+      this.packageService.deletePackage(packageId).subscribe((res: any) => {
+        this.deletePopup = false;
         this.loading = false;
         this.getPackageList();
       }, err => {
         this.loading = false;
       });
+    } else {
+      this.loading = false;
+      this.deletePopup = false;
     }
-
   }
 }
