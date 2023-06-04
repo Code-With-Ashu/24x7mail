@@ -18,6 +18,7 @@ export class PackageListComponent {
   addPackage: boolean;
   deletePopup = false;
   p: number = 1;
+  selectPackageInfo = {};
 
   
   constructor(
@@ -57,7 +58,6 @@ export class PackageListComponent {
     });
   }
 
-  selectPackageInfo = {};
   showDialog(event,_package){
     this.selectPackageInfo = _package;
     this.editPackage = true;

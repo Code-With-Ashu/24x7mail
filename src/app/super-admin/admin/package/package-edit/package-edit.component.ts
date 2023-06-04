@@ -16,10 +16,11 @@ export class PackageEditComponent {
     featuresList = [];
     submitted = false;
     packageEditForm: FormGroup;
+    packageData: any = {};
+    packages: any;
 
     constructor(private packageService: PackageService) {}
 
-    packages: any;
 
     ngOnInit() {
         this.getFeatureList();
@@ -38,7 +39,6 @@ export class PackageEditComponent {
         this.getPackageById();
     }
 
-    packageData: any = {};
     ngOnChanges(changes: SimpleChanges) {
  
       if (!changes.packageDetail['firstChange']) {

@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentModule } from '@/shared/components/component.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DragDirective } from '@/shared/dragDrop.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AssignMailComponent,
     ReturnedComponent,
     MailManagementComponent,
-    PendingComponent
+    PendingComponent,
+    DragDirective
 
   ],
   imports: [
@@ -37,6 +39,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ComponentModule,
     ToastModule,
     ConfirmDialogModule,
+    
     
   ]
 

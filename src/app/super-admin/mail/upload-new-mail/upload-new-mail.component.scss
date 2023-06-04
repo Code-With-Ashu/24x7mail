@@ -6,7 +6,7 @@ body {
 
 .upload_dropZone {
   color: #0f3c4b;
-  background-color: var(--colorPrimaryPale, #c8dadf);
+  background-color: var(--colorPrimaryPale, #ffffff);
   outline: 2px dashed var(--colorPrimaryHalf, #132633) !important;
   outline-offset: -12px;
   transition:
@@ -23,12 +23,12 @@ body {
   fill: var(--colorPrimaryNormal, #0576bd);
 }
 .btn-upload {
-  color: #fff;
+  color: #000;
   background-color: var(--colorPrimaryNormal);
 }
 .btn-upload:hover,
 .btn-upload:focus {
-  color: #fff;
+  color: green;
   background-color: var(--colorPrimaryGlare);
 }
 .upload_img {
@@ -38,4 +38,7 @@ body {
 
 .tab-content ,.tab-columns {
     margin-left: 15px;
+}
+.dropzone {
+  background-color: #ffffff !important;
 }

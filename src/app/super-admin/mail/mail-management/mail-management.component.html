@@ -1,8 +1,100 @@
-<div class="card">
-  <div class="card-header">
-    <h3><i class="fas fa-home mr-2"></i>Mail Management</h3>
+<h3 class="font-weight-bold">Mail Management</h3>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button aria-controls="home" aria-selected="true" class="nav-link active" data-target="#home" data-toggle="tab"
+            id="home-tab"
+            role="tab" type="button">Local Pickup
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#profile" data-toggle="tab"
+            id="profile-tab"
+            role="tab" type="button">Past Shipment
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#profile" data-toggle="tab"
+            id="profile-tab"
+            role="tab" type="button">Assigned Mail
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#profile" data-toggle="tab"
+            id="profile-tab"
+            role="tab" type="button">Past Pickups
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#profile" data-toggle="tab"
+            id="profile-tab"
+            role="tab" type="button">Search Mail
+    </button>
+  </li>
+
+</ul>
+<div class="tab-content py-3" id="myTabContent">
+
+  <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Mailbox</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Items</th>
+       
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>3</td>
+      
+      </tr>
+
+      <tr>
+        <th scope="row">1</th>
+        <td>Jems</td>
+        <td>Fun</td>
+        <td>0</td>
+       
+      </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="card-body">
-    <p>No data available...</p>
+  <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
