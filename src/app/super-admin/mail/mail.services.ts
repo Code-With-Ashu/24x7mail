@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, retry } from 'rxjs/operators';
@@ -11,7 +11,7 @@ export class MailService {
 
   constructor(private http: HttpClient) { }
 
-  setHeaders(params: any) {
+  setHeaders(params='') {
     let reqData: any = { headers: {} };
     const accessToken = localStorage.getItem('auth-token');
     console.log(accessToken);
@@ -19,14 +19,16 @@ export class MailService {
       reqData = {
         headers: {
           Authorization: `${accessToken}`,
+          'Content-Type': `image/jpeg`
         },
       };
     }
-    if (params != null) {
+    if (params) {
       Object.keys(params).map((k) => {
         reqData.headers[k] = params[k];
       });
     }
+    console.log("reqData",reqData)
     return reqData;
   }
 
@@ -56,8 +58,18 @@ export class MailService {
   }
 
   uploadFile(data: any): Observable<any> {
+  
+    const hd = new HttpHeaders({
+      'Content-Type':'image/jpeg; charset=utf-8',// 'image/jpeg',
+      Authorization: `${localStorage.getItem('auth-token')}`,
+
+
+    });
     const API_URL = `https://api.24x7mail.com/mails`;
-    return this.http.post(API_URL,data);
+    console.log({headers:hd})
+    return this.http.post(API_URL,data, {headers:hd} );
   }
 
+  //{'Content-Type': 'multipart/form-data'}
+ 
 }

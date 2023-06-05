@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
           this._appService.toastService('warning', res.message);
         },     // nextHandler
-        error: () => {
+        error: (e) => {
           this.isAuthLoading = false;
           this._appService.toastService('warning', "User Not created");
         },    // errorHandler

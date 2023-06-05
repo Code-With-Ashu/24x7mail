@@ -28,7 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     AdminRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ToastModule
   ]
  
 })

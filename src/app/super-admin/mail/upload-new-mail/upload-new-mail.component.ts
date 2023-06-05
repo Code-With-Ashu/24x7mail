@@ -77,12 +77,13 @@ export class UploadNewMailComponent {
       return;
     }
     let requestParam : any = {}
-    var formData: FormData = new FormData();
+    var ff =  new FormData();
 
-    requestParam = {
-      mail_type : this.uploadNewMailForm.value.mail_type, 
-      mail : this._fileObject
-    };
+    // requestParam = {
+    //   mail_type : this.uploadNewMailForm.value.mail_type, 
+    //   mail : this._fileObject,
+    //   user:"646c849d8a7ba45bb20add1d"
+    // };
 
     // if(this.uploadNewMailForm.value.mail_type == 'package'){
     //   requestParam.weight = this.uploadNewMailForm.value.weight;
@@ -92,11 +93,30 @@ export class UploadNewMailComponent {
     // }
     
 
-    formData.append("mail_type",this.uploadNewMailForm.value.mail_type);
-    // formData.append("mail",this._fileObject);
-    formData.append("user",'646c849d8a7ba45bb20add1d');
+    // ff.append("mail_type",this.uploadNewMailForm.value.mail_type);
+    // ff.append("mail",this._fileObject);
+    ff.append("user",'646c849d8a7ba45bb20add1d');
 
-    console.log("formData",formData)
+    // for (var i = 0; i < this._fileObject.length; i++) {
+    //    console.log(this._fileObject[i]) 
+    //   formData.append("mail", this._fileObject[i]);
+    // }
+    // formData.append("file", this._fileObject, this._fileObject.name)
+    // requestParam = {
+    //   mail_type : this.uploadNewMailForm.value.mail_type, 
+    //   mail : formData,
+    //   user:"646c849d8a7ba45bb20add1d"
+    // };
+
+    let formData = new FormData();
+    formData.append('mail_type', 'envelope');
+    formData.append('mail', this._fileObject);
+    formData.append('weight', '1');
+    formData.append('height', '2');
+    formData.append('width', '3');
+    formData.append('length', '7');
+    formData.append('user', '646c849d8a7ba45bb20add1d');
+
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
       },
