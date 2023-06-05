@@ -172,19 +172,18 @@
             <form id="msform">
               <ul id="progressbar">
                 <li id="account" class="active"><strong>Account</strong></li>
-                <li id="payment"><strong>Personal</strong></li>
-                <li id="payment"><strong>Payment</strong></li>
+                <!-- <li id="payment"><strong>Personal</strong></li> -->
+                <li id="payment"><strong>Setup</strong></li>
                 <li id="confirm"><strong>Finish</strong></li>
               </ul>
               <div class="bs-stepper-content">
-                <!-- <form (ngSubmit)="registerUser(registerForm.value)" [formGroup]="registerForm"> -->
                 <fieldset style="position: relative; opacity: 1;" id="test-l-1">
                   <div class="form-card">
                     <form [formGroup]="registerForm">
                     <h2 class="fs-title">Account Information</h2>
                       <label class="form-label">Account Type</label>
                       <div>
-                        <div class="form-check form-check-inline">
+                        <div class="form-check form-check-inline mt-3">
                           <input class="form-check-input" formControlName="accountType" id="individual" type="radio"
                             value="individual" style="margin-bottom: 10px;">
                           <label class="form-check-label bottom-margin" for="individual">Individual</label>
@@ -195,6 +194,30 @@
                           <label class="form-check-label bottom-margin" for="business">Business</label>
                         </div>
                       </div>
+
+                      <input
+                      [ngClass]="{ 'is-invalid':f['fname'].invalid  && (f['fname'].touched || f['fname'].dirty), 'is-valid':p['fname'].valid }"
+                      class="form-control" formControlName="fname" placeholder="Enter First Name" type="text" />
+                    <ng-container *ngFor="let validation of validationMessage.default">
+                      <div *ngIf="f['fname'].hasError(validation.type)" class="invalid-feedback">
+                        {{validation.message}}</div>
+                    </ng-container>
+
+                    <input
+                      [ngClass]="{ 'is-invalid':f['lname'].invalid  && (f['lname'].touched || f['lname'].dirty), 'is-valid':p['lname'].valid }"
+                      class="form-control" formControlName="lname" placeholder="Enter Last Name" type="text" />
+                    <ng-container *ngFor="let validation of validationMessage.default">
+                      <div *ngIf="f['lname'].hasError(validation.type)" class="invalid-feedback">
+                        {{validation.message}}</div>
+                    </ng-container>
+
+                    <input
+                      [ngClass]="{ 'is-invalid':f['phone'].invalid  && (f['phone'].touched || f['phone'].dirty), 'is-valid':p['phone'].valid }"
+                      class="form-control" formControlName="phone" placeholder="Enter Mobile No." type="text" />
+                    <ng-container *ngFor="let validation of validationMessage.number">
+                      <div *ngIf="f['phone'].hasError(validation.type)" class="invalid-feedback">
+                        {{validation.message}}</div>
+                    </ng-container>
 
                       <input
                         [ngClass]="{ 'is-invalid':f['email'].invalid  && (f['email'].touched || f['email'].dirty), 'is-valid':f['email'].valid }"
@@ -228,21 +251,30 @@
                         <div *ngIf="f['confirm'].hasError(validation.type)" class="invalid-feedback">
                           {{validation.message}}</div>
                       </ng-container>
-                      <!-- <ng-container *ngFor="let validation of validationMessage.password"> 
-                        <div *ngIf="f['confirm'].errors.confirmedValidator">Password and Confirm Password must be match.</div> -->
-                      <!-- </ng-container> -->
 
-                      <!-- <div class="form-check">
-                        <input id="flexCheckDefault" type="checkbox" value="">
-                        <label class="form-check-label" for="flexCheckDefault">
-                          I Accept the Mail <a href="">Terms and Conditions</a>
-                        </label>
-                      </div> -->
+                      <h2 class="fs-title">Payment Information</h2>
+                    <h5>Your Subscription</h5>
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                        <div class="card">
+                          <div class="card-body">
+                            <h3 class="text-center text-primary">{{planList.name}}</h3>
+                            <h4 class="text-center text-primary">$ {{planList.price}}</h4>
+            
+                            <div>
+                              Incoming Mail {{planList.incoming_mail}} Items /Month <br>
+                              Open and Scan {{planList.open_scan}} Items <br>
+                              Recipients {{planList.recipients}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     </form>
                   </div>  
                   <button class="next action-button" type="button" (click)="next()" [disabled]="!registerForm.valid">Next Step</button>
                 </fieldset>
-                <fieldset style="position: relative; opacity: 1;" id="test-l-1">
+                <!-- <fieldset style="position: relative; opacity: 1;" id="test-l-1">
                   <div class="form-card">
                     <form [formGroup]="personalInformationForm">
                     <h2 class="fs-title">Personal Information</h2>
@@ -280,27 +312,12 @@
                     </form>
                   </div>
                   <button class="next action-button" type="button" (click)="next()" [disabled]="!personalInformationForm.valid">Next Step</button>
-                </fieldset>
+                </fieldset> -->
                 <fieldset id="test-l-2">
                   <div class="form-card">
                     <h2 class="fs-title">Payment Information</h2>
                     <h5>Your Subscription</h5>
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
-                        <div class="card">
-                          <div class="card-body">
-                            <h3 class="text-center text-primary">{{planList.name}}</h3>
-                            <h4 class="text-center text-primary">$ {{planList.price}}</h4>
-            
-                            <div>
-                              Incoming Mail {{planList.incoming_mail}} Items /Month <br>
-                              Open and Scan {{planList.open_scan}} Items <br>
-                              Recipients {{planList.recipients}}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <!-- < /div> -->
 
                     <div class="radio-group">
                       <div class='radio' data-value="credit">
@@ -376,7 +393,6 @@
                   </div>
                 </fieldset>
               </div>
-              <!-- </div> -->
             </form>
           </div>
         </div>
