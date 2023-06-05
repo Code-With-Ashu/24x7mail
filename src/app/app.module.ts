@@ -1,20 +1,16 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
-
 import {AppRoutingModule} from '@/app-routing.module';
 import {AppComponent} from './app.component';
-
 import {StoreModule} from '@ngrx/store';
 import {authReducer} from './store/auth/reducer';
 import {uiReducer} from './store/ui/reducer';
 import {defineCustomElements} from '@profabric/web-components/loader';
-
 import {AuthGuard} from '@/shared/guards/auth.guard';
 import {NonAuthGuard} from '@/shared/guards/non-auth.guard';
 import {AuthInterceptor} from '@/shared/guards/auth.inteceptor';

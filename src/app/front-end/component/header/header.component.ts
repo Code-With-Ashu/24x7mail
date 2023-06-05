@@ -12,8 +12,14 @@ export class HeaderComponent implements OnInit {
   frontEndRoutesPath = frontEndRoutesPath;
   routesPath = routesPath;
 
+  _LoggedIn : boolean = false;
+
   //@HostListener('window:scroll', ['$event'])
   ngOnInit() {
+    
+    if(localStorage.getItem('auth-token')){
+      this._LoggedIn = true;
+    }
     // $(document).ready(function(){
     //   $(window).on("scroll",function(){
     //     var wn = $(window).scrollTop();

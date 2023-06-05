@@ -1,0 +1,93 @@
+<app-loading-process *ngIf="loading"></app-loading-process>
+
+<div class="card" *ngIf="!loading">
+  <div class="card-header">
+    <h3><i class="fas fa-home mr-2"></i>Packages
+      <a (click)="showNewPackage()" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+        <i class="fas fa-plus">Add</i> </a>
+    </h3>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Feature</th>
+          <th scope="col">Type</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Incoming Mail</th>
+          <th scope="col">Open Scan</th>
+          <th scope="col">Recipients</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Updated Date</th>
+          
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let package of packages | paginate: { itemsPerPage: 4, currentPage: p };index as i;">
+          <th scope="row">{{i + 1 }}</th>
+          <td>{{ package?.features_id?.properties?.address | titlecase }}</td>
+
+          <td>{{ package.type | titlecase }}</td>
+          <td>{{ package.name | titlecase }}</td>
+          <td>{{ package.price }}</td>
+          <td>{{ package.incoming_mail }}</td>
+          <td>{{ package.open_scan }}</td>
+          <td>{{ package.recipients }}</td>
+          <td>{{ package.createdAt | date:'dd/MM/YYYY'}}</td>
+          <td>{{ package.updatedAt | date:'dd/MM/YYYY'}}</td>
+
+          <td>
+
+            <a title="Edit Customer" (click)="showDialog($event,package)" type="button" class="btn btn-outline-primary"
+              style="margin-right: 5px;">
+              <i class="fas fa-edit"></i>
+            </a>
+            
+            <p-dialog  [draggable]="false" #editDialog (onHide)="closePackageDialog()" header="Edit Package Details"
+              [(visible)]="editPackage">
+              <app-package-edit (newItemEvent)="dialogInfoUpdate($event)" [packageDetail]="selectPackageInfo"
+                [_id]="package._id"></app-package-edit>
+            </p-dialog>
+
+            <button title="Delete Customer" (click)="showDeleteDialog(package._id)" type="button" class="btn btn-outline-danger"
+              style="margin-right: 5px;">
+              <i class="fas fa-trash"></i>
+            </button>
+
+            <p-dialog [draggable]="false" header="Delete Package" [(visible)]="deletePopup" widgetVar="dlg3"
+              minHeight="40" width="550" showEffect="fade">
+              <p>Are you sure you want to delete this package?</p>
+              <p-button (click)="delete($event,'YES',package?._id)" icon="pi pi-check" label="Yes"></p-button>
+
+              <p-button (click)="delete($event,'NO')" icon="pi pi-times" label="No"
+                class="p-button-danger delBtn"></p-button>
+            </p-dialog>
+
+
+
+
+          </td>
+        </tr>
+        <tr *ngIf="packages.length == 0" style="text-align: center;" class="no-records-found">
+          <td colspan="11">No Record Found</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+    </div>
+
+  </div>
+</div>
+
+<p-dialog [draggable]="false" widgetVar="dlg3" showEffect="fade" modal="true" width="600" height="500" styleClass="addDialog"
+  header="Add New Package" [(visible)]="addPackage" (onHide)="closePackageDialog()">
+  <app-package-add (newItemEvent)="dialogInfoUpdate($event)"></app-package-add>
+</p-dialog>
+

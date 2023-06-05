@@ -7,4 +7,13 @@ import {Component} from '@angular/core';
 })
 export class AssignMailComponent {
 
+  showDetail : boolean = false;
+
+  showDetailDailog(){
+    this.showDetail = true;
+  }
+  
+  closeDialog(){
+    this.showDetail = false;
+  } 
 }

@@ -29,7 +29,7 @@ export const validationMessage = {
   ],
   'email': [
     {type: 'required', message: 'Email is required.'},
-    {type: 'pattern', message: 'Enter Email is invalid.'}
+    {type: 'pattern', message: 'Enter valid email address.'}
   ],
   'selection': [
     {type: 'required', message: 'Select any one.'},
