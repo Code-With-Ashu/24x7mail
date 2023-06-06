@@ -12,7 +12,8 @@ export class AuthInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         'Authorization': `${this._appService.getToken()}`,
-        'Content-Type': 'application/json'
+        // 'Content-Type':'image/jpeg'
+        'Content-Type':'image/jpeg'
       }
     });
 

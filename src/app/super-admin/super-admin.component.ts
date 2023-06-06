@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {customer, mail, reports, settings, superAdminRoutes} from '@/super-admin/router-path-super-admin';
+import {admin, customer, mail, reports, settings, superAdminRoutes} from '@/super-admin/router-path-super-admin';
 import {AppService} from '@/shared/services/app.service';
 
 @Component({
@@ -34,6 +34,8 @@ export class SuperAdminComponent implements OnInit {
   displayMenu() {
     this.currentRouter = this.router.url.split('/').filter(Boolean)[1];
     this.whichMenuToShow = this.mailBoxMenu()[this.currentRouter];
+    console.log(this.mailBoxMenu(),this.whichMenuToShow)
+
   }
 
   logout() {
@@ -41,18 +43,27 @@ export class SuperAdminComponent implements OnInit {
   }
 
   mailBoxMenu() {
+    const adminPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.admin}`;
     const mailPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.mail}`;
     const reportsPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.report}`;
     const settingsPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.settings}`;
     const customerPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.customer}`;
 
     return {
+      [this.adminRoutes.admin]: [
+        {
+          text: 'Packages',
+          link: `${adminPath}/${admin.packages}`,
+          iconClass: 'fas fa-home',
+          status: true,
+        },
+      ],      
       [this.adminRoutes.mail]: [
         {
           text: 'Request',
           link: `${mailPath}/${mail.request}`,
           iconClass: 'fas fa-home',
-          status: true,
+          status: false,
         },
         {
           text: 'Upload New Mail',
@@ -103,9 +114,39 @@ export class SuperAdminComponent implements OnInit {
           status: true
         },
         {
+          text: 'Folders',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-folder',
+          status: true
+        },
+        {
           text: 'Archived Scans',
           link: `${customerPath}/${customer.archived_scans}`,
           iconClass: 'fas fa-archive',
+          status: true
+        },
+        {
+          text: 'Outgoing Mail',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-envelope-open-text',
+          status: true
+        },
+        {
+          text: 'View All',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-mail-bulk',
+          status: true
+        },
+        {
+          text: 'Filters',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-filter',
+          status: true
+        },
+        {
+          text: 'Trash',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-trash',
           status: true
         }
       ],

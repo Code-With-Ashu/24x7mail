@@ -1,26 +1,25 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
-
 import {AppRoutingModule} from '@/app-routing.module';
 import {AppComponent} from './app.component';
-
 import {StoreModule} from '@ngrx/store';
 import {authReducer} from './store/auth/reducer';
 import {uiReducer} from './store/ui/reducer';
 import {defineCustomElements} from '@profabric/web-components/loader';
-
 import {AuthGuard} from '@/shared/guards/auth.guard';
 import {NonAuthGuard} from '@/shared/guards/non-auth.guard';
 import {AuthInterceptor} from '@/shared/guards/auth.inteceptor';
 import {LottieModule} from 'ngx-lottie';
 import player from 'lottie-web';
 import {SharedModule} from '@/shared/shared.module';
+import { SocialLoginModule,SocialAuthServiceConfig } from 'angularx-social-login';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
@@ -45,9 +44,26 @@ export function playerFactory() {
       preventDuplicates: true
     }),
     LottieModule.forRoot({player: playerFactory}),
-    SharedModule
+    SharedModule,
+    SocialLoginModule,
+    DialogModule,
+    ButtonModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          // {
+          //   id: AppleLoginProvider.PROVIDER_ID,
+          //   provider: new AppleLoginProvider(
+          //     'com.laytrip.laytrips'
+          //   ),
+          // },
+        ] 
+      } as SocialAuthServiceConfig,
+    },
     AuthGuard,
     NonAuthGuard,
     [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

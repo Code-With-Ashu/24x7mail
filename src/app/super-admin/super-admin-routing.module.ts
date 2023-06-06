@@ -20,7 +20,9 @@ const routes: Routes = [
       {
         path: superAdminRoutes.settings,
         loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
-      }
+      },      
+      {path: superAdminRoutes.admin, loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+
     ]
   },
 ];

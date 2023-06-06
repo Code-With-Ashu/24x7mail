@@ -62,7 +62,7 @@
                   Partner Affiliate</a>
               </div>
             </li>
-            <li (click)="closeToggleMenu()" class="mb-sm-1 mb-1">
+            <li *ngIf="!_LoggedIn" (click)="closeToggleMenu()" class="mb-sm-1 mb-1">
               <button class="nav-link btn rounded-pill btn-outline-warning px-3 font-weight-bold btn-sm my-sm-0 mx-2"
                       [routerLink]="'/'+routesPath.login"
                       type="submit">

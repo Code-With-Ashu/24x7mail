@@ -1,0 +1,92 @@
+<div>
+    <form [formGroup]="packageEditForm">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Feature</label>
+                <select formControlName="features_id" class="form-control">
+                    <option value="">Select Feature</option>
+                    <option value="{{ feature.feature_id }}" *ngFor="let feature of featuresList;">{{ feature.name |
+                        titlecase }}</option>
+                </select>
+                <div *ngIf="submitted && packageEditForm.controls.features_id.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.features_id.errors.required">
+                        Feature is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Package Type</label>
+                <select formControlName="type" class="form-control">
+                    <option value="">Select Package Type</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+                <div *ngIf="submitted && packageEditForm.controls.type.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.type.errors.required">
+                       Package Type is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Package Name</label>
+                <select formControlName="name" class="form-control">
+                    <option value="">Select Package Type</option>
+                    <option value="gold">Gold</option>
+                    <option value="silver">Silver</option>
+                    <option value="premium">Premium</option>
+                </select>
+                <div *ngIf="submitted && packageEditForm.controls.name.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.name.errors.required">
+                        Package Type is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Price</label>
+                <input type="number" formControlName="price" class="form-control">
+                <div *ngIf="submitted && packageEditForm.controls.price.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.price.errors.required">
+                        Price is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Incoming Mail</label>
+                <input type="number" formControlName="incoming_mail" class="form-control">
+                <div *ngIf="submitted && packageEditForm.controls.incoming_mail.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.incoming_mail.errors.required">
+                        Incoming mail is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Open Scan</label>
+                <input type="number" formControlName="open_scan" class="form-control">
+                <div *ngIf="submitted && packageEditForm.controls.open_scan.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.open_scan.errors.required">
+                        Open Scan is required
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Recipients</label>
+                <input type="number" formControlName="recipients" class="form-control">
+                <div *ngIf="submitted && packageEditForm.controls.recipients.errors" class="inp_error">
+                    <div *ngIf="packageEditForm.controls.recipients.errors.required">
+                        Recipients is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"  style="padding-top: 26px; ">
+                <p-button  styleClass="p-button-add"  (click)="saveEdit()"> Update </p-button>
+            </div>
+        </div>        
+    </form>
+</div>

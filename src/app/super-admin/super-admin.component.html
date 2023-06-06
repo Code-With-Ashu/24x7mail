@@ -13,7 +13,7 @@
             routerLinkActive="sidebar-active">
           <a>
             <i class="{{menu.iconClass}} mr-1"></i>
-            {{menu.text}}
+            {{menu.text }}
           </a>
         </li>
         <li *ngIf="menu.action === 'dropdown'">
@@ -43,7 +43,11 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto"> 
+            <li  (click)="gotoRouter(adminRoutes.admin)" [ngClass]="{active:currentRouter === adminRoutes.admin}"
+                class="nav-item cursor">
+              <a class="nav-link">Admin</a>
+            </li>
             <li (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.mail}"
                 class="nav-item cursor">
               <a class="nav-link">Mail</a>
@@ -89,3 +93,4 @@
   </div>
   <!-- /#wrapper -->
 </div>
+
