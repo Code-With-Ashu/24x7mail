@@ -28,7 +28,14 @@ export const reports = {
 };
 
 export const settings = {
-  test: 'Test'
+  test: 'Test',
+  my_account:'my-account',
+  operators: 'operators',
+  mailbox_setting: 'mailbox-setting',
+  advanced_setting: 'advanced-setting',
+  vedio_tutorials:   'vedio-tutorials',
+  marketing_files: 'marketing-files'
+
 };
 
 

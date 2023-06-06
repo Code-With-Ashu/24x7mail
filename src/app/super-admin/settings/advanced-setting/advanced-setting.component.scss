@@ -1,3 +1,20 @@
+.main-detail {
+    margin-top: 10px;
+}
+
+.profile-section {
+    margin: 4px 0px;
+}
+
+.profile-section h5 {
+    color: rgba(0, 0, 0, .5);
+    font-size: 18px;
+}
+
+.profile-section p {
+    font-weight: 600;
+}
+
 .TestHeader {
     font-size: 28px;
     font-weight: 600;
@@ -34,6 +51,23 @@
 
 .testButton {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 800;
     line-height: 32px;
+}
+
+.setting_profile {
+    display: flex;
+    margin-top: 6px;
+    flex-direction: column;
+}
+
+.profil-detail {
+    display: flex;
+    gap: 120px;
+    margin: 3px 0px;
+}
+
+.profil-detail h5 {
+    color: rgba(0, 0, 0, .5);
+    font-size: 18px;
 }

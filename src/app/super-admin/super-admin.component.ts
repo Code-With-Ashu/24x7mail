@@ -134,7 +134,37 @@ export class SuperAdminComponent implements OnInit {
       ],
       [this.adminRoutes.settings]: [
         {
-          text: 'Setting Test',
+          text: 'My Account ',
+          link: `${settingsPath}/${settings.my_account}`,
+          iconClass: '',
+          status: true
+        },
+        {
+          text: 'Operators',
+          link: `${settingsPath}/${settings.operators}`,
+          iconClass: '',
+          status: true
+        },
+        {
+          text: 'Mailbox Setting',
+          link: `${settingsPath}/${settings.mailbox_setting}`,
+          iconClass: '',
+          status: true
+        },
+        {
+          text: 'Advanced Setting',
+          link: `${settingsPath}/${settings.advanced_setting}`,
+          iconClass: '',
+          status: true
+        },
+        {
+          text: 'Video Tutorials',
+          link: `${settingsPath}/${settings.vedio_tutorials}`,
+          iconClass: '',
+          status: true
+        },
+        {
+          text: 'Marketing Files',
           link: `${settingsPath}/${settings.test}`,
           iconClass: '',
           status: true
