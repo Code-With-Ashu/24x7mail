@@ -17,7 +17,7 @@ import {SharedModule} from '@/shared/shared.module';
   imports: [
     CommonModule,
     SuperAdminRoutingModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class SuperAdminModule {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpApiService } from '@/shared/services/http-api.service';
 import { CustomValidator } from '@/shared/services/validation';
 import { ToastrService } from 'ngx-toastr';
+import { validationMessage } from '@/shared/services/validation-message';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,8 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ForgotPasswordComponent implements OnInit {
 
   email : string = '';
-
   forgotPasswordForm : FormGroup;
+  validationMessage = validationMessage;
 
   constructor(private auth : HttpApiService,private _toast: ToastrService) { }
 
@@ -21,6 +22,10 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl('', Validators.compose([CustomValidator.emailValidator])),  
     });
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.forgotPasswordForm.controls;
   }
 
   forgotPassword() {

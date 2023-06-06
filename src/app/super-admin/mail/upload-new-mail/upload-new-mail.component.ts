@@ -77,7 +77,7 @@ export class UploadNewMailComponent {
       return;
     }
     let requestParam : any = {}
-    var ff =  new FormData();
+    // var ff =  new FormData();
 
     // requestParam = {
     //   mail_type : this.uploadNewMailForm.value.mail_type, 
@@ -95,7 +95,7 @@ export class UploadNewMailComponent {
 
     // ff.append("mail_type",this.uploadNewMailForm.value.mail_type);
     // ff.append("mail",this._fileObject);
-    ff.append("user",'646c849d8a7ba45bb20add1d');
+    // ff.append("user",'646c849d8a7ba45bb20add1d');
 
     // for (var i = 0; i < this._fileObject.length; i++) {
     //    console.log(this._fileObject[i]) 

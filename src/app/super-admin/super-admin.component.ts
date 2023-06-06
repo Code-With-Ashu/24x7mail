@@ -34,6 +34,8 @@ export class SuperAdminComponent implements OnInit {
   displayMenu() {
     this.currentRouter = this.router.url.split('/').filter(Boolean)[1];
     this.whichMenuToShow = this.mailBoxMenu()[this.currentRouter];
+    console.log(this.mailBoxMenu(),this.whichMenuToShow)
+
   }
 
   logout() {
@@ -112,9 +114,39 @@ export class SuperAdminComponent implements OnInit {
           status: true
         },
         {
+          text: 'Folders',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-folder',
+          status: true
+        },
+        {
           text: 'Archived Scans',
           link: `${customerPath}/${customer.archived_scans}`,
           iconClass: 'fas fa-archive',
+          status: true
+        },
+        {
+          text: 'Outgoing Mail',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-envelope-open-text',
+          status: true
+        },
+        {
+          text: 'View All',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-mail-bulk',
+          status: true
+        },
+        {
+          text: 'Filters',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-filter',
+          status: true
+        },
+        {
+          text: 'Trash',
+          link: `${customerPath}/${customer.archived_scans}`,
+          iconClass: 'fas fa-trash',
           status: true
         }
       ],

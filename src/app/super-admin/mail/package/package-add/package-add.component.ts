@@ -1,6 +1,6 @@
+import { PackageService } from '@/super-admin/admin/package/package-list/package.services';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { PackageService } from '../package-list/package.services';
 
 @Component({
   selector: 'app-package-add',

@@ -20,7 +20,11 @@ export const mail = {
 
 export const customer = {
   inbox: 'inbox',
-  archived_scans: 'archived-scans'
+  view_inbox: 'view-inbox',
+  archived_scans: 'archived-scans',
+  outgoing_mail:'outgoing-mail',
+  trash:'trash'
+
 };
 
 export const reports = {

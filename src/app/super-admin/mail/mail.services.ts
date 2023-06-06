@@ -60,10 +60,8 @@ export class MailService {
   uploadFile(data: any): Observable<any> {
   
     const hd = new HttpHeaders({
-      'Content-Type':'image/jpeg; charset=utf-8',// 'image/jpeg',
+      'Content-Type':'image/jpeg',// 'image/jpeg',
       Authorization: `${localStorage.getItem('auth-token')}`,
-
-
     });
     const API_URL = `https://api.24x7mail.com/mails`;
     console.log({headers:hd})

@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">View Mail</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control" placeholder="Search Mail" type="text">
+                        <div class="input-group-append">
+                            <div class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="mailbox-controls">
+                    <!-- Check all button -->                  
+                    <div class="btn-group">
+                        <a  routerLink="/superAdmin/customer/inbox" class="btn btn-default btn-sm" title="Back to Inbox" type="button"><i class="fas fa-arrow-circle-left"></i></a>
+                        <button title="Delete" class="btn btn-default btn-sm" type="button" (click)="confirm($event)"><i class="far fa-trash-alt"></i></button>
+                        <div class="card flex justify-content-center gap-2">
+                            <p-confirmPopup></p-confirmPopup>
+                        </div>
+                        <button title="Move to" class="btn btn-default btn-sm" type="button" (click)="confirm($event)"><i class="fas fa-external-link-alt"></i> Move to</button>
+
+                    </div>
+                    <!-- /.btn-group -->
+                    
+                    <!-- /.float-right -->
+                    <!-- <div class="float-right">
+                        <button class="btn btn-default btn-sm" type="button"><i class="fas fa-print"></i></button>                        
+                        <button class="btn btn-default btn-sm" type="button"><i class="fas fa-external-link-alt"></i></button>
+                    </div> -->
+                </div>
+                <div class="table-responsive mailbox-messages">
+                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+                        rel="stylesheet">
+
+                    <div class="card">
+                        <div class="card-body ">
+
+                            <div class="row">
+
+                                <div class="col-lg-12">
+
+                                    <div class="csard shadow-nones mt-3 borsder border-slight">
+                                        <div class="card-body">
+                                            <div class="media mb-3">
+                                                <img src="..\..\..\..\assets\images\user_svg.svg"
+                                                    class="rounded-circle mr-3 mail-img shadow" alt="media image"
+                                                    width="50" height="50">
+                                                <div class="media-body">
+                                                    <span class="media-meta float-right">Jun 4, 2023, 10:13 PM (2 days ago)</span>
+                                                    <h4 class="text-primary m-0">Jhon Deo</h4>
+                                                    <small class="text-muted">
+                                                        <span><b>ICICI Lomabard </b></span> <span><</span>info@icicilobard.com<span>></span> 
+                                                    </small>
+                                                    <br>
+                                                    <small class="text-muted"><span>to me </span><i (click)="op.toggle($event)" class="fas fa-caret-down" title="Show Details"></i></small>
+
+                                                    <div class="card flex justify-content-center">
+                                                        <p-overlayPanel #op>
+                                                            <small class="text-muted">
+                                                                <span>from: </span>  <b>ICICI Lomabard </b><span><</span>info@icicilobard.com<span>></span> <br>
+                                                                <span>reply-to: </span> Info <span><</span>info@icicilobard.com<span>></span> <br>
+                                                                <span>to: </span> User <span><</span>user@icicilobard.com<span>></span> <br>
+                                                                <span>date: </span> <span>Jun 4, 2023, 10:13 PM </span><br>                                                             
+
+                                                            </small>                                                                    
+                                                        </p-overlayPanel>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- media -->
+
+                                            <p><b>Hi Sir...</b></p>
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                                natoque penatibus et magnis dis parturient montes, nascetur
+                                                ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                                                eu, pretium quis, sem.</p>
+                                            <p>Aenean vulputate eleifend tellus. Aenean leo ligula,
+                                                porttitor eu, consequat vitae, eleifend ac, enim. Aliquam
+                                                lorem ante, dapibus in, viverra quis, feugiat a, tellus.
+                                                Phasellus viverra nulla ut metus varius laoreet. Quisque
+                                                rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
+                                                Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
+                                                rhoncus. Maecenas tempus, tellus eget condimentum rhoncus,
+                                                sem quam semper libero, sit amet adipiscing sem neque sed
+                                                ipsum. Nam quam nunc, blandit vel, luctus pulvinar,</p>
+                                            <p>Nulla consequat massa quis enim. Donec pede justo, fringilla
+                                                vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                                                rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                                                dictum felis eu pede mollis pretium. Integer tincidunt. Cras
+                                                dapibus. Vivamus elementum semper nisi.</p>
+
+                                            <hr>
+                                            <h4> <i class="fa fa-paperclip mr-2"></i> Attachments
+                                                <span>(3)</span>
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-sm-4 col-md-3">
+                                                    <a href="javascript:void();"> <img
+                                                            src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                                                            alt="attachment" class="img-thumbnail"> </a>
+                                                </div>
+                                                <div class="col-sm-4 col-md-3">
+                                                    <a href="javascript:void();"> <img
+                                                            src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                            alt="attachment" class="img-thumbnail"> </a>
+                                                </div>
+                                                <div class="col-sm-4 col-md-3">
+                                                    <a href="javascript:void();"> <img
+                                                            src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                            alt="attachment" class="img-thumbnail"> </a>
+                                                </div>
+                                            </div>                                    
+                                        </div>
+                                    </div> <!-- card -->
+                                </div> <!-- end Col-9 -->
+
+                            </div><!-- End row -->
+
+                        </div>
+                    </div>
+
+                    <!-- /.table -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
