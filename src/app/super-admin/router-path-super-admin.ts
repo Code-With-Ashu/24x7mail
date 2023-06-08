@@ -46,7 +46,7 @@ export const settings = {
   advanced_setting: 'advanced-setting',
   vedio_tutorials:   'vedio-tutorials',
   marketing_files: 'marketing-files'
-
+   
 };
 
 

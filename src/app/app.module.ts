@@ -21,6 +21,7 @@ import { SocialLoginModule,SocialAuthServiceConfig } from 'angularx-social-login
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 
+
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -30,7 +31,8 @@ export function playerFactory() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     AppRoutingModule,
@@ -50,20 +52,7 @@ export function playerFactory() {
     ButtonModule
   ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          // {
-          //   id: AppleLoginProvider.PROVIDER_ID,
-          //   provider: new AppleLoginProvider(
-          //     'com.laytrip.laytrips'
-          //   ),
-          // },
-        ] 
-      } as SocialAuthServiceConfig,
-    },
+    
     AuthGuard,
     NonAuthGuard,
     [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

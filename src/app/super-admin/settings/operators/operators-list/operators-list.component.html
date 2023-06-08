@@ -1,0 +1,72 @@
+<!-- <app-loading-process *ngIf="loading"></app-loading-process> -->
+
+<div class="card">
+    <div class="card-header">
+        <h3><i class="fas fa-users-cog mr-2"> </i>Operators
+            <a type="button" (click)="showNewPackage()" class="btn btn-primary float-right" style="margin-right: 5px;">
+                <i class="fas fa-plus">Add</i> </a>
+        </h3>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th scope="col-3">Name</th>
+                    <th scope="col-3">Email</th>
+                    <th scope="col-3">Role</th>
+                    <th scope="col-3"></th>
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <!-- <td>{{ package?.features_id?.properties?.address | titlecase }}</td> -->
+
+                    <td>test</td>
+                    <td>test</td>
+                    <td>testW@gmail.com</td>
+
+
+
+                    <td class="action-operators">
+
+                        <a title="Edit Customer" (click)="editoperators()" type="button" class="btn btn-outline-primary" style="margin-right: 5px;">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <p-dialog [draggable]="false" widgetVar="dlg3" showEffect="fade" modal="true" width="800" height="500" [style]="{width: '40vw'}" styleClass="editopertaor" header="Edit Operators Details" [(visible)]="editopen">
+                            <app-operators-edit></app-operators-edit>
+                        </p-dialog>
+
+                        <button title="Delete Customer" type="button" class="btn btn-outline-danger" style="margin-right: 5px;">
+              <i class="fas fa-trash"></i>
+            </button>
+
+
+
+
+
+
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+        <div class="pagination">
+
+
+        </div>
+
+    </div>
+</div>
+
+<p-dialog [draggable]="false" widgetVar="dlg3" showEffect="fade" [style]="{width: '40vw'}" modal="true" width="600" height="500" styleClass="addDialog" header="Add New Operators" [(visible)]="addPackage">
+    <app-operators-add></app-operators-add>
+</p-dialog>

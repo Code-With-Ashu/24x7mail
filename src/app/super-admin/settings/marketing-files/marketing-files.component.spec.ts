@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {MyAccount} from './my-account.component';
+import {MarketingFile} from './marketing-files.component';
 
-describe('MyAccount', () => {
-  let component: MyAccount;
-  let fixture: ComponentFixture<MyAccount>;
+describe('MarketingFile', () => {
+  let component: MarketingFile;
+  let fixture: ComponentFixture<MarketingFile>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MyAccount]
+      declarations: [MarketingFile]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(MyAccount);
+    fixture = TestBed.createComponent(MarketingFile);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

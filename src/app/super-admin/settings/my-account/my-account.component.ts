@@ -7,4 +7,17 @@ import {Component} from '@angular/core';
 })
 export class MyAccount {
 
+  editaccount : boolean;
+  editpassword : boolean;
+
+  editprofile(){
+    this.editaccount = true;
+  }
+
+  changepassword(){
+    this.editpassword = true;
+  }
+
+
+
 }
