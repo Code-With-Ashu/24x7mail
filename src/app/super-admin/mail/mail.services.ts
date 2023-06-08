@@ -50,7 +50,6 @@ export class MailService {
 
   
   uploadNewMail(payload: any) {
-    console.log("payload",payload)
     return this.http.post(`https://api.24x7mail.com/mails`, payload)
       .pipe(
         catchError(this.handleError)
@@ -58,7 +57,6 @@ export class MailService {
   }
 
   uploadFile(data: any): Observable<any> {
-  
     const hd = new HttpHeaders({
       'Content-Type':'image/jpeg',// 'image/jpeg',
       Authorization: `${localStorage.getItem('auth-token')}`,

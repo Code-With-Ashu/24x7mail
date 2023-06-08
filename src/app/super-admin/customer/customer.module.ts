@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     InboxComponent,
     ArchivedScansComponent,
     OutgoingMailComponent,
-    InboxViewComponent
+    InboxViewComponent,
   ],
   imports: [
     CommonModule,

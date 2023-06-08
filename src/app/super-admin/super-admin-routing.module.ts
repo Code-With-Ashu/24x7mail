@@ -14,6 +14,10 @@ const routes: Routes = [
         loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
       },
       {
+        path: superAdminRoutes.op_customer,
+        loadChildren: () => import('./op-customers/op-customers.module').then(m => m.OpCustomersModule)
+      },
+      {
         path: superAdminRoutes.report,
         loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
       },

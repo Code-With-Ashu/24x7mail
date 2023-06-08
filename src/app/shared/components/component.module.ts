@@ -11,6 +11,7 @@ import {CameraGalleryComponent} from './camera-gallery/camera-gallery.component'
 import {WebcamModule} from 'ngx-webcam';
 import {LoadingComponent} from './loading/loading.component';
 import {LoadingProcessComponent} from './loading-process/loading-process.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const components: any = [
   CameraComponent,
@@ -20,12 +21,13 @@ const components: any = [
   MenuComponent,
   NoDataComponent,
   LoadingComponent,
-  LoadingProcessComponent
+  LoadingProcessComponent,
+  NotFoundComponent
 ];
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
   ],
   imports: [
     CommonModule,

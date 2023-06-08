@@ -1,11 +1,13 @@
 export const superAdminRoutes = {
   superAdmin: 'superAdmin',
   mail: 'mail',
+  op_customer: 'op-customer',
   customer: 'customer',
   report: 'reports',
   settings: 'settings',
   admin: 'admin'
 };
+
 
 export const mail = {
   request: 'request',
@@ -16,7 +18,9 @@ export const mail = {
   pending: 'pending'
 };
 
-
+export const op_customer = {
+  customer_list : 'customers'
+}
 
 export const customer = {
   inbox: 'inbox',

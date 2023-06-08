@@ -76,7 +76,7 @@ export class UploadNewMailComponent {
     if (this.uploadNewMailForm.invalid && this._fileObject != null) {
       return;
     }
-    let requestParam : any = {}
+    // let requestParam : any = {}
     // var ff =  new FormData();
 
     // requestParam = {
@@ -116,7 +116,9 @@ export class UploadNewMailComponent {
     formData.append('width', '3');
     formData.append('length', '7');
     formData.append('user', '646c849d8a7ba45bb20add1d');
-
+    
+    console.log("formData",formData);
+    
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
       },

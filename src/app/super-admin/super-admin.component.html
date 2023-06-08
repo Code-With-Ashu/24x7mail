@@ -5,12 +5,12 @@
     <ul class="sidebar-nav">
       <li class="sidebar-brand  border-bottom border-dark">
         <a>
-          <img alt="" class="img-fluid" src="assets/img/vmb-logo.png" style="height: 50px;"/>
+          <img alt="" class="img-fluid" src="assets/img/vmb-logo.png" style="height: 50px;" />
         </a>
       </li>
       <ng-container *ngFor="let menu of whichMenuToShow; let i= index;">
         <li *ngIf="menu.action !== 'dropdown'" [routerLink]="menu.link" class="cursor"
-            routerLinkActive="sidebar-active">
+          routerLinkActive="sidebar-active">
           <a>
             <i class="{{menu.iconClass}} mr-1"></i>
             {{menu.text }}
@@ -20,10 +20,9 @@
           <a [href]="'#sumenu'+i" aria-expanded="false" class="dropdown-toggle" data-toggle="collapse">
             <i class="{{menu.iconClass}}"></i> {{menu.text}}
           </a>
-          <ul [ngClass]="getMenuItem(i)| activeDropdown" class="collapse list-unstyled"
-              id="sumenu{{i}}">
+          <ul [ngClass]="getMenuItem(i)| activeDropdown" class="collapse list-unstyled" id="sumenu{{i}}">
             <li *ngFor="let submenu of menu.submenu; let j= index;" [routerLink]="submenu.link"
-                routerLinkActive="sidebar-active">
+              routerLinkActive="sidebar-active">
               <a class="pl-5">{{submenu.text}}</a>
             </li>
           </ul>
@@ -36,39 +35,47 @@
   <!-- Page Content -->
   <div id="page-content-wrapper">
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav  class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <a class="btn btn-default" id="menu-toggle"><i class="fas fa-align-left"></i></a>
         <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                data-target="#navbarNav" data-toggle="collapse" type="button">
+          data-target="#navbarNav" data-toggle="collapse" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto"> 
-            <li  (click)="gotoRouter(adminRoutes.admin)" [ngClass]="{active:currentRouter === adminRoutes.admin}"
-                class="nav-item cursor">
+          <ul  class="navbar-nav ml-auto">
+            <li *ngIf="userInfo.data.user_type == 'operator' && !_isRemoteLoggedIn"   (click)="gotoRouter(adminRoutes.admin)" [ngClass]="{active:currentRouter === adminRoutes.admin}"
+              class="nav-item cursor">
               <a class="nav-link">Admin</a>
             </li>
-            <li (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.mail}"
-                class="nav-item cursor">
+            <li *ngIf="userInfo.data.user_type == 'operator' && !_isRemoteLoggedIn"   (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.mail}"
+              class="nav-item cursor">
               <a class="nav-link">Mail</a>
             </li>
-            <li (click)="gotoRouter(adminRoutes.customer)" [ngClass]="{active:currentRouter === adminRoutes.customer}"
-                class="nav-item cursor">
+            <!-- <li *ngIf="userInfo.data.user_type == 'customer'" (click)="gotoRouter(adminRoutes.customer)" [ngClass]="{active:currentRouter === adminRoutes.customer}"
+              class="nav-item cursor">
               <a class="nav-link">Customer</a>
-            </li>
-            <li (click)="gotoRouter(adminRoutes.report)" [ngClass]="{active:currentRouter === adminRoutes.report}"
-                class="nav-item cursor">
-              <a class="nav-link">Reports</a>
-            </li>
-            <li (click)="gotoRouter(adminRoutes.settings)" [ngClass]="{active:currentRouter === adminRoutes.settings}"
-                class="nav-item cursor">
-              <a class="nav-link">Setting</a>
+            </li> -->
+            <li *ngIf="userInfo.data.user_type == 'operator'  && !_isRemoteLoggedIn" (click)="gotoRouter(adminRoutes.op_customer)" [ngClass]="{active:currentRouter === adminRoutes.op_customer}"
+              class="nav-item cursor">
+              <a class="nav-link">Customers</a>
             </li>
 
+            <li *ngIf="userInfo.data.user_type == 'operator'  && !_isRemoteLoggedIn"  (click)="gotoRouter(adminRoutes.report)" [ngClass]="{active:currentRouter === adminRoutes.report}"
+              class="nav-item cursor">
+              <a class="nav-link">Reports</a>
+            </li>
+            <li *ngIf="userInfo.data.user_type == 'operator'  && !_isRemoteLoggedIn"  (click)="gotoRouter(adminRoutes.settings)" [ngClass]="{active:currentRouter === adminRoutes.settings}"
+              class="nav-item cursor">
+              <a class="nav-link">Setting</a>
+            </li>
+            <li *ngIf="_isRemoteLoggedIn"  class="nav-item cursor">
+              <p-button (click)="remoteLogout()"  title="Logout Remote Login"  icon="pi pi-sign-out"
+                styleClass="p-button-rounded p-button-danger p-button-text"></p-button> 
+            </li>
             <li class="nav-item">
               <div class="dropdown">
                 <button aria-expanded="false" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
-                        type="button">
+                  type="button">
                   <i class="fas fa-user-cog"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -93,4 +100,3 @@
   </div>
   <!-- /#wrapper -->
 </div>
-

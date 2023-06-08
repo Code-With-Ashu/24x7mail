@@ -18,4 +18,8 @@ export class InboxComponent {
   checkValue(event: any) {
     console.log(event);
   }
+  checkUncheckAll() {
+  
+    this.isChecked = true;
+  }
 }

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, SimpleChanges} from '@angular/core';
 import {Router} from '@angular/router';
-import {admin, customer, mail, reports, settings, superAdminRoutes} from '@/super-admin/router-path-super-admin';
+import {admin, customer, mail, op_customer, reports, settings, superAdminRoutes} from '@/super-admin/router-path-super-admin';
 import {AppService} from '@/shared/services/app.service';
 
 @Component({
@@ -12,8 +12,12 @@ export class SuperAdminComponent implements OnInit {
   whichMenuToShow: any = [];
   currentRouter = '';
   adminRoutes = superAdminRoutes;
+  userInfo;
+  remoteLoginInfo;
+  _isRemoteLoggedIn = false;
 
-  constructor(private router: Router, private _appService: AppService) {
+  constructor(private router: Router, private _appService: AppService,
+    private changeDetector: ChangeDetectorRef) {
     $(document).ready(function () {
       /* $('#sidebarCollapse').on('click', function () {
          $('#sidebar').toggleClass('active');
@@ -27,14 +31,25 @@ export class SuperAdminComponent implements OnInit {
     });
   }
 
+ 
   ngOnInit() {
     this.displayMenu();
+    this.userInfo = JSON.parse(localStorage.getItem('user-info')) || {};
+    this.remoteLoginInfo =  (localStorage.getItem('customer-remote-auth')) || {};
+    console.log(this.remoteLoginInfo);
+    this.changeDetector.markForCheck();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+  }
+
+  ngDoCheck(){
+    this._isRemoteLoggedIn = localStorage.getItem('customer-remote-auth') ? true : false;
   }
 
   displayMenu() {
     this.currentRouter = this.router.url.split('/').filter(Boolean)[1];
     this.whichMenuToShow = this.mailBoxMenu()[this.currentRouter];
-    console.log(this.mailBoxMenu(),this.whichMenuToShow)
 
   }
 
@@ -48,6 +63,7 @@ export class SuperAdminComponent implements OnInit {
     const reportsPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.report}`;
     const settingsPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.settings}`;
     const customerPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.customer}`;
+    const opCustomersPath = `/${superAdminRoutes.superAdmin}/${superAdminRoutes.op_customer}`;
 
     return {
       [this.adminRoutes.admin]: [
@@ -106,6 +122,14 @@ export class SuperAdminComponent implements OnInit {
           ]
         },
       ],
+      [this.adminRoutes.op_customer]: [
+        {
+          text: 'Customers',
+          link: `${opCustomersPath}/${op_customer.customer_list}`,
+          iconClass: 'fas fa-home',
+          status: true,
+        },
+      ],  
       [this.adminRoutes.customer]: [
         {
           text: 'Inbox',
@@ -127,13 +151,13 @@ export class SuperAdminComponent implements OnInit {
         },
         {
           text: 'Outgoing Mail',
-          link: `${customerPath}/${customer.archived_scans}`,
+          link: `${customerPath}/${customer.outgoing_mail}`,
           iconClass: 'fas fa-envelope-open-text',
           status: true
         },
         {
           text: 'View All',
-          link: `${customerPath}/${customer.archived_scans}`,
+          link: `${customerPath}/${customer.view_inbox}`,
           iconClass: 'fas fa-mail-bulk',
           status: true
         },
@@ -215,6 +239,7 @@ export class SuperAdminComponent implements OnInit {
   }
 
   gotoRouter(menuName: string) {
+    console.log(`/superAdmin/${menuName}`)
     this.router.navigate([`/superAdmin/${menuName}`]).then(() => {
       this.displayMenu();
     });
@@ -222,5 +247,10 @@ export class SuperAdminComponent implements OnInit {
 
   getMenuItem(index: any) {
     return this.mailBoxMenu()[this.currentRouter][index];
+  }
+
+  remoteLogout(){
+    localStorage.removeItem('customer-remote-auth');
+    this.router.navigate(['superAdmin'])
   }
 }
