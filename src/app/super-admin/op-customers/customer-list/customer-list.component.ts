@@ -9,13 +9,15 @@ import { OpCustomersService } from '../op-customers.services';
 })
 export class CustomerListComponent {
 
+  customers=[];
+  p: number = 1;
   
   constructor( private _router: Router,
     private opCustomersService: OpCustomersService
     ) {
   }
   ngOnInit() {
-   // this.getCustomersList()
+    this.getCustomersList()
   }
 
   remoteLogin(){
@@ -26,7 +28,7 @@ export class CustomerListComponent {
   getCustomersList(){
     this.opCustomersService.getCustomersList().subscribe(
       (res: any) => {
-        console.log(res)
+        this.customers = res.data;
       },
       (err) => {
       }

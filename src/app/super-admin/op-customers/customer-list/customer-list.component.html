@@ -45,88 +45,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr [routerLink]="['232']">
-                    <th scope="row">1</th>
+                <tr [routerLink]="['232']"
+                    *ngFor="let customer of customers | paginate: { itemsPerPage: 10, currentPage: p };index as i;">
+                    <th scope="row">{{ i +1}}</th>
                     <td>1081</td>
-                    <td>Otto</td>
-                    <td>3</td>
+                    <td>{{ customer.fname +' ' +customer.lname  | titlecase }}</td>
+                    <td>{{ customer.bussiness_name || 'N/A' }}</td>
                     <td>5</td>
                     <td>44</td>
-                    <td>57</td>
+                    <td>{{ customer.timestamp | date:'fullDate' }}</td>
                     <td><i class="fas fa-times text-danger"></i></td>
-                    <td><i class="fa fa-circle text-success"></i> Onboarding</td>
+                    <td><i class="fa fa-circle text-success"></i> {{customer.user_status | titlecase}}</td>
                     <td> <p-button title="Remote Login" (click)="remoteLogin()" target="_blank" icon="pi pi-sign-in"
                             styleClass="p-button-rounded p-button-success p-button-text"></p-button>
                     </td>
                 </tr>
-
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Jems</td>
-                    <td>Fun</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>89</td>
-                    <td><i class="fas fa-times text-danger"></i></td>
-                    <td><i class="fa fa-circle text-success"></i> Onboarding</td>
-                    <td> <p-button title="Remote Login" (click)="remoteLogin()" target="_blank" icon="pi pi-sign-in"
-                            styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Jems</td>
-                    <td>Fun</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>89</td>
-                    <td><i class="fas fa-times text-danger"></i></td>
-                    <td><i class="fa fa-circle text-success"></i> Onboarding</td>
-                    <td> <p-button title="Remote Login" (click)="remoteLogin()" target="_blank" icon="pi pi-sign-in"
-                            styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Jems</td>
-                    <td>Fun</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>89</td>
-                    <td><i class="fas fa-times text-danger"></i></td>
-                    <td><i class="fa fa-circle text-success"></i> Onboarding</td>
-                    <td> <p-button title="Remote Login" (click)="remoteLogin()" target="_blank" icon="pi pi-sign-in"
-                            styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Jems</td>
-                    <td>Fun</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>89</td>
-                    <td><i class="fas fa-times text-danger"></i></td>
-                    <td><i class="fa fa-circle text-success"></i> Onboarding</td>
-                    <td> <p-button title="Remote Login" (click)="remoteLogin()" target="_blank" icon="pi pi-sign-in"
-                            styleClass="p-button-rounded p-button-success p-button-text"></p-button>
-
-                </tr>
-
             </tbody>
         </table>
+
         <div class="card-footer clearfix">
-            <ul class="pagination pagination-sm m-0 float-right">
-                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">»</a></li>
-            </ul>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
     <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">

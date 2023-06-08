@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { OpCustomersRoutingModule } from './op-customers-routing.module';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -21,7 +22,8 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     OverlayPanelModule,
     ButtonModule,
     ConfirmPopupModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class OpCustomersModule { }

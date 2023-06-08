@@ -49,7 +49,7 @@ export class OpCustomersService {
     }
 
     getCustomersList() {
-        return this.http.get(`${environment.API_URL}/mails`)
+        return this.http.get(`${environment.API_URL}/user/customer-list`,this.setHeaders())
           .pipe(
             catchError(this.handleError)
           );
