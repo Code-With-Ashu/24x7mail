@@ -36,17 +36,12 @@ export class SuperAdminComponent implements OnInit {
     this.displayMenu();
     this.userInfo = JSON.parse(localStorage.getItem('user-info')) || {};
     this.remoteLoginInfo =  (localStorage.getItem('customer-remote-auth')) || {};
-    console.log(this.remoteLoginInfo);
     this.changeDetector.markForCheck();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-  }
-
-  ngDoCheck(){
     this._isRemoteLoggedIn = localStorage.getItem('customer-remote-auth') ? true : false;
+
   }
 
+ 
   displayMenu() {
     this.currentRouter = this.router.url.split('/').filter(Boolean)[1];
     this.whichMenuToShow = this.mailBoxMenu()[this.currentRouter];

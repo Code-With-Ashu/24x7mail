@@ -22,7 +22,7 @@ export class CustomerListComponent {
 
   remoteLogin(){
     localStorage.setItem('customer-remote-auth','token');
-    this._router.navigate([`superAdmin/customer/`]);
+    this._router.navigate([]).then(result => {  window.open('#/superAdmin/customer/inbox', '_blank'); });
   }
 
   getCustomersList(){

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     AdminRoutingModule,
     NgxPaginationModule,
-    ToastModule
+    ToastModule,
+    NgxPayPalModule
   ]
  
 })
