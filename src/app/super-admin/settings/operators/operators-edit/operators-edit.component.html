@@ -1,0 +1,54 @@
+<div>
+    <form [formGroup]="editoperator">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Name</label>
+                <input type="text" formControlName="name" class="form-control">
+                <div *ngIf="submitted && editoperator.controls.name.errors" class="inp_error">
+                    <div *ngIf="editoperator.controls.name.errors.required">
+                        name is required
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Email</label>
+                <input type="text" formControlName="email" class="form-control">
+                <div *ngIf="submitted && editoperator.controls.email.errors" class="inp_error">
+                    <div *ngIf="editoperator.controls.email.errors.required">
+                        Email is required
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Role</label>
+                <input type="text" formControlName="role" class="form-control">
+                <div *ngIf="submitted && editoperator.controls.role.errors" class="inp_error">
+                    <div *ngIf="editoperator.controls.role.errors.required">
+                        role is required
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <!-- <div *ngIf="submitted && addPackageForm.controls.open_scan.errors" class="inp_error">
+                    <div *ngIf="addPackageForm.controls.open_scan.errors.required">
+                        Open Scan is required
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-md-6" style="padding-top: 26px; ">
+            <p-button styleClass="p-button-add" (click)="save()"> Update </p-button>
+        </div>
+
+    </form>
+</div>

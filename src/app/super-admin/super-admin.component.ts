@@ -196,37 +196,37 @@ export class SuperAdminComponent implements OnInit {
         {
           text: 'My Account ',
           link: `${settingsPath}/${settings.my_account}`,
-          iconClass: '',
+          iconClass: 'fas fa-file',
           status: true
         },
         {
           text: 'Operators',
           link: `${settingsPath}/${settings.operators}`,
-          iconClass: '',
+          iconClass: 'fas fa-users-cog',
           status: true
         },
         {
           text: 'Mailbox Setting',
           link: `${settingsPath}/${settings.mailbox_setting}`,
-          iconClass: '',
+          iconClass: 'fas fa-inbox',
           status: true
         },
         {
           text: 'Advanced Setting',
           link: `${settingsPath}/${settings.advanced_setting}`,
-          iconClass: '',
+          iconClass: 'fas fa-cogs',
           status: true
         },
         {
           text: 'Video Tutorials',
           link: `${settingsPath}/${settings.vedio_tutorials}`,
-          iconClass: '',
+          iconClass: 'fas fa-video',
           status: true
         },
         {
           text: 'Marketing Files',
-          link: `${settingsPath}/${settings.test}`,
-          iconClass: '',
+          link: `${settingsPath}/${settings.marketing_files}`,
+          iconClass: 'fas fa-file',
           status: true
         }
       ]
