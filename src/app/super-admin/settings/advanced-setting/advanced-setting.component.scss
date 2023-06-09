@@ -1,73 +1,36 @@
-.main-detail {
-    margin-top: 10px;
+.form-check-inline .sequential {
+    margin-left: 168px;
 }
 
-.profile-section {
-    margin: 4px 0px;
+input {
+    margin-left: 20px;
+    width: 80px;
+    margin-right: 5px;
 }
 
-.profile-section h5 {
-    color: rgba(0, 0, 0, .5);
-    font-size: 18px;
+.day {
+    margin-right: 60px;
 }
 
-.profile-section p {
-    font-weight: 600;
+.btn {
+    float: right;
 }
 
-.TestHeader {
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 32px;
-    color: rgb(26, 22, 22);
-    text-transform: capitalize;
-    margin-bottom: 2%;
-    margin-top: 2%;
+.logo {
+    width: 600px;
+    height: 400px;
 }
 
-.testTextHeading {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 26px;
-    color: grey;
-    text-transform: capitalize;
-    margin-top: 1%;
-    margin-bottom: 1%;
+.space {
+    margin-left: 20px;
 }
 
-.testTextResult {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 26px;
-    color: rgb(42, 41, 41);
-    text-transform: capitalize;
-    margin-top: 1%;
-    margin-bottom: 1%;
+.image {
+    width: 100px;
+    height: 70px;
 }
 
-.testButtonContainer {
-    padding: 1%;
-}
-
-.testButton {
-    font-size: 24px;
-    font-weight: 800;
-    line-height: 32px;
-}
-
-.setting_profile {
-    display: flex;
-    margin-top: 6px;
-    flex-direction: column;
-}
-
-.profil-detail {
-    display: flex;
-    gap: 120px;
-    margin: 3px 0px;
-}
-
-.profil-detail h5 {
-    color: rgba(0, 0, 0, .5);
-    font-size: 18px;
+.image-name {
+    margin-left: 120px;
+    font-size: 12px;
 }

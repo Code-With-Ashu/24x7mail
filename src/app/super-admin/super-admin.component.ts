@@ -122,7 +122,6 @@ export class SuperAdminComponent implements OnInit {
           ]
         },
       ],
-<<<<<<< Updated upstream
       [this.adminRoutes.op_customer]: [
         {
           text: 'Customers',
@@ -131,9 +130,6 @@ export class SuperAdminComponent implements OnInit {
           status: true,
         },
       ],  
-=======
-      
->>>>>>> Stashed changes
       [this.adminRoutes.customer]: [
         {
           text: 'Inbox',
