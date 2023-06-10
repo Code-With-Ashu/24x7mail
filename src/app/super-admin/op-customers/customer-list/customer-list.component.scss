@@ -2,3 +2,8 @@
     color: #212529;
     background-color: rgb(23 139 108 / 43%);
 }
+.p-button.p-button-success.p-button-text:enabled:hover, .p-buttonset.p-button-success > .p-button.p-button-text:enabled:hover, .p-splitbutton.p-button-success > .p-button.p-button-text:enabled:hover {
+    background: rgb(216 218 149 / 38%);
+    border-color: #b3e7d3;
+    color: #28a745;
+}

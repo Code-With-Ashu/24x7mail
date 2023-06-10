@@ -57,13 +57,12 @@ export class MailService {
   }
 
   uploadFile(data: any): Observable<any> {
-    const hd = new HttpHeaders({
+    const header = new HttpHeaders({
       'Content-Type':'image/jpeg',// 'image/jpeg',
-      Authorization: `${localStorage.getItem('auth-token')}`,
+      'Authorization': `${localStorage.getItem('auth-token')}`,
     });
     const API_URL = `https://api.24x7mail.com/mails`;
-    console.log({headers:hd})
-    return this.http.post(API_URL,data, {headers:hd} );
+    return this.http.post(API_URL,data);
   }
 
   //{'Content-Type': 'multipart/form-data'}

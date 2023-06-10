@@ -45,25 +45,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr [routerLink]="['232']"
+                <tr [routerLink]="['232']" 
                     *ngFor="let customer of customers | paginate: { itemsPerPage: 10, currentPage: p };index as i;">
                     <th scope="row">{{ i +1}}</th>
                     <td>1081</td>
-                    <td>{{ customer.fname +' ' +customer.lname  | titlecase }}</td>
+                    <td>{{ customer.fname +' ' +customer.lname | titlecase }}</td>
                     <td>{{ customer.bussiness_name || 'N/A' }}</td>
                     <td>5</td>
                     <td>44</td>
                     <td>{{ customer.timestamp | date:'fullDate' }}</td>
                     <td><i class="fas fa-times text-danger"></i></td>
                     <td><i class="fa fa-circle text-success"></i> {{customer.user_status | titlecase}}</td>
-                    <td> <p-button title="Remote Login" (click)="remoteLogin()" target="_blank" icon="pi pi-sign-in"
+                    <td> <p-button title="Remote Login" (click)="remoteLogin()" icon="pi pi-sign-in"
                             styleClass="p-button-rounded p-button-success p-button-text"></p-button>
                     </td>
                 </tr>
+                <tr *ngIf="customers.length == 0" style="text-align: center;" class="no-records-found">
+                    <td colspan="10">No Record Found</td>
+                  </tr>
             </tbody>
         </table>
 
-        <div class="card-footer clearfix">
+        <div class="card-footer clearfix"  *ngIf="customers.length != 0" >
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>

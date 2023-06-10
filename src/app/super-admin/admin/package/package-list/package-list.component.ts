@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PackageService } from './package.services';
 import { AppService } from '@/shared/services/app.service';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
   selector: 'app-package-list',
@@ -17,8 +18,11 @@ export class PackageListComponent {
   loading= true;
   addPackage: boolean;
   deletePopup = false;
+  showSuccess= false;
   p: number = 1;
   selectPackageInfo = {};
+  public payPalConfig?: IPayPalConfig;
+;
 
   
   constructor(
@@ -31,6 +35,8 @@ export class PackageListComponent {
 
   
   ngOnInit() {
+    this.initConfig();
+
     this.getPackageList();
   }
 
@@ -91,5 +97,66 @@ export class PackageListComponent {
       this.loading = false;
       this.deletePopup = false;
     }
+  }
+
+  private initConfig(): void {
+    this.payPalConfig = {
+    currency: 'EUR',
+    clientId: 'AStMgOw3RUFNZYGtYIUDMefiO7RZ6zqwivfxrat2A2jmzSR4ie_aWvSwI4BRzLmPCZyRm2kfdyO4CGpY',
+    createOrderOnClient: (data) => <ICreateOrderRequest>{
+      intent: 'CAPTURE',
+      purchase_units: [
+        {
+          amount: {
+            currency_code: 'EUR',
+            value: '9.99',
+            breakdown: {
+              item_total: {
+                currency_code: 'EUR',
+                value: '9.99'
+              }
+            }
+          },
+          items: [
+            {
+              name: 'Enterprise Subscription',
+              quantity: '1',
+              category: 'DIGITAL_GOODS',
+              unit_amount: {
+                currency_code: 'EUR',
+                value: '9.99',
+              },
+            }
+          ]
+        }
+      ]
+    },
+    advanced: {
+      commit: 'true'
+    },
+    style: {
+      label: 'paypal',
+      layout: 'vertical'
+    },
+    onApprove: (data, actions) => {
+      console.log('onApprove - transaction was approved, but not authorized', data, actions);
+      actions.order.get().then(details => {
+        console.log('onApprove - you can get full order details inside onApprove: ', details);
+      });
+    },
+    onClientAuthorization: (data) => {
+      console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      this.showSuccess = true;
+    },
+    onCancel: (data, actions) => {
+      console.log('OnCancel', data, actions);
+    },
+    onError: err => {
+      console.log('OnError', err);
+    },
+    onClick: (data, actions) => {
+      console.log('onClick', data, actions);
+    },
+  };
   }
 }

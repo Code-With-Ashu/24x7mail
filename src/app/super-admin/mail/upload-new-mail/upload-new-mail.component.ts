@@ -46,7 +46,7 @@ export class UploadNewMailComponent {
 
   selectFile(event:any){
     this.isFileSelect = true;    
-    this._fileObject = event.target.files[0];
+    this._fileObject = <File>event.target.files[0];
     this.fileName = event.target.files[0].name; 
     var reader = new FileReader();
 		reader.readAsDataURL(event.target.files[0]);
@@ -69,13 +69,13 @@ export class UploadNewMailComponent {
     this.isDrag = true;
     this.files = files;
     this.fileName = this.files[0].file.name; 
-    this._fileObject = this.files[0].file;
+    this._fileObject = this.files[0];
   }
 
   upload() {
-    if (this.uploadNewMailForm.invalid && this._fileObject != null) {
-      return;
-    }
+    // if (this.uploadNewMailForm.invalid && this._fileObject != null) {
+    //   return;
+    // }
     // let requestParam : any = {}
     // var ff =  new FormData();
 
@@ -109,15 +109,12 @@ export class UploadNewMailComponent {
     // };
 
     let formData = new FormData();
-    formData.append('mail_type', 'envelope');
-    formData.append('mail', this._fileObject);
-    formData.append('weight', '1');
-    formData.append('height', '2');
-    formData.append('width', '3');
-    formData.append('length', '7');
-    formData.append('user', '646c849d8a7ba45bb20add1d');
-    
-    console.log("formData",formData);
+    formData.append('mail', this._fileObject, this._fileObject.name);
+    formData.append("mail_type",this.uploadNewMailForm.value.mail_type);
+    formData.append("user",'646c849d8a7ba45bb20add1d');
+
+   
+    console.log("formData",formData.get('mail'));
     
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
