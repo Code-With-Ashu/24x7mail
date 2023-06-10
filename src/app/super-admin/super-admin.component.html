@@ -43,11 +43,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul  class="navbar-nav ml-auto">
-            <li *ngIf="userInfo.data.user_type == 'operator' && !_isRemoteLoggedIn"   (click)="gotoRouter(adminRoutes.admin)" [ngClass]="{active:currentRouter === adminRoutes.admin}"
+            <li *ngIf="currentRouter != 'customer' "   (click)="gotoRouter(adminRoutes.admin)" [ngClass]="{active:currentRouter === adminRoutes.admin}"
               class="nav-item cursor">
               <a class="nav-link">Admin</a>
             </li>
-            <li *ngIf="userInfo.data.user_type == 'operator' && !_isRemoteLoggedIn"   (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.mail}"
+            <li *ngIf="currentRouter != 'customer'"   (click)="gotoRouter(adminRoutes.mail)" [ngClass]="{active:currentRouter === adminRoutes.mail}"
               class="nav-item cursor">
               <a class="nav-link">Mail</a>
             </li>
@@ -55,33 +55,33 @@
               class="nav-item cursor">
               <a class="nav-link">Customer</a>
             </li> -->
-            <li *ngIf="userInfo.data.user_type == 'operator'  && !_isRemoteLoggedIn" (click)="gotoRouter(adminRoutes.op_customer)" [ngClass]="{active:currentRouter === adminRoutes.op_customer}"
+            <li *ngIf="currentRouter != 'customer'" (click)="gotoRouter(adminRoutes.op_customer)" [ngClass]="{active:currentRouter === adminRoutes.op_customer}"
               class="nav-item cursor">
               <a class="nav-link">Customers</a>
             </li>
 
-            <li *ngIf="userInfo.data.user_type == 'operator'  && !_isRemoteLoggedIn"  (click)="gotoRouter(adminRoutes.report)" [ngClass]="{active:currentRouter === adminRoutes.report}"
+            <li *ngIf="currentRouter != 'customer'"  (click)="gotoRouter(adminRoutes.report)" [ngClass]="{active:currentRouter === adminRoutes.report}"
               class="nav-item cursor">
               <a class="nav-link">Reports</a>
             </li>
-            <li *ngIf="userInfo.data.user_type == 'operator'  && !_isRemoteLoggedIn"  (click)="gotoRouter(adminRoutes.settings)" [ngClass]="{active:currentRouter === adminRoutes.settings}"
+            <li *ngIf="currentRouter != 'customer'"  (click)="gotoRouter(adminRoutes.settings)" [ngClass]="{active:currentRouter === adminRoutes.settings}"
               class="nav-item cursor">
               <a class="nav-link">Setting</a>
             </li>
-            <li *ngIf="_isRemoteLoggedIn"  class="nav-item cursor">
-              <p-button (click)="remoteLogout()"  title="Logout Remote Login"  icon="pi pi-sign-out"
-                styleClass="p-button-rounded p-button-danger p-button-text"></p-button> 
-            </li>
+           
             <li class="nav-item">
               <div class="dropdown">
                 <button aria-expanded="false" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
                   type="button">
                   <i class="fas fa-user-cog"></i>
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-right" *ngIf="currentRouter != 'customer'">
                   <a class="dropdown-item">Dashboard</a>
                   <a class="dropdown-item">Edit Profile</a>
-                  <a (click)="logout()" class="dropdown-item">Log Out</a>
+                  <a (click)="logout('operator')" class="dropdown-item">Log Out</a>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right" *ngIf="currentRouter == 'customer'">
+                  <a (click)="logout('customer')" class="dropdown-item">Log Out</a>
                 </div>
               </div>
             </li>

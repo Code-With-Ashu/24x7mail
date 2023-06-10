@@ -19,6 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(catchError((error: HttpErrorResponse) => {
         let errorMsg = '';
+        if(error.status == 403){
+          this._appService.logout();
+        }
         if (error.error instanceof ErrorEvent) {
           // console.log('This is client side error');
           errorMsg = `Error: ${error.error.message}`;

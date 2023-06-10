@@ -33,6 +33,7 @@ export class SuperAdminComponent implements OnInit {
 
  
   ngOnInit() {
+    console.log( this.adminRoutes.customer);
     this.displayMenu();
     this.userInfo = JSON.parse(localStorage.getItem('user-info')) || {};
     this.remoteLoginInfo =  (localStorage.getItem('customer-remote-auth')) || {};
@@ -48,8 +49,14 @@ export class SuperAdminComponent implements OnInit {
 
   }
 
-  logout() {
-    this._appService.logout();
+  logout(userType) {
+    if(userType == 'customer'){
+      localStorage.removeItem('auth-token');
+      this.router.navigate(['/']).then();
+    } else {
+      this._appService.logout();
+    }
+    
   }
 
   mailBoxMenu() {

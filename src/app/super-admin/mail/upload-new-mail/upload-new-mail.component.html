@@ -20,7 +20,7 @@
   <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
     <h3>1. Choose Mail Type</h3>
 
-    <form [formGroup]="uploadNewMailForm">
+    <form  [formGroup]="uploadNewMailForm">
       <div class="col-md-3 tab-columns">
         <select class="form-control" formControlName="mail_type" (change)="onChangeSelectItemType($event)">
           <option value="">Select Mail Type</option>
