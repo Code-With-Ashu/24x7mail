@@ -371,3 +371,24 @@ button {
 .spinner-loader{
   margin-top: 212px;
 }
+.p-calendar{
+  width: 100% !important;
+}
+.p-button {
+  color: #ffffff;
+  background: #085ae7;
+  border: 1px solid #085ae7;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  border-radius: 4px;
+}
+
+
+.p-calendar {
+  height: 35px;
+}
+// .p-button{
+// display: inline-flex;
+// align-items: center;
+// }

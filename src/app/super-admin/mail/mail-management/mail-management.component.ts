@@ -7,4 +7,18 @@ import {Component} from '@angular/core';
 })
 export class MailManagementComponent {
 
+  date: Date;
+  openshipDetail : boolean;
+  assignedMail : boolean
+  p: number = 1;
+
+
+  shipDetai(){
+this.openshipDetail= true
+  }
+
+  assignedmail(){
+ this.assignedMail=true
+  }
+
 }
