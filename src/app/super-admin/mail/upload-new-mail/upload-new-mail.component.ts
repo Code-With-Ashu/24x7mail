@@ -86,6 +86,8 @@ export class UploadNewMailComponent {
     var url = 'users/me/avatar';
     var formData = new FormData();
     formData.append('mail', this.selectedFile);
+    formData.append("mail_type", 'envelope');
+    formData.append("user", '646c849d8a7ba45bb20add1d');
     // this.spinner.show();
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
