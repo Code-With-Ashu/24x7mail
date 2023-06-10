@@ -91,7 +91,7 @@
 
             <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
 
-            <input (change)="selectFile($event)" id="upload_image_background" data-post-name="image_background"
+            <input (change)="onFileSelected($event)" id="upload_image_background" data-post-name="image_background"
               data-post-url="https://someplace.com/image/uploads/backgrounds/" class="position-absolute invisible"
               type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
 
