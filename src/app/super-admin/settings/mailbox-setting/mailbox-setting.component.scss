@@ -1,9 +1,57 @@
-.form-check-inline .sequential {
-    margin-left: 168px;
-}
-input {
-    margin-left: 20px;
-}
-.day {
-    margin-right: 60px;
-}
+.section{
+    margin: 20px 0px;
+    }
+    
+    .hide-section input{
+        border-radius: 50%;
+    }
+    
+    
+    .day {
+        margin-right: 60px;
+    }
+    
+    .link-section{
+        padding: 20px;
+        border: 2px solid;
+    }
+    
+    .link-label label{
+        padding: 20px 0px;
+    }
+    
+    .mail-box label{
+        margin: 20px 0px;
+        font-size: 20px;
+    }
+    .address label{
+        font-size: 20px;  
+        margin: 20px 0px;
+    }
+    .addres-label p{
+    
+        font-size: 20px;
+        font-weight: 700;
+    
+    
+    }
+    .mail-box .row{
+        margin: 20px 0px;
+    }
+    
+    .title p{
+        padding: 10px 0px;
+        font-size: 18px;
+    }
+    .input-digt input{
+        width: 100%;
+    }
+    .digit{
+        width: 50%;
+        padding: 10px;
+    }
+    
+    .button-save{
+        display: flex;
+        justify-content: flex-end;
+    }
