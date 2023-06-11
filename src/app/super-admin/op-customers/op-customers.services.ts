@@ -1,3 +1,4 @@
+import { AppService } from "@/shared/services/app.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "environments/environment";
@@ -10,17 +11,17 @@ import { catchError, retry } from 'rxjs/operators';
 
 export class OpCustomersService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+        private _appService: AppService) { }
 
     setHeaders(params = '') {
         let reqData: any = { headers: {} };
-        const accessToken = localStorage.getItem('auth-token');
+        const accessToken = this._appService.getToken();
         console.log(accessToken);
         if (accessToken) {
             reqData = {
                 headers: {
                     Authorization: `${accessToken}`,
-                    'Content-Type': `image/jpeg`
                 },
             };
         }

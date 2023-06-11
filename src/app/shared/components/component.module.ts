@@ -12,6 +12,8 @@ import {WebcamModule} from 'ngx-webcam';
 import {LoadingComponent} from './loading/loading.component';
 import {LoadingProcessComponent} from './loading-process/loading-process.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NgtoastComponent } from './ngtoast/ngtoast.component';
+import { ToastModule } from 'primeng/toast';
 
 const components: any = [
   CameraComponent,
@@ -22,18 +24,21 @@ const components: any = [
   NoDataComponent,
   LoadingComponent,
   LoadingProcessComponent,
-  NotFoundComponent
+  NotFoundComponent,
+  NgtoastComponent
 ];
 
 @NgModule({
   declarations: [
     ...components,
+    
   ],
   imports: [
     CommonModule,
     ImageModule,
     RouterModule,
-    WebcamModule
+    WebcamModule,
+    ToastModule
   ],
   exports: [
     ...components

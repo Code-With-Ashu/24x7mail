@@ -57,30 +57,8 @@ export class MailService {
   }
 
   uploadFile(data: any): Observable<any> {
-
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'multipart/form-data');
-    headers = headers.append('enctype', 'multipart/form-data');
-
-
-    return this.http.post('https://api.24x7mail.com/mails',data,
-      {
-        // headers: headers,
-        observe: 'response'
-      }).pipe(
-        catchError(err => {
-          return throwError(err);
-        })
-      )
-    return;
-    const header = new HttpHeaders({
-      'Content-Type':'image/jpeg',// 'image/jpeg',
-      'Authorization': `${localStorage.getItem('auth-token')}`,
-    });
     const API_URL = `https://api.24x7mail.com/mails`;
     return this.http.post(API_URL,data);
   }
-
-  //{'Content-Type': 'multipart/form-data'}
  
 }

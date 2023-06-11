@@ -38,8 +38,7 @@ import { DragDirective } from '@/shared/dragDrop.directive';
     ReactiveFormsModule,
     ComponentModule,
     ToastModule,
-    ConfirmDialogModule,
-    
+    ConfirmDialogModule    
     
   ]
 

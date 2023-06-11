@@ -1,5 +1,5 @@
+<p-toast></p-toast>
 <h3 class="font-weight-bold">Upload New Mail</h3>
-
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button aria-controls="home" aria-selected="true" class="nav-link active" data-target="#home" data-toggle="tab"
@@ -87,22 +87,26 @@
 
           <img *ngIf="!url && !isDrag" height="70" width="70" src="..\..\..\..\assets\images\upload.png">
 
-          <div class="col-12 rmpm " *ngIf="fileName == null">
+          <div class="col-12 rmpm " >
 
             <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
 
-            <input (change)="onFileSelected($event)" id="upload_image_background" data-post-name="image_background"
+            <input (change)="selectFile($event)" id="upload_image_background" data-post-name="image_background"
               data-post-url="https://someplace.com/image/uploads/backgrounds/" class="position-absolute invisible"
               type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
 
             <label class="btn btn-upload mb-3" for="upload_image_background">Choose file(s)</label>
             <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
           </div>
-
-          <div *ngIf="fileName != null ">
-            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+          <div *ngFor="let file of filesNameArray" class="ssd">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{ file }} <i title="Remove Image"
                 style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
           </div>
+
+          <!-- <div *ngIf="fileName != null ">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+          </div> -->
 
         </fieldset>
 
@@ -112,7 +116,7 @@
 
       </div>
       <div class="col-md-8">
-        <button (click)="upload()" class="btn btn-primary float-right" type="submit"> Add</button>
+        <button (click)="upload()" class="btn btn-primary float-right" type="submit"> Upload</button>
       </div>
     </form>
   </div>
