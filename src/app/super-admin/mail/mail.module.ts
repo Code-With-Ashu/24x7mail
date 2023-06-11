@@ -16,6 +16,10 @@ import { ComponentModule } from '@/shared/components/component.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DragDirective } from '@/shared/dragDrop.directive';
+import { PastShipmentComponent } from './mail-management/past-shipment/past-shipment.component'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CalendarModule } from 'primeng/calendar';
+import { AssignedMailComponent } from './mail-management/assigned-mail/assigned-mail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { DragDirective } from '@/shared/dragDrop.directive';
     ReturnedComponent,
     MailManagementComponent,
     PendingComponent,
-    DragDirective
+    DragDirective,
+    PastShipmentComponent,
+    AssignedMailComponent
 
   ],
   imports: [
@@ -37,8 +43,11 @@ import { DragDirective } from '@/shared/dragDrop.directive';
     FormsModule,
     ReactiveFormsModule,
     ComponentModule,
-    ToastModule,
-    ConfirmDialogModule    
+    ToastModule,    
+    ConfirmDialogModule,
+    NgxPaginationModule,
+    CalendarModule
+    
     
   ]
 

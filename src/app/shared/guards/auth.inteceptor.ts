@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
-import {AppService} from '@/shared/services/app.service';
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
+import { AppService } from '@/shared/services/app.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -9,17 +9,28 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // request = request.clone({
-    //   setHeaders: {
-    //     'Authorization': `${this._appService.getToken()}`,
-    //      'Content-Type':'application/json'
-    //   }
-    // });
+
+    if ((request.url.indexOf('https://api.24x7mail.com/mails') != -1)) {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `${this._appService.getToken()}`,
+        }
+      });
+    } else {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `${this._appService.getToken()}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+    }
+
 
     return next.handle(request)
       .pipe(catchError((error: HttpErrorResponse) => {
         let errorMsg = '';
-        if(error.status == 403){
+        if (error.status == 403) {
           this._appService.logout();
         }
         if (error.error instanceof ErrorEvent) {

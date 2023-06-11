@@ -98,15 +98,16 @@
             <label class="btn btn-upload mb-3" for="upload_image_background">Choose file(s)</label>
             <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
           </div>
-          <div *ngFor="let file of filesNameArray" class="ssd">
-            <label class="btn btn-upload mb-3" for="upload_image_background">{{ file }} <i title="Remove Image"
-                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
-          </div>
-
-          <!-- <div *ngIf="fileName != null ">
-            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+          
+          <!-- <div *ngFor="let file of filesNameArray;index as i;" class="ssd">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{ i+1 + file }} <i title="Remove Image"
                 style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
           </div> -->
+
+          <div *ngIf="fileName != null ">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+          </div>
 
         </fieldset>
 

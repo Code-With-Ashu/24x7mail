@@ -70,6 +70,7 @@ export class AppService {
 
   logout() {
     localStorage.removeItem('user-info');
+    localStorage.removeItem('auth-token');    
     this.router.navigate(['/' + routesPath.login]).then();
     this.router.navigate(['/']).then();
   }

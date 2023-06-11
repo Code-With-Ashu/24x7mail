@@ -1,0 +1,17 @@
+.size {
+    height: 160px;
+    width: 360px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .information-data{
+    display: flex;
+    gap: 20px;
+  }
+  .button-assign{
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+  }
