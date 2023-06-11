@@ -60,3 +60,57 @@
 .infor-data label{
     max-width: 200px;
 }
+.search-main .row {
+    gap: 20px;
+}
+
+.input-search {
+    display: flex;
+    // border: 2px solid #ced4da;
+    border-radius: 7px;
+}
+
+.icon-search {
+    // color: #085ae7;
+    background-color: #085ae7;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+    border-radius: 0px 4px 4px 0px;
+}
+.logo {
+    width: 600px;
+    height: 400px;
+}
+
+.search-section input {
+    // border: none;
+    width: 100%;
+    border-radius: 4px 0px 0px 4px;
+    height: 35px;
+    box-shadow: 4px;
+    border: 2px solid #ced4da;
+    padding: 0px 8px;
+}
+
+input:focus {
+    border: none;
+}
+.p-calendar {
+    position: relative;
+    display: inline-flex !important;
+    width: 100%;
+}
+
+.pagination {
+    float: right;
+}
+
+.past-shipment-table {
+    margin: 18px 0px;
+}
+.card {
+    background-color: #ced4da;
+}
