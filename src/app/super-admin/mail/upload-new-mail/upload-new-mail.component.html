@@ -87,7 +87,7 @@
 
           <img *ngIf="!url && !isDrag" height="70" width="70" src="..\..\..\..\assets\images\upload.png">
 
-          <div class="col-12 rmpm " >
+          <div class="col-12 rmpm " *ngIf="fileName == null " >
 
             <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
 
@@ -95,7 +95,7 @@
               data-post-url="https://someplace.com/image/uploads/backgrounds/" class="position-absolute invisible"
               type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
 
-            <label class="btn btn-upload mb-3" for="upload_image_background">Choose file(s)</label>
+            <label  class="btn btn-upload mb-3" for="upload_image_background">Choose file(s)</label>
             <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
           </div>
           

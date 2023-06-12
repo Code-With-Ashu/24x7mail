@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from "environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -50,15 +51,22 @@ export class MailService {
 
   
   uploadNewMail(payload: any) {
-    return this.http.post(`https://api.24x7mail.com/mails`, payload)
+    return this.http.post( `${environment.API_URL}/mails`, payload)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   uploadFile(data: any): Observable<any> {
-    const API_URL = `https://api.24x7mail.com/mails`;
+    const API_URL = `${environment.API_URL}/mails`;
     return this.http.post(API_URL,data);
   }
+
+  getAssingMailList(status: any): Observable<any> {
+    const API_URL = `${environment.API_URL}/mails?assign_status=${status}`;
+    return this.http.get(API_URL,this.setHeaders());
+  }
  
+
+
 }

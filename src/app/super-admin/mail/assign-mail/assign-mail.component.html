@@ -19,25 +19,25 @@
   <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
     <div class="row">
       <!-- Left col -->
-      <section class="col-lg-4 connectedSortable">
+      <section class="col-lg-4 connectedSortable" *ngFor="let item of list">
         <!-- Custom tabs (Charts with tabs)-->
         <div class="card" (click)="showDetailDailog()">
 
           <div class="card-body">
             <div class="tab-content p-0">
-              <a href="#"><img class="img-responsive size" src="../../../assets/img/pay.jpg"></a>
+              <a href="#"><img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)"></a>
             </div>
             <div class="row">
 
             </div>
             <div class="button-block">
-              <i class="far fa-envelope"></i> Envelope
+              <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
               <a><i class="float-right fas fa-trash"></i></a>
               <a> <i class="float-right fas fa-flag "></i></a>
             </div>
             <div class="button-block">
-              <label> Date 02/02/2015</label>
-              <label class="float-right">Time 11:55 AM</label>
+              <label> Date {{ item?.createdAt | date:'dd/mm/yyyy'}}</label>
+              <label class="float-right">Time {{ item?.createdAt | date:'h:mm a'}}</label>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
   styleClass="addDialog" [style]="{ width: '50vw' }" [(visible)]="showDetail" (onHide)="closeDialog()">
   <div class="card-body">
     <div class="tab-content p-0">
-      <a href="#"><img class="img-responsive size" src="../../../assets/img/pay.jpg"></a>
+      <a href="#"><img class="img-responsive size"  src="../../../assets/img/pay.jpg"></a>
     </div>
     <div class="button-block">
       <i class="far fa-envelope"></i> Envelope
