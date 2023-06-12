@@ -20,6 +20,7 @@ import {SharedModule} from '@/shared/shared.module';
 import { SocialLoginModule,SocialAuthServiceConfig } from 'angularx-social-login';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { MessageService } from 'primeng/api';
 
 
 defineCustomElements();
@@ -52,7 +53,6 @@ export function playerFactory() {
     ButtonModule
   ],
   providers: [
-    
     AuthGuard,
     NonAuthGuard,
     [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

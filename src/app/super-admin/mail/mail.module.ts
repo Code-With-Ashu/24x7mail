@@ -20,6 +20,7 @@ import { PastShipmentComponent } from './mail-management/past-shipment/past-ship
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CalendarModule } from 'primeng/calendar';
 import { AssignedMailComponent } from './mail-management/assigned-mail/assigned-mail.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AssignedMailComponent } from './mail-management/assigned-mail/assigned-
     CalendarModule
     
     
-  ]
+  ],
+  providers:[MessageService]
 
 })
 export class MailModule {
