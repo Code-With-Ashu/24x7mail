@@ -21,6 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CalendarModule } from 'primeng/calendar';
 import { AssignedMailComponent } from './mail-management/assigned-mail/assigned-mail.component';
 import { MessageService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { MessageService } from 'primeng/api';
     ToastModule,    
     ConfirmDialogModule,
     NgxPaginationModule,
-    CalendarModule
+    CalendarModule,
+    ConfirmPopupModule,
+    DropdownModule
     
     
   ],

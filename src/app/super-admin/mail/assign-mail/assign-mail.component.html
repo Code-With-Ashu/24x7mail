@@ -1,6 +1,3 @@
-<!-- <button type="button" pButton pRipple (click)="show()" label="Show" class="p-button-success"></button>
-<p-toast key="myKey1" position="center"></p-toast> -->
-
 <h3 class="font-weight-bold">Assign Mail</h3>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -24,10 +21,10 @@
       <!-- Left col -->
       <section class="col-lg-4 connectedSortable" *ngFor="let item of list">
         <!-- Custom tabs (Charts with tabs)-->
-        <div class="card" >
+        <div class="card">
 
           <div class="card-body">
-            <div class="tab-content p-0 tabhover" (click)="showDetailDailog()">
+            <div class="tab-content p-0 tabhover" (click)="showDetailDailog(item)">
               <img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)">
             </div>
             <div class="row">
@@ -35,11 +32,12 @@
             </div>
             <div class="button-block">
               <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
-              <a><i class="float-right fas fa-trash"></i></a>
+              <a style="cursor: pointer;" (click)="deleteConfirm($event)"><i class="float-right fas fa-trash"></i></a>
+              <p-confirmPopup></p-confirmPopup>
               <a> <i class="float-right fas fa-flag "></i></a>
             </div>
             <div class="button-block">
-              <label> Date {{ item?.createdAt | date:'dd/mm/yyyy'}}</label>
+              <label> Date {{ item?.createdAt | date:'dd/MM/yyyy'}}</label>
               <label class="float-right">Time {{ item?.createdAt | date:'h:mm a'}}</label>
             </div>
           </div>
@@ -53,30 +51,48 @@
   </div>
 </div>
 
-<p-dialog [draggable]="false"  showEffect="fade" modal="true"
-  styleClass="addDialog" [style]="{ width: '50vw' }" [(visible)]="showDetail" (onHide)="closeDialog()">
+<p-dialog [draggable]="false" showEffect="fade" modal="true" styleClass="addDialog" [style]="{ width: '50vw' }"
+  [(visible)]="showDetail" (onHide)="closeDialog()">
   <div class="card-body">
     <div class="tab-content p-0">
-      <img class="img-responsive size"  src="../../../assets/img/pay.jpg">
+      <img class="img-responsive size" src="../../../assets/img/pay.jpg">
     </div>
     <div class="button-block">
-      <i class="far fa-envelope"></i> Envelope
+      <i class="far fa-envelope"></i> {{ mailBoxInfo?.mail_type | titlecase }}
       <a><i class="float-right fas fa-trash"></i></a>
       <a> <i class="float-right fas fa-flag "></i></a>
     </div>
     <div class="button-block">
-      <label> Date 02/02/2015</label>
-      <label class="float-right">Time 11:55 AM</label>
+      <label> Date {{ mailBoxInfo?.createdAt | date:'dd/MM/yyyy' }}</label>
+      <label class="float-right">Time {{ mailBoxInfo?.createdAt | date:'h:mm a' }}</label>
     </div>
     <hr>
     <div class="row">
       <div class="col-lg-6">
         <label class="form-label">Mailbox or Recipient Name</label>
-        <input type="number" class="form-control">
+        <input disabled type="number" class="form-control" value="{{  mailBoxInfo?.mail_box_num || 'N/A' }}">
       </div>
       <div class="col-lg-6">
         <label class="form-label">Sender Name</label>
-        <input type="number" class="form-control">
+        <div class="flex justify-content-center">
+          <p-dropdown (onChange)="change($event)" [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true"
+            filterBy="name" [showClear]="true" placeholder="Select a Sender">
+            <ng-template pTemplate="selectedItem">
+              <div class="flex align-items-center gap-2" *ngIf="selectedCustomer">
+                <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                  [class]="'flag flag-' + selectedCustomer.code.toLowerCase()" style="width: 18px" /> -->
+                <div>{{ selectedCustomer?.name |   titlecase }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-sender pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                  [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" /> -->
+                <div>{{ sender.name | titlecase}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -96,9 +112,9 @@
       </div>
     </div>
     <hr>
-      <div class="row float-right">
-        <button class="btn btn-primary">Assign</button>
-        <button class="btn btn-secondary" (click)="closeDialog()">Close</button>
+    <div class="row float-right">
+      <button class="btn btn-primary">Assign</button>
+      <button class="btn btn-secondary" (click)="closeDialog()">Close</button>
     </div>
   </div>
 </p-dialog>
