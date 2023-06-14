@@ -1,34 +1,54 @@
 .status {
     margin-left: 18px;
 }
-.form-label{
+.form-label {
     margin-left: 6px;
-}    
+}
 .size {
     height: 160px;
     width: 360px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-  }
-  
-   .caption {
-      font-size: 20px;
-      color: white; 
-      text-align: center;
-      background-color: #800000;
-      width: 230px;
-  }
-.fa-trash{
-    padding-left: 5px;
-}  
-.card{
-    box-shadow: 0 0 16px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
 }
 
-.button-block{
+.caption {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    background-color: #800000;
+    width: 230px;
+}
+.fa-trash {
+    padding-left: 5px;
+}
+.card {
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-block {
     padding-top: 20px;
 }
 .connectedSortable {
     padding-top: 25px;
+}
+.input-search {
+    display: flex;
+
+    // border: 2px solid #ced4da;
+    border-radius: 7px;
+}
+
+.icon-search {
+    // color: #085ae7;
+    background-color: #085ae7;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+    border-radius: 0px 4px 4px 0px;
+}
+.pagination {
+    float: right;
 }

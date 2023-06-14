@@ -2,14 +2,11 @@ import { FileHandle } from '@/shared/dragDrop.directive';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MailService } from '../mail.services';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-upload-new-mail',
   templateUrl: './upload-new-mail.component.html',
-  styleUrls: ['./upload-new-mail.component.scss'],
-  providers: [MessageService]
-
+  styleUrls: ['./upload-new-mail.component.scss']
 })
 export class UploadNewMailComponent {
 
@@ -25,8 +22,7 @@ export class UploadNewMailComponent {
   uploadNewMailForm: FormGroup;
   _fileObject = null;
 
-  constructor(private mailService: MailService,
-    private messageService: MessageService) { }
+  constructor(private mailService: MailService) { }
 
   ngOnInit() {
     this.uploadNewMailForm = new FormGroup({
@@ -47,27 +43,74 @@ export class UploadNewMailComponent {
     this.uploadNewMailForm.controls['height'].setValidators([Validators.required]);
 
   }
-
-  filesArray = [];
-  filesNameArray = [];
   
-  selectFile(event: any) {
-    this.getLoginUserInfo();
+  imageUrl : any;
 
-    this.isFileSelect = true;
-    this._fileObject = event.target.files[0];
-    this.fileName = event.target.files[0].name;
-    var reader = new FileReader();
-    this.filesNameArray.push([event.target.files[0].name]);
-    this.filesArray.push([ event.target.files[0]]);
-    console.log(this.filesNameArray)
 
-    reader.readAsDataURL(event.target.files[0]);
-
-    reader.onload = (_event) => {
-      this.url = reader.result;
-    }
+  changeListener($event) : void {
+     this.readThis($event.target);
   }
+
+
+  readThis(inputValue: any) : void {
+    var file:File = inputValue.files[0]; 
+    var myReader:FileReader = new FileReader();
+
+     myReader.onloadend = function(e){
+      // you can perform an action with readed data here
+       return   e.target.result;
+    }
+    console.log(this.imageUrl)
+
+    myReader.readAsText(file);
+  }
+
+  selectedFile: File | any = null;
+  readURL(input: any, obj: any): void {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (e && e.target) {
+          // this.imageUrl = e.target.result;
+          // this.isFileSet = true;
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+    // this.fileWrapper = obj;
+  }
+
+  onFileSelected(event: any) {
+    console.log("event",event.target.files)
+    this.selectedFile = event.target.files[0];
+    var url = 'users/me/avatar';
+    var formData = new FormData();
+    formData.append('mail', this.selectedFile);
+    formData.append("mail_type", 'envelope');
+    formData.append("user", '646c849d8a7ba45bb20add1d');
+    // this.spinner.show();
+    this.mailService.uploadFile(formData).subscribe(
+      (res: any) => {
+      },
+      (err) => {
+      }
+    );
+  }
+
+  selectFile(event: any) {
+    // this.readURL(event.target);
+
+    // this.isFileSelect = true;
+    // this._fileObject = <File>event.target.files[0];
+    // this.fileName = event.target.files[0].name;
+    // var reader = new FileReader();
+    // reader.readAsDataURL(event.target.files[0]);
+
+    // reader.onload = (_event) => {
+    //   this.url = reader.result;
+    // }
+  }
+
 
   clearImg() {
     this.fileName = null;
@@ -75,7 +118,6 @@ export class UploadNewMailComponent {
     this.isDrag = false;
     this.isFileSelect = false;
     this.url = null;
-    this._fileObject = null;
   }
 
 
@@ -83,44 +125,30 @@ export class UploadNewMailComponent {
     this.isDrag = true;
     this.files = files;
     this.fileName = this.files[0].file.name;
-    this._fileObject = this.files[0].file;
+    this._fileObject = this.files[0];
   }
 
   upload() {
 
-    if (this.uploadNewMailForm.invalid && this._fileObject != null) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select required fields.' });
-      return;
-    }
-    let user = this.getLoginUserInfo();
+    // if (this.uploadNewMailForm.invalid && this._fileObject != null) {
+    //   return;
+    // }
+    // let requestParam : any = {}
+    // var ff =  new FormData();
+
+
+
 
     let formData = new FormData();
-
-    formData.append('mail_type', this.uploadNewMailForm.value.mail_type);
     formData.append('mail', this._fileObject);
-    formData.append('user', user._id);
-    if (this.isPackageSelect) {
-      formData.append('weight', this.uploadNewMailForm.value.weight);
-      formData.append('width', this.uploadNewMailForm.value.width);
-      formData.append('height', this.uploadNewMailForm.value.height);
-      formData.append('length', this.uploadNewMailForm.value.length);
-    }
+    formData.append("mail_type", this.uploadNewMailForm.value.mail_type);
+    formData.append("user", '646c849d8a7ba45bb20add1d');
 
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
-        this.uploadNewMailForm.reset()
-        this.isPackageSelect = false;
-        this.clearImg();
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail is uploaded successfully!' });
       },
       (err) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
       }
     );
-  }
-
-  getLoginUserInfo() {
-    let loginUser = JSON.parse(localStorage.getItem('user-info')) || {};
-    return loginUser.data;
   }
 }

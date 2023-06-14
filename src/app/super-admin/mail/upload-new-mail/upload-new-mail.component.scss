@@ -1,18 +1,14 @@
-
 body {
   margin: 24px;
 }
-
 
 .upload_dropZone {
   color: #0f3c4b;
   background-color: var(--colorPrimaryPale, #ffffff);
   outline: 2px dashed var(--colorPrimaryHalf, #132633) !important;
   outline-offset: -12px;
-  transition:
-    outline-offset 0.2s ease-out,
-    outline-color 0.3s ease-in-out,
-    background-color 0.2s ease-out;
+  transition: outline-offset 0.2s ease-out, outline-color 0.3s ease-in-out,
+      background-color 0.2s ease-out;
 }
 .upload_dropZone.highlight {
   outline-offset: -4px;
@@ -36,9 +32,30 @@ body {
   object-fit: contain;
 }
 
-.tab-content ,.tab-columns {
-    margin-left: 15px;
+.tab-content,
+.tab-columns {
+  margin-left: 15px;
 }
 .dropzone {
   background-color: #ffffff !important;
+}
+.input-search {
+  display: flex;
+
+  // border: 2px solid #ced4da;
+  border-radius: 7px;
+}
+
+.icon-search {
+  // color: #085ae7;
+  background-color: #085ae7;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
+  border-radius: 0px 4px 4px 0px;
+}
+.pagination {
+  float: right;
 }

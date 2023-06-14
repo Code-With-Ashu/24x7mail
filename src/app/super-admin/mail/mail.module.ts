@@ -21,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CalendarModule } from 'primeng/calendar';
 import { AssignedMailComponent } from './mail-management/assigned-mail/assigned-mail.component';
 import { MessageService } from 'primeng/api';
+import { CustomerMailboxComponent } from './customer-mailbox/customer-mailbox.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MessageService } from 'primeng/api';
     PendingComponent,
     DragDirective,
     PastShipmentComponent,
-    AssignedMailComponent
+    AssignedMailComponent,
+    CustomerMailboxComponent
 
   ],
   imports: [
