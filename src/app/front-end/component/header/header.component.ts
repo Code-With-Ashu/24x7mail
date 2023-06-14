@@ -1,4 +1,5 @@
 import {frontEndRoutesPath, routesPath} from '@/shared/routes-path';
+import { AppService } from '@/shared/services/app.service';
 import {Component, OnInit} from '@angular/core';
 
 declare var $: any;
@@ -13,6 +14,10 @@ export class HeaderComponent implements OnInit {
   routesPath = routesPath;
 
   _LoggedIn : boolean = false;
+
+  constructor(
+    private appService: AppService,
+  ) {}
 
   //@HostListener('window:scroll', ['$event'])
   ngOnInit() {
@@ -40,4 +45,9 @@ export class HeaderComponent implements OnInit {
     $('.navbar-collapse').collapse('hide');
   }
 
+  logout(){
+    this._LoggedIn = false;
+    this.appService.logout();
+  }
 }
+

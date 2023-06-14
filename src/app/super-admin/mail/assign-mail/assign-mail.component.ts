@@ -15,8 +15,7 @@ export class AssignMailComponent {
   showDetail: boolean = false;
   mailBoxInfo: any = {};
   customers=[];
-
-
+  loading = true;
   constructor(private mailService: MailService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -24,7 +23,7 @@ export class AssignMailComponent {
   }
 
   ngOnInit() {
-    this.getPendingAssingMailList();
+    this.getPendingAssingMailList("pending");
     this.getCustomerList();
   }
 
@@ -41,13 +40,15 @@ export class AssignMailComponent {
     event.target.src = '../../../assets/img/pay.jpg'
   }
 
-  getPendingAssingMailList() {
-    var status = "pending";
+  getPendingAssingMailList(status = "pending") {
+    console.log(status)
     this.mailService.getAssingMailList(status).subscribe(
       (res: any) => {
+        this.loading = false;
         this.list = res?.data || [];
       },
       (err) => {
+        this.loading = false;
       }
     );
   }
@@ -65,6 +66,21 @@ export class AssignMailComponent {
       }
     });
   }
+
+  flaggedConfirm(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target,
+      message: 'Are you sure that you want to flagged this mail?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+      }
+    });
+  }
+
 
   selectedCustomer: any;
 

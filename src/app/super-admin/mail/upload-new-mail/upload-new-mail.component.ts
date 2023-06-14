@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
 export class UploadNewMailComponent {
 
   files: FileHandle[] = [];
-  _selectedFile;
+  _selectedFile = [];
   currentInputs: any = [];
   fileName = null;
   isPackageSelect: boolean = false;
@@ -24,6 +24,8 @@ export class UploadNewMailComponent {
 
   uploadNewMailForm: FormGroup;
   _fileObject = null;
+  mail_type: string;
+
 
   constructor(private mailService: MailService,
     private messageService: MessageService) { }
@@ -41,6 +43,7 @@ export class UploadNewMailComponent {
 
   onChangeSelectItemType(item) {
     this.isPackageSelect = (item.target.value == 'package') ? true : false;
+    this.mail_type = item.target.value;
     this.uploadNewMailForm.controls['weight'].setValidators([Validators.required]);
     this.uploadNewMailForm.controls['length'].setValidators([Validators.required]);
     this.uploadNewMailForm.controls['width'].setValidators([Validators.required]);
@@ -48,20 +51,18 @@ export class UploadNewMailComponent {
 
   }
 
-  filesArray = [];
+  filesArray: any = [];
   filesNameArray = [];
-  
+
   selectFile(event: any) {
     this.getLoginUserInfo();
 
     this.isFileSelect = true;
-    this._fileObject = event.target.files[0];
+    // this._fileObject = event.target.files[0];
     this.fileName = event.target.files[0].name;
     var reader = new FileReader();
-    this.filesNameArray.push([event.target.files[0].name]);
-    this.filesArray.push([ event.target.files[0]]);
-    console.log(this.filesNameArray)
-
+    this.filesArray.push({ 'name': event.target.files[0].name, 'file': event.target.files[0] });
+    console.log(this.filesArray)
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
@@ -69,7 +70,8 @@ export class UploadNewMailComponent {
     }
   }
 
-  clearImg() {
+  clearImg(i:any) {
+    (i== 0 ? this.filesArray = []: this.filesArray.splice(i,1));
     this.fileName = null;
     this.files = [];
     this.isDrag = false;
@@ -84,11 +86,15 @@ export class UploadNewMailComponent {
     this.files = files;
     this.fileName = this.files[0].file.name;
     this._fileObject = this.files[0].file;
+    this.filesArray.push([this.files[0].file]);
+
   }
+
+  
 
   upload() {
 
-    if (this.uploadNewMailForm.invalid && this._fileObject != null) {
+    if (this.uploadNewMailForm.invalid) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select required fields.' });
       return;
     }
@@ -97,7 +103,7 @@ export class UploadNewMailComponent {
     let formData = new FormData();
 
     formData.append('mail_type', this.uploadNewMailForm.value.mail_type);
-    formData.append('mail', this._fileObject);
+    formData.append('mail', this.filesArray);
     formData.append('user', user._id);
     if (this.isPackageSelect) {
       formData.append('weight', this.uploadNewMailForm.value.weight);
@@ -110,7 +116,7 @@ export class UploadNewMailComponent {
       (res: any) => {
         this.uploadNewMailForm.reset()
         this.isPackageSelect = false;
-        this.clearImg();
+        this.clearImg(0);
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail is uploaded successfully!' });
       },
       (err) => {

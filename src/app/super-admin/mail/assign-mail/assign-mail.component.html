@@ -1,22 +1,58 @@
-<h3 class="font-weight-bold">Assign Mail</h3>
+<app-loading-process *ngIf="loading"></app-loading-process>
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<h3 *ngIf="!loading" class="font-weight-bold">Assign Mail</h3>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist" *ngIf="!loading">
   <li class="nav-item" role="presentation">
-    <button aria-controls="home" aria-selected="true" class="nav-link active" data-target="#home" data-toggle="tab"
-      id="home-tab" role="tab" type="button">
+    <button aria-controls="pending" aria-selected="true" class="nav-link active" data-target="#pending" data-toggle="tab"
+      id="pending-tab" role="tab" type="button"  (click)="getPendingAssingMailList('pending')">
       Pending
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#profile" data-toggle="tab"
-      id="profile-tab" role="tab" type="button">
+    <button aria-controls="flagged" aria-selected="false" class="nav-link" data-target="#flagged" data-toggle="tab"
+      id="flagged-tab" role="tab" type="button" (click)="getPendingAssingMailList('flagged')">
       Flagged
     </button>
   </li>
 </ul>
 
 <div class="tab-content py-3" id="myTabContent">
-  <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
+  <div aria-labelledby="pending-tab" class="tab-pane fade show active" id="pending" role="tabpanel">
+    <div class="row">
+      <!-- Left col -->
+      <section class="col-lg-4 connectedSortable" *ngFor="let item of list">
+        <!-- Custom tabs (Charts with tabs)-->
+        <div class="card">
+
+          <div class="card-body">
+            <div class="tab-content p-0 tabhover" (click)="showDetailDailog(item)">
+              <img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)">
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="button-block">
+              <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
+              <p-button icon="pi pi-flag" (click)="flaggedConfirm($event)" styleClass="p-button-rounded p-button-warning p-button-outlined float-right"></p-button> 
+              <p-button icon="pi pi-trash" (click)="deleteConfirm($event)" styleClass="p-button-rounded p-button-danger p-button-outlined float-right"></p-button>
+              
+              <!-- <a style="cursor: pointer;" (click)="deleteConfirm($event)"><i class="float-right fas fa-trash"></i></a> -->
+              <p-confirmPopup></p-confirmPopup>
+              <!-- <a> <i class="float-right fas fa-flag "></i></a> -->
+            </div>
+            <div class="button-block">
+              <label> Date {{ item?.createdAt | date:'dd/MM/yyyy'}}</label>
+              <label class="float-right">Time {{ item?.createdAt | date:'h:mm a'}}</label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h1 *ngIf="list.length == 0" class="text-center">No Results.</h1>
+
+    </div>
+  </div>
+  <div aria-labelledby="flagged-tab" class="tab-pane fade" id="flagged" role="tabpanel">
     <div class="row">
       <!-- Left col -->
       <section class="col-lg-4 connectedSortable" *ngFor="let item of list">
@@ -43,11 +79,9 @@
           </div>
         </div>
       </section>
+      <h1 *ngIf="list.length == 0" class="text-center">No Results.</h1>
 
     </div>
-  </div>
-  <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
-    <h1>Comming Soon!!</h1>
   </div>
 </div>
 
@@ -75,13 +109,13 @@
       <div class="col-lg-6">
         <label class="form-label">Sender Name</label>
         <div class="flex justify-content-center">
-          <p-dropdown (onChange)="change($event)" [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true"
-            filterBy="name" [showClear]="true" placeholder="Select a Sender">
+          <p-dropdown (onChange)="change($event)" [options]="customers" [(ngModel)]="selectedCustomer"
+            optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Sender">
             <ng-template pTemplate="selectedItem">
               <div class="flex align-items-center gap-2" *ngIf="selectedCustomer">
                 <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
                   [class]="'flag flag-' + selectedCustomer.code.toLowerCase()" style="width: 18px" /> -->
-                <div>{{ selectedCustomer?.name |   titlecase }}</div>
+                <div>{{ selectedCustomer?.name | titlecase }}</div>
               </div>
             </ng-template>
             <ng-template let-sender pTemplate="item">

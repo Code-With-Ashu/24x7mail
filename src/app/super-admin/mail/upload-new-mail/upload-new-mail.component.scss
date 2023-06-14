@@ -42,3 +42,38 @@ body {
 .dropzone {
   background-color: #ffffff !important;
 }
+small[_ngcontent-qfc-c9] {
+  color: #cfcfcf;
+}
+.small, small {
+  font-size: 80%;
+  font-weight: 400;
+}
+
+
+.selected-image{
+  background-color: #f7f7f7;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 100fr auto auto;
+  align-items: flex-start;
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 2px;
+  min-height: 30px;
+  text-align: initial;
+}
+.fileArray {
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 100fr auto auto;
+  grid-column-gap: 10px;
+  align-items: flex-start;
+}
+
+.file-weight-text{
+  font-size: 8pt;
+  margin: 7px 5px 6px;
+  text-align: right;
+}

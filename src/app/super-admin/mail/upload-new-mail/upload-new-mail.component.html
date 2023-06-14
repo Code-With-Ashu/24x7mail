@@ -20,7 +20,7 @@
   <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
     <h3>1. Choose Mail Type</h3>
 
-    <form  [formGroup]="uploadNewMailForm">
+    <form [formGroup]="uploadNewMailForm">
       <div class="col-md-3 tab-columns">
         <select class="form-control" formControlName="mail_type" (change)="onChangeSelectItemType($event)">
           <option value="">Select Mail Type</option>
@@ -40,28 +40,28 @@
 
             <div class="col-md-3">
               <div class="form-group">
-                <label >Weight(lb)</label>
+                <label>Weight(lb)</label>
                 <input formControlName="weight" type="text" class="form-control">
               </div>
             </div>
 
             <div class="col-md-3">
               <div class="form-group">
-                <label >Length</label>
+                <label>Length</label>
                 <input type="text" formControlName="length" class="form-control">
               </div>
             </div>
 
             <div class="col-md-3">
               <div class="form-group">
-                <label >Width(in)</label>
+                <label>Width(in)</label>
                 <input type="text" formControlName="width" class="form-control">
               </div>
             </div>
 
             <div class="col-md-3">
               <div class="form-group">
-                <label >Height(in)</label>
+                <label>Height(in)</label>
                 <input type="text" formControlName="height" class="form-control">
               </div>
             </div>
@@ -72,11 +72,65 @@
 
       <h3>2. Upload Photo</h3>
 
-      <div class="col-md-4 tab-columns">
-
-
+      <div class="col-md-6 tab-columns" *ngIf="mail_type!='postcard'">
         <!--droped image preview-->
+        <fieldset draggable="true" appDrag (files)="filesDropped($event)" style="outline: 2px dashed;"
+          class="dropzone upload_dropZone text-center mb-3 p-4">
 
+          <!-- <div *ngFor="let file of files;">
+            <img *ngIf="isDrag && file" [src]="file.url" width="100px" height="100px">
+          </div> -->
+          <!-- <div *ngIf="url"><img width="100px" height="100px" [src]="url" *ngIf="url"></div> -->
+
+          <img height="70" width="70" src="..\..\..\..\assets\images\upload.png">
+
+          <div class="col-12 rmpm ">
+
+            <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
+
+            <input (change)="selectFile($event)" #hiddenfileinput id="upload_image_background"
+              data-post-name="image_background" data-post-url="https://someplace.com/image/uploads/backgrounds/"
+              class="position-absolute invisible" type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
+
+            <label class="btn btn-upload mb-3" for="upload_image_background"> <button (click)="hiddenfileinput.click()"
+                title="Choose file(s)" type="button" class="btn btn-secondary">Choose file(s)</button></label>
+            <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
+            <hr *ngIf="filesArray.length > 0">
+            <div class="col-12 fileArray" *ngFor="let file of filesArray;index as i;">
+              <span class="float-left selected-image" style="padding-top: 6px;"> {{i+1 + ' '+file.name }} </span>
+              <div class="form-group ">
+                <div class="input-group input-group-weight">
+                  <span class="file-weight-text"> Weight </span>
+                  <input class="form-control" autocomplete="off" value="0" type="number" min="0" max="500"><span
+                    class="file-weight-text"> lbs </span><input value="0.8" class="form-control" autocomplete="off" type="number"
+                    min="0" max="16"><span class="file-weight-text"> oz </span><!---->
+                </div>
+
+              </div>
+              <button title="Remove Image" type="button" class="btn btn-danger" (click)="clearImg(i)"><i
+                  class="fas fa-trash"></i></button>
+            </div>
+
+
+          </div>
+
+          <!-- <div *ngFor="let file of filesNameArray;index as i;" class="ssd">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{ i+1 + file }} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+          </div> -->
+
+          <!-- <div *ngIf="fileName != null ">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+          </div> -->
+
+        </fieldset>
+        <!-- <img id="blah" src="#" alt="your image" /> -->
+      </div>
+
+
+      <div class="col-md-4 tab-columns postcard" *ngIf="mail_type=='postcard'">
+        <!--droped image preview-->
         <fieldset draggable="true" appDrag (files)="filesDropped($event)" style="outline: 2px dashed;"
           class="dropzone upload_dropZone text-center mb-3 p-4">
 
@@ -87,7 +141,7 @@
 
           <img *ngIf="!url && !isDrag" height="70" width="70" src="..\..\..\..\assets\images\upload.png">
 
-          <div class="col-12 rmpm " *ngIf="fileName == null " >
+          <div class="col-12 rmpm " *ngIf="fileName == null ">
 
             <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
 
@@ -95,10 +149,13 @@
               data-post-url="https://someplace.com/image/uploads/backgrounds/" class="position-absolute invisible"
               type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
 
-            <label  class="btn btn-upload mb-3" for="upload_image_background">Choose file(s)</label>
+            <label class="btn btn-upload mb-3" for="upload_image_background">Select Front Image<small> (With address) <i
+                  class="fas fa-question-circle"
+                  title="You can upload PNG, JPEG, PDF, TIF or a TIFF image file. The file cannot be larger than 30 MB. In case of PDF files, only the first page will be considered."></i></small></label>
+
             <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
           </div>
-          
+
           <!-- <div *ngFor="let file of filesNameArray;index as i;" class="ssd">
             <label class="btn btn-upload mb-3" for="upload_image_background">{{ i+1 + file }} <i title="Remove Image"
                 style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
@@ -106,19 +163,49 @@
 
           <div *ngIf="fileName != null ">
             <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
-                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+                style="color:red" class="fa fa-times" (click)="clearImg(1)"></i></label>
           </div>
 
         </fieldset>
+        <fieldset draggable="true" appDrag (files)="filesDropped($event)" style="outline: 2px dashed;"
+          class="dropzone upload_dropZone text-center mb-3 p-4">
 
+          <div *ngFor="let file of files">
+            <img *ngIf="isDrag && file" [src]="file.url" width="100px" height="100px">
+          </div>
+          <div *ngIf="url"><img width="100px" height="100px" [src]="url" *ngIf="url"></div>
+
+          <img *ngIf="!url && !isDrag" height="70" width="70" src="..\..\..\..\assets\images\upload.png">
+
+          <div class="col-12 rmpm " *ngIf="fileName == null ">
+
+            <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
+
+            <input (change)="selectFile($event)" id="upload_image_background" data-post-name="image_background"
+              data-post-url="https://someplace.com/image/uploads/backgrounds/" class="position-absolute invisible"
+              type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
+
+            <label class="btn btn-upload mb-3" for="upload_image_background">Select Back Image</label>
+            <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
+          </div>
+
+          <!-- <div *ngFor="let file of filesNameArray;index as i;" class="ssd">
+          <label class="btn btn-upload mb-3" for="upload_image_background">{{ i+1 + file }} <i title="Remove Image"
+              style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+        </div> -->
+
+          <div *ngIf="fileName != null ">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg(1)"></i></label>
+          </div>
+
+        </fieldset>
         <!-- <img id="blah" src="#" alt="your image" /> -->
-
-
-
       </div>
       <div class="col-md-8">
         <button (click)="upload()" class="btn btn-primary float-right" type="submit"> Upload</button>
       </div>
+
     </form>
   </div>
 
@@ -126,5 +213,5 @@
     <h1>Comming Soon!!</h1>
   </div>
 
-  
+
 </div>

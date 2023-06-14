@@ -69,6 +69,13 @@
                 <i class="fas fa-sign-in-alt mr-1"></i> LOGIN
               </button>
             </li>
+            <li *ngIf="_LoggedIn" (click)="closeToggleMenu()" class="mb-sm-1 mb-1">
+              <button class="nav-link btn rounded-pill btn-outline-warning px-3 font-weight-bold btn-sm my-sm-0 mx-2"
+                     (click)="logout()"
+                      type="submit">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+              </button>
+            </li>
             <li (click)="closeToggleMenu()">
               <button class="nav-link btn btn-bg-red rounded-pill text-white px-3 font-weight-bold btn-sm my-sm-0 mr-2"
                       [routerLink]="'/'+frontEndRoutesPath.requestLocation"
