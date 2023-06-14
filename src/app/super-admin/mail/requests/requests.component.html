@@ -1,89 +1,166 @@
 <h3 class="font-weight-bold">Request</h3>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button aria-controls="home" aria-selected="true" class="nav-link active" data-target="#home" data-toggle="tab"
-      id="home-tab" role="tab" type="button">
-      By Operation
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#profile" data-toggle="tab"
-      id="profile-tab" role="tab" type="button">
-      By Customer
-    </button>
-  </li>
+    <li class="nav-item" role="presentation">
+        <button
+            aria-controls="home"
+            aria-selected="true"
+            class="nav-link active"
+            data-target="#home"
+            data-toggle="tab"
+            id="home-tab"
+            role="tab"
+            type="button"
+        >
+            By Operation
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button
+            aria-controls="profile"
+            aria-selected="false"
+            class="nav-link"
+            data-target="#profile"
+            data-toggle="tab"
+            id="profile-tab"
+            role="tab"
+            type="button"
+        >
+            By Customer
+        </button>
+    </li>
 </ul>
 <div class="tab-content py-3" id="myTabContent">
-  <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
-    <div class="request_by_operation">
-      <div class="status">
-        <div class="col-md-12 row">
-          <div class="col-md-3">
-            <input type="radio"> <label class="form-label"> Open & Scan</label>
-          </div>
-          <div class="col-md-3">
-            <input type="radio">
-            <label class="form-label">Shipment</label>
-          </div>
-          <div class="col-md-3">
-            <input type="radio">
-            <label class="form-label">Shred</label>
-          </div>
-        </div>
-        <br>
-
-        <div class="col-md-12 row">
-          <div class="col-md-3">
-            <input type="radio"> <label class="form-label"> Recycle</label>
-          </div>
-          <div class="col-md-3">
-            <input type="radio">
-            <label class="form-label">Rescan</label>
-          </div>
-          <div class="col-md-3">
-            <input type="radio">
-            <label class="form-label">Pickup</label>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-4 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              
-              <div class="card-body">
-                <div class="tab-content p-0">
-                  <a href="#"><img class="img-responsive size"
-                    src="../../../assets/img/pay.jpg"></a>
+    <div
+        aria-labelledby="home-tab"
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+    >
+        <div class="request_by_operation">
+            <div class="status">
+                <div class="col-md-12 row">
+                    <div class="col-md-3">
+                        <input type="radio" />
+                        <label class="form-label"> Open & Scan</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" />
+                        <label class="form-label">Shipment</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" />
+                        <label class="form-label">Shred</label>
+                    </div>
                 </div>
+                <br />
+
+                <div class="col-md-12 row">
+                    <div class="col-md-3">
+                        <input type="radio" />
+                        <label class="form-label"> Recycle</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" />
+                        <label class="form-label">Rescan</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="radio" />
+                        <label class="form-label">Pickup</label>
+                    </div>
+                </div>
+
                 <div class="row">
-
+                    <!-- Left col -->
+                    <section class="col-lg-4 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <a href="#"
+                                        ><img
+                                            class="img-responsive size"
+                                            src="../../../assets/img/pay.jpg"
+                                    /></a>
+                                </div>
+                                <div class="row"></div>
+                                <div class="button-block">
+                                    <i class="far fa-envelope"></i> Envelope
+                                    <a
+                                        ><i class="float-right fas fa-trash"></i
+                                    ></a>
+                                    <a>
+                                        <i class="float-right fas fa-flag"></i
+                                    ></a>
+                                </div>
+                                <div class="button-block">
+                                    <label> Date 02/02/2015</label>
+                                    <label class="float-right"
+                                        >Time 11:55 AM</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <div class="button-block">
-                  <i class="far fa-envelope"></i> Envelope
-                  <a><i class="float-right fas fa-trash"></i></a>
-                  <a> <i class="float-right fas fa-flag "></i></a>                
-                </div>
-                <div class="button-block">
-                  <label> Date 02/02/2015</label> 
-                  <label class="float-right">Time 11:55 AM</label> 
-
-                </div>
-                
-
-              </div>
-              
             </div>
-          </section>
-          
         </div>
-      </div>
     </div>
-  </div>
-  <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
-    <h1>prifile</h1>
-  </div>
+    <div
+        aria-labelledby="profile-tab"
+        class="tab-pane fade"
+        id="profile"
+        role="tabpanel"
+    >
+        <div class="search-main">
+            <div class="row">
+                <div class="col-4 search-section">
+                    <h5>Search</h5>
+                    <div class="input-search">
+                        <input type="text" placeholder="Mailbox, Name" /><i
+                            class="fas icon-search fa-search"
+                            style="color: white"
+                        ></i>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5>Filter</h5>
+                    <select formControlName="website" class="form-control">
+                        <option>Choose option</option>
+                        <option *ngFor="let post of postList">
+                            {{ post }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <table
+                class="table table-striped table-hover cursor past-shipment-table"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">MailBox</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Requests</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <a routerLink="/superAdmin/mail/customer-mailbox">
+                                4563</a
+                            >
+                        </th>
+                        <td>Bob</td>
+                        <td>1</td>
+                        <td>07-01-2022</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <pagination-controls></pagination-controls>
+            </div>
+        </div>
+    </div>
 </div>

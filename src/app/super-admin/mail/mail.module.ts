@@ -23,6 +23,7 @@ import { AssignedMailComponent } from './mail-management/assigned-mail/assigned-
 import { MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DropdownModule } from 'primeng/dropdown';
+import { CustomerMailboxComponent } from './customer-mailbox/customer-mailbox.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DropdownModule } from 'primeng/dropdown';
     PendingComponent,
     DragDirective,
     PastShipmentComponent,
-    AssignedMailComponent
+    AssignedMailComponent,
+    CustomerMailboxComponent
 
   ],
   imports: [
