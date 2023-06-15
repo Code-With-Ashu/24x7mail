@@ -12,7 +12,8 @@ import { MyAccount } from './my-account/my-account.component';
 import { ChangePasswordComponent } from './my-account/change-password/change-password.component';
 import  { EditAccount } from  "./my-account/edit-account/edit-account.component";
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import {MarketingFile} from "./marketing-files/marketing-files.component"
+import {MarketingFile} from "./marketing-files/marketing-files.component";
+import { MessageService } from 'primeng/api';
 
 
 
@@ -35,7 +36,8 @@ import {MarketingFile} from "./marketing-files/marketing-files.component"
     DialogModule,
     ButtonModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[MessageService]
 })
 export class SettingsModule {
 }
