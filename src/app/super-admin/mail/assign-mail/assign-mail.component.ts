@@ -16,6 +16,8 @@ export class AssignMailComponent {
   mailBoxInfo: any = {};
   customers = [];
   loading = true;
+  selectedCustomer: any;
+
   constructor(private mailService: MailService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -53,12 +55,22 @@ export class AssignMailComponent {
     );
   }
 
-  deleteConfirm(event: Event) {
+  deleteConfirm(event: Event,_id) {
     this.confirmationService.confirm({
       target: event.target,
       message: 'Are you sure that you want to delete this mail?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
+        this.loading = true;
+
+        this.mailService.softDeleteMail(_id).subscribe(
+          (res: any) => {
+            this.loading = false;
+            this.list = res?.data || [];
+          },
+          (err) => {
+            this.loading = false;
+          })
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
       },
       reject: () => {
@@ -67,13 +79,16 @@ export class AssignMailComponent {
     });
   }
 
-  flaggedConfirm(event: Event) {
+  flaggedConfirm(event: Event,_id,status) {
     this.confirmationService.confirm({
       target: event.target,
-      message: 'Are you sure that you want to flagged this mail?',
+      message: `Are you sure that you want to ${status} this mail?`,
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.mailService.getAssingMailList(status).subscribe(
+        this.loading = true;
+
+        let payload = {status : 'flagged'};
+        this.mailService.updateStatus(payload,_id).subscribe(
           (res: any) => {
             this.loading = false;
             this.list = res?.data || [];
@@ -85,19 +100,16 @@ export class AssignMailComponent {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
       },
       reject: () => {
+        this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
       }
     });
   }
 
-
-  selectedCustomer: any;
-
   getCustomerList() {
     this.opCustomersService.getCustomersList().subscribe(
       (res: any) => {
-        this.customers = res.data.map(e => ({ name: e.username }));
-        console.log(this.customers)
+        this.customers = res.data.map(e => ({ name: e.mail_box_num +' '+e.fname +' '+ e.lname}));
       }, (err) => {
       }
     );

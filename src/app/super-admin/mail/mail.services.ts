@@ -47,8 +47,6 @@ export class MailService {
     }
     return throwError(errorMessage);
   }
-
-
   
   uploadNewMail(payload: any) {
     return this.http.post( `${environment.API_URL}/mails`, payload)
@@ -67,6 +65,20 @@ export class MailService {
     return this.http.get(API_URL,this.setHeaders());
   }
  
+    
+  updateStatus(payload: any,id) {
+    return this.http.patch( `${environment.API_URL}/mails/flagged/${id}`, payload)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  softDeleteMail(id) {
+    return this.http.delete( `${environment.API_URL}/mails/soft-delete/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
 
 }
