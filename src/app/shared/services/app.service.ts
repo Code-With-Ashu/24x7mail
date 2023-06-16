@@ -6,6 +6,7 @@ import {FormGroup} from '@angular/forms';
 import * as _ from 'lodash';
 import {Location} from '@angular/common';
 import {routesPath} from '@/shared/routes-path';
+import { MessageService } from 'primeng/api';
 
 declare var $: any;
 
@@ -28,7 +29,8 @@ export class AppService {
     private _httpService: HttpApiService,
     private _location: Location,
     private _toast: ToastrService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
     this.setPasswordEyeIcon();
@@ -273,6 +275,8 @@ export class AppService {
 
   toastService(status: string, msg: string) {
     this._toast.clear();
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+
     const obj: any = {
       timeOut: 2000,
       positionClass: 'toast-top-center'

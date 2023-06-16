@@ -14,7 +14,7 @@ export class AssignMailComponent {
   list = [];
   showDetail: boolean = false;
   mailBoxInfo: any = {};
-  customers=[];
+  customers = [];
   loading = true;
   constructor(private mailService: MailService,
     private messageService: MessageService,
@@ -73,6 +73,15 @@ export class AssignMailComponent {
       message: 'Are you sure that you want to flagged this mail?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
+        this.mailService.getAssingMailList(status).subscribe(
+          (res: any) => {
+            this.loading = false;
+            this.list = res?.data || [];
+          },
+          (err) => {
+            this.loading = false;
+          }
+        );
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
       },
       reject: () => {
@@ -84,17 +93,17 @@ export class AssignMailComponent {
 
   selectedCustomer: any;
 
-  getCustomerList(){
+  getCustomerList() {
     this.opCustomersService.getCustomersList().subscribe(
       (res: any) => {
-        this.customers = res.data.map(e=>({name : e.username}));
+        this.customers = res.data.map(e => ({ name: e.username }));
         console.log(this.customers)
-      },(err) => {
+      }, (err) => {
       }
     );
   }
 
-  change(event){
+  change(event) {
     // this.selectedCustomer = event.value;
   }
 }

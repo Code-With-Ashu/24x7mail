@@ -21,6 +21,7 @@ import { SocialLoginModule,SocialAuthServiceConfig } from 'angularx-social-login
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 defineCustomElements();
@@ -50,11 +51,13 @@ export function playerFactory() {
     SharedModule,
     SocialLoginModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   providers: [
     AuthGuard,
     NonAuthGuard,
+    MessageService,
     [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
     // [{provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}]
   ],
