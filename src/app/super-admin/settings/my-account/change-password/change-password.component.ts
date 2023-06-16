@@ -1,12 +1,11 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import {
-    AbstractControl,
     FormBuilder,
     FormGroup,
     Validators
 } from '@angular/forms';
-import {ConfirmPasswordValidator} from './confirm-password-validator';
+import { ConfirmPasswordValidator } from './confirm-password-validator';
 import { ChangePasswordService } from './change-password.service';
 @Component({
     selector: 'app-change-password',
@@ -15,7 +14,6 @@ import { ChangePasswordService } from './change-password.service';
     providers: [MessageService]
 })
 export class ChangePasswordComponent {
-    @Output() newItemEvent = new EventEmitter<{}>();
     changePassword: FormGroup;
     submitted: boolean = false;
     isChangePassword: boolean = false;
@@ -23,7 +21,8 @@ export class ChangePasswordComponent {
     oldPasswordVisible: boolean = false;
     confirmPasswordVisible: boolean = false;
     editpassword: boolean;
-    constructor(private fb: FormBuilder,private changepasswordService:ChangePasswordService,private messageService: MessageService ) {}
+
+    constructor(private fb: FormBuilder, private changepasswordService: ChangePasswordService, private messageService: MessageService) { }
 
     ngOnInit() {
         this.changePassword = this.fb.group(
@@ -40,9 +39,6 @@ export class ChangePasswordComponent {
             }
         );
     }
-    close(){
-        this.newItemEvent.emit('close');
-      }
 
     toggleOldPasswordVisibility() {
         this.oldPasswordVisible = !this.oldPasswordVisible;
@@ -53,9 +49,10 @@ export class ChangePasswordComponent {
     toggleConfirmPasswordVisibility() {
         this.confirmPasswordVisible = !this.confirmPasswordVisible;
     }
+
     newPass() {
         this.submitted = true;
-        this.isChangePassword=true;
+        this.isChangePassword = true;
         if (this.changePassword.invalid) {
             return;
         }
@@ -64,13 +61,13 @@ export class ChangePasswordComponent {
             newPassword: this.changePassword.value.newPassword,
             confirmPassword: this.changePassword.value.confirmPassword
         };
-        this.changepasswordService.ChangePassword({currentPassword:req.password,newPassword:req.newPassword}).subscribe((res:any)=>{
+        this.changepasswordService.ChangePassword({ currentPassword: req.password, newPassword: req.newPassword }).subscribe((res: any) => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Password Changed  is  successfully!' });
         },
-        (err) => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
-          }
+            (err) => {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+            }
         );
-        
+
     }
 }

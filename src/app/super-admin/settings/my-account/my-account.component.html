@@ -3,21 +3,21 @@
         <h3><i class="fas fa-file mr-2"> </i> My Account
             <a type="button" (click)="editprofile()" class="btn btn-primary float-right" style="margin-right: 5px;">
                 <i class="fas fa-edit"> Edit</i> </a>
-                <a type="button" (click)="changepassword()" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-key"> Change Password</i> </a>
+            <a type="button" (click)="changepassword()" class="btn btn-primary float-right" style="margin-right: 5px;">
+                <i class="fas fa-key"> Change Password</i> </a>
         </h3>
 
-        
+
     </div>
 
     <div class="card-body">
-     
+
         <div class="row justify-center myaccount">
 
             <div class="col-4">
                 <label>First Name</label>
             </div>
-            
+
             <div class="col-4">
                 <p>XYZ</p>
             </div>
@@ -28,7 +28,7 @@
             <div class="col-4">
                 <label>Last Name</label>
             </div>
-            
+
             <div class="col-4">
                 <p>Singh</p>
             </div>
@@ -37,16 +37,16 @@
             <div class="col-4">
                 <label>Email</label>
             </div>
-            
+
             <div class="col-4">
-       <p>myaccou@gmail.com</p>
+                <p>myaccou@gmail.com</p>
             </div>
         </div>
         <div class="row myaccount mt-4">
             <div class="col-4">
                 <label>Role</label>
             </div>
-            
+
             <div class="col-4">
                 <p>xyz</p>
             </div>
@@ -55,7 +55,7 @@
             <div class="col-4">
                 <label>New Requests Notification</label>
             </div>
-            
+
             <div class="col-4">
                 <p>Enble</p>
             </div>
@@ -64,7 +64,7 @@
             <div class="col-4">
                 <label>New Customers Notification</label>
             </div>
-            
+
             <div class="col-4">
                 <p>Enable</p>
             </div>
@@ -74,7 +74,7 @@
             <div class="col-4">
                 <label>Usps 1583 Notification</label>
             </div>
-            
+
             <div class="col-4">
                 <p>Enable</p>
             </div>
@@ -82,7 +82,7 @@
 
     </div>
 
-   
+
 </div>
 
 
@@ -91,10 +91,12 @@
 
 
 
-<p-dialog [draggable]="false" widgetVar="dlg4" showEffect="fade" modal="true" width="900" [style]="{width: '30vw'}" height="500" styleClass="addDialogEdit" header="Change Password" [(visible)]="editpassword">
-    <app-change-password></app-change-password>
+<p-dialog (onHide)="closePopup('changePassPopup')" [draggable]="false" widgetVar="dlg4" showEffect="fade" modal="true" width="900" [style]="{width: '30vw'}"
+    height="500" styleClass="addDialogEdit" header="Change Password" [(visible)]="editpassword">
+    <app-change-password ></app-change-password>
 </p-dialog>
 
-<p-dialog [draggable]="false" widgetVar="dlg4" [style]="{width: '50vw'}" showEffect="fade" modal="true" width="900" height="700" styleClass="addDialog" header="Edit Profile" [(visible)]="editaccount">
+<p-dialog (onHide)="closePopup('editProfilePopup')" [draggable]="false" widgetVar="dlg4" [style]="{width: '50vw'}" showEffect="fade" modal="true" width="900"
+    height="700" styleClass="addDialog" header="Edit Profile" [(visible)]="editaccount">
     <app-edit-account></app-edit-account>
 </p-dialog>

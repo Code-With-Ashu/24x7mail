@@ -275,8 +275,7 @@ export class AppService {
 
   toastService(status: string, msg: string) {
     this._toast.clear();
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-
+  
     const obj: any = {
       timeOut: 2000,
       positionClass: 'toast-top-center'

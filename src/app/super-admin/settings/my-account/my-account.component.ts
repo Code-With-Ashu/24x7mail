@@ -8,15 +8,27 @@ import {Component} from '@angular/core';
 export class MyAccount {
 
   editaccount : boolean;
-  editpassword : boolean;
+  editpassword : boolean = false;
 
   editprofile(){
     this.editaccount = true;
   }
 
   changepassword(){
-    this.editpassword = true;
+    this.editpassword = !this.editpassword;
   }
+
+
+  closePopup(modalName){
+    if(modalName == 'changePassPopup'){
+      this.editpassword = false;
+    } 
+    if(modalName == 'editProfilePopup'){
+      this.editaccount = false;
+    } 
+    
+  }
+ 
 
 
 
