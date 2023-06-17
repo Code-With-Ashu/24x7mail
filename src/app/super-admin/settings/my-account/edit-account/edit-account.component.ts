@@ -14,7 +14,10 @@ export class EditAccount {
   ngOnInit() {
     this.editAccount = new FormGroup({
       
-      checked: new FormControl<boolean>(false)
+      checked: new FormControl<boolean>(false),
+      name: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required]),
+      role: new FormControl('',[Validators.required])
       
     });}
 
