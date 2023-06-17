@@ -95,9 +95,13 @@ export class LoginComponent implements OnInit, OnDestroy {
           if (res.status) {
             localStorage.setItem('user-info', JSON.stringify(res));
             localStorage.setItem('auth-token', res.token);
-
+            if(res.data.user_type =='admin' || res.data.user_type =='operator'){
+              this._appService.rootNavigation();            
+            } else {
+              this.router.navigate(['superAdmin/customer/']);
+            }
             this._appService.toastService('success', 'Login successfully.');
-            this._appService.rootNavigation();
+            
             return;
           }
 

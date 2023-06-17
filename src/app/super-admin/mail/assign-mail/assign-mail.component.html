@@ -4,8 +4,8 @@
 
 <ul class="nav nav-tabs" id="myTab" role="tablist" *ngIf="!loading">
   <li class="nav-item" role="presentation">
-    <button aria-controls="pending" aria-selected="true" class="nav-link active" data-target="#pending" data-toggle="tab"
-      id="pending-tab" role="tab" type="button"  (click)="getPendingAssingMailList('pending')">
+    <button aria-controls="pending" aria-selected="true" class="nav-link active" data-target="#pending"
+      data-toggle="tab" id="pending-tab" role="tab" type="button" (click)="getPendingAssingMailList('pending')">
       Pending
     </button>
   </li>
@@ -19,7 +19,7 @@
 
 <div class="tab-content py-3" id="myTabContent">
   <div aria-labelledby="pending-tab" class="tab-pane fade show active" id="pending" role="tabpanel">
-    <div class="row">
+    <div class="row" *ngIf="list.length >0">
       <!-- Left col -->
       <section class="col-lg-4 connectedSortable" *ngFor="let item of list">
         <!-- Custom tabs (Charts with tabs)-->
@@ -34,12 +34,13 @@
             </div>
             <div class="button-block">
               <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
-              <p-button icon="pi pi-flag" (click)="flaggedConfirm($event)" styleClass="p-button-rounded p-button-warning p-button-outlined float-right"></p-button> 
-              <p-button icon="pi pi-trash" (click)="deleteConfirm($event)" styleClass="p-button-rounded p-button-danger p-button-outlined float-right"></p-button>
-              
-              <!-- <a style="cursor: pointer;" (click)="deleteConfirm($event)"><i class="float-right fas fa-trash"></i></a> -->
+              <!-- <div class="btn-block float-right">
+                </div> -->
+              <p-button icon="pi pi-flag" (click)="flaggedConfirm($event,item?._id,'flagged')"
+                styleClass="p-button-rounded p-button-info p-button-outlined float-right"></p-button>
+              <p-button icon="pi pi-trash" (click)="deleteConfirm($event,item?._id)"
+                styleClass="p-button-rounded p-button-danger p-button-outlined float-right"></p-button>
               <p-confirmPopup></p-confirmPopup>
-              <!-- <a> <i class="float-right fas fa-flag "></i></a> -->
             </div>
             <div class="button-block">
               <label> Date {{ item?.createdAt | date:'dd/MM/yyyy'}}</label>
@@ -68,9 +69,12 @@
             </div>
             <div class="button-block">
               <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
-              <a style="cursor: pointer;" (click)="deleteConfirm($event)"><i class="float-right fas fa-trash"></i></a>
+
+              <p-button icon="pi pi-flag-fill" (click)="flaggedConfirm($event,item?._id,'pending')"
+                styleClass="p-button-rounded p-button-info p-button-outlined float-right"></p-button>
+              <p-button icon="pi pi-trash" (click)="deleteConfirm($event,item?._id)"
+                styleClass="p-button-rounded p-button-danger p-button-outlined float-right"></p-button>
               <p-confirmPopup></p-confirmPopup>
-              <a> <i class="float-right fas fa-flag "></i></a>
             </div>
             <div class="button-block">
               <label> Date {{ item?.createdAt | date:'dd/MM/yyyy'}}</label>
@@ -93,8 +97,12 @@
     </div>
     <div class="button-block">
       <i class="far fa-envelope"></i> {{ mailBoxInfo?.mail_type | titlecase }}
-      <a><i class="float-right fas fa-trash"></i></a>
-      <a> <i class="float-right fas fa-flag "></i></a>
+
+      <p-button icon="pi pi-flag" (click)="flaggedConfirm($event,mailBoxInfo?._id,'flagged')"
+        styleClass="p-button-rounded p-button-info p-button-outlined float-right"></p-button>
+      <p-button icon="pi pi-trash" (click)="deleteConfirm($event,mailBoxInfo?._id)"
+        styleClass="p-button-rounded p-button-danger p-button-outlined float-right"></p-button>
+      <p-confirmPopup></p-confirmPopup>
     </div>
     <div class="button-block">
       <label> Date {{ mailBoxInfo?.createdAt | date:'dd/MM/yyyy' }}</label>
@@ -104,13 +112,10 @@
     <div class="row">
       <div class="col-lg-6">
         <label class="form-label">Mailbox or Recipient Name</label>
-        <input disabled type="number" class="form-control" value="{{  mailBoxInfo?.mail_box_num || 'N/A' }}">
-      </div>
-      <div class="col-lg-6">
-        <label class="form-label">Sender Name</label>
         <div class="flex justify-content-center">
-          <p-dropdown (onChange)="change($event)" [options]="customers" [(ngModel)]="selectedCustomer"
-            optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Sender">
+          <p-dropdown [style]="{'width':'100%'}" (onChange)="change($event)" [options]="customers"
+            [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+            placeholder="Select a Recipient">
             <ng-template pTemplate="selectedItem">
               <div class="flex align-items-center gap-2" *ngIf="selectedCustomer">
                 <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
@@ -128,15 +133,20 @@
           </p-dropdown>
         </div>
       </div>
+      <div class="col-lg-6">
+        <label class="form-label">Sender Name</label>
+        <input type="text" class="form-control">
+
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-6">
         <label class="form-label">Mail Id</label>
-        <input type="number" class="form-control">
+        <input disabled type="number" value="{{ mailBoxInfo?.mail_box_id }}" class="form-control">
       </div>
       <div class="col-lg-6">
         <label class="form-label">Item Type</label>
-        <input type="number" class="form-control">
+        <input disabled type="text" value="{{ mailBoxInfo?.mail_type | titlecase }}" class="form-control">
       </div>
     </div>
     <div class="row">
@@ -147,7 +157,7 @@
     </div>
     <hr>
     <div class="row float-right">
-      <button class="btn btn-primary">Assign</button>
+      <button class="btn btn-primary" style="margin-right: 7px;">Assign</button>
       <button class="btn btn-secondary" (click)="closeDialog()">Close</button>
     </div>
   </div>

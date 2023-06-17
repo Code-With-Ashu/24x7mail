@@ -38,12 +38,12 @@
 
           <div class="input-group mb-3">
 
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
               <div class="form-group">
                 <label>Weight(lb)</label>
                 <input formControlName="weight" type="text" class="form-control">
               </div>
-            </div>
+            </div> -->
 
             <div class="col-md-3">
               <div class="form-group">
@@ -56,6 +56,17 @@
               <div class="form-group">
                 <label>Width(in)</label>
                 <input type="text" formControlName="width" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-3 " *ngIf="mail_type == 'magzine'">
+              <div class="form-group">
+                <label>Thickness(in)</label>
+                <select class="form-control" formControlName="thickness" (change)="onChangeSelectItemType($event)">
+                  <option value="">Select Thickness(in)</option>
+                  <option value="1/4">1/4</option>
+                  <option value="1/2">1/2</option>
+                  <option value="3/4">3/4</option>
+                </select>
               </div>
             </div>
 
@@ -72,7 +83,7 @@
 
       <h3>2. Upload Photo</h3>
 
-      <div class="col-md-6 tab-columns" *ngIf="mail_type!='postcard'">
+      <div class="col-md-6 tab-columns" *ngIf="mail_type != '' && mail_type!='postcard'">
         <!--droped image preview-->
         <fieldset draggable="true" appDrag (files)="filesDropped($event)" style="outline: 2px dashed;"
           class="dropzone upload_dropZone text-center mb-3 p-4">
@@ -96,14 +107,25 @@
                 title="Choose file(s)" type="button" class="btn btn-secondary">Choose file(s)</button></label>
             <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
             <hr *ngIf="filesArray.length > 0">
+            <!-- <div class="card flex justify-content-center">
+              <p-overlayPanel #op>
+                <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg" alt="product" />
+              </p-overlayPanel>
+            </div> -->
             <div class="col-12 fileArray" *ngFor="let file of filesArray;index as i;">
-              <span class="float-left selected-image" style="padding-top: 6px;"> {{i+1 + ' '+file.name }} </span>
+              <span class="float-left selected-image" style="padding-top: 6px;"> {{i+1 + ' '+file.name }}
+                <!-- <i (click)="op.toggle($event)" class="fa fa-eye"></i> -->
+              </span>
+
               <div class="form-group ">
                 <div class="input-group input-group-weight">
                   <span class="file-weight-text"> Weight </span>
-                  <input class="form-control" autocomplete="off" value="0" type="number" min="0" max="500"><span
-                    class="file-weight-text"> lbs </span><input value="0.8" class="form-control" autocomplete="off"
-                    type="number" min="0" max="16"><span class="file-weight-text"> oz </span>
+                  <input class="form-control" (input)="onType($event.target.value,i)" autocomplete="off"
+                    value="{{file.weight}}" type="number" min="0" max="500">
+                  <span class="file-weight-text"> lbs </span>
+                  <input value="0.8" class="form-control" value="{{file.lbs}}" autocomplete="off" type="number" min="0"
+                    max="16">
+                  <span class="file-weight-text"> oz </span>
                 </div>
 
               </div>
@@ -129,7 +151,77 @@
       </div>
 
 
-      <div class="col-md-4 tab-columns postcard" *ngIf="mail_type=='postcard'">
+      <div class="col-md-6 tab-columns" *ngIf="mail_type=='postcard'">
+        <!--droped image preview-->
+        <fieldset draggable="true" appDrag (files)="filesDropped($event)" style="outline: 2px dashed;"
+          class="dropzone upload_dropZone text-center mb-3 p-4">
+
+          <!-- <div *ngFor="let file of files;">
+            <img *ngIf="isDrag && file" [src]="file.url" width="100px" height="100px">
+          </div> -->
+          <!-- <div *ngIf="url"><img width="100px" height="100px" [src]="url" *ngIf="url"></div> -->
+
+          <img height="70" width="70" src="..\..\..\..\assets\images\upload.png">
+
+          <div class="col-12 rmpm ">
+
+            <h4 class="small my-2">Drag &amp; Drop background image(s)<br><i>or</i></h4>
+
+            <input (change)="selectFile($event,'postcard')" #hiddenfileinput id="upload_image_background"
+              data-post-name="image_background" data-post-url="https://someplace.com/image/uploads/backgrounds/"
+              class="position-absolute invisible" type="file" multiple accept="image/jpeg, image/png, image/svg+xml" />
+
+            <label class="btn btn-upload mb-3" for="upload_image_background"> <button (click)="hiddenfileinput.click()"
+                title="Choose file(s)" type="button" class="btn btn-secondary">Choose file(s)</button></label>
+            <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div>
+            <hr *ngIf="filesArray.length > 0">
+            <ng-container *ngIf="mail_type != 'postcard'">
+              <div class="col-12 fileArray" *ngFor="let file of filesArray;index as i;">
+                <span class="float-left selected-image" style="padding-top: 6px;"> {{i+1 + ' '+file.name }} </span>
+                <div class="form-group  ">
+                  <div class="input-group input-group-weight">
+                    <span class="file-weight-text"> Weight </span>
+                    <input class="form-control" (input)="onType($event.target.value,i)" autocomplete="off"
+                      value="{{file.weight}}" type="number" min="0" max="500">
+                    <span class="file-weight-text"> lbs </span>
+                    <input value="0.8" class="form-control" value="{{file.lbs}}" autocomplete="off" type="number"
+                      min="0" max="16">
+                    <span class="file-weight-text"> oz </span>
+                  </div>
+
+                </div>
+                <button title="Remove Image" type="button" class="btn btn-danger" (click)="clearImg(i)"><i
+                    class="fas fa-trash"></i></button>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="mail_type == 'postcard'">
+              <div class="col-12 fileArray" *ngFor="let file of filesArray;index as i;">
+                <span class="float-left selected-image" style="padding-top: 6px;"> {{i ==0 ? 'Front' : 'Back'}} : {{i+1
+                  + ' '+file.name }} </span>
+                <button title="Remove Image" type="button" class="btn btn-danger" (click)="clearImg(i)"><i
+                    class="fas fa-trash"></i></button>
+              </div>
+            </ng-container>
+
+
+          </div>
+
+          <!-- <div *ngFor="let file of filesNameArray;index as i;" class="ssd">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{ i+1 + file }} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+          </div> -->
+
+          <!-- <div *ngIf="fileName != null ">
+            <label class="btn btn-upload mb-3" for="upload_image_background">{{fileName}} <i title="Remove Image"
+                style="color:red" class="fa fa-times" (click)="clearImg()"></i></label>
+          </div> -->
+
+        </fieldset>
+        <!-- <img id="blah" src="#" alt="your image" /> -->
+      </div>
+
+
+      <div class="col-md-4 tab-columns postcard" *ngIf="mail_type=='postscard'">
         <!--droped image preview-->
         <fieldset draggable="true" appDrag (files)="filesDropped($event)" style="outline: 2px dashed;"
           class="dropzone upload_dropZone text-center mb-3 p-4">
