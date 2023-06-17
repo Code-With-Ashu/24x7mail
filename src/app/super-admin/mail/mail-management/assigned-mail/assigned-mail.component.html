@@ -1,7 +1,11 @@
 
   <div class="card-body">
     <div class="tab-content p-0">
-      <a href="#"><img class="img-responsive size" src="../../../assets/img/pay.jpg"></a>
+      <div class="row">
+        <div class="col-4" *ngFor="let items of mailFileimg">
+        <img class="img-responsive size" alt="img" [src]="items">
+      </div>
+      </div>
     </div>
   
     
@@ -14,14 +18,14 @@
         <div class="information-data">
 
             <label>Sender:</label>
-            <p>XYZ</p>
+            <p>{{ assignData.sender }}</p>
 
         </div>
 
         <div class="information-data">
 
             <label>Items type:</label>
-            <p>Envelope</p>
+            <p>{{ mailData?.mail_type }}</p>
 
         </div>
 
@@ -37,13 +41,13 @@
         <div class="information-data">
 
             <label>Mail ID:</label>
-            <p>XYZ</p>
+            <p>{{ mailData.id }}</p>
 
         </div>
         <div class="information-data">
 
             <label>Weight:</label>
-            <p>0.8oz</p>
+            <!-- <p>{{mailData.measurement.waight}}</p> -->
 
         </div>
         
@@ -52,12 +56,13 @@
 
     <div class="row">
         <div class="col-12 button-assign">
-            <button class="btn btn-primary">
+            <button  class="btn btn-primary">
                 Edit
             </button>
             <button class="btn btn-primary">
                 Return
             </button>
+            
         </div>
     </div>
     <!-- <div class="row">
