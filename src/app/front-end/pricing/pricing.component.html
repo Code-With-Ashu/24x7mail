@@ -1,33 +1,31 @@
 <div class="container">
   <div class="row mt-4 ">
     <div class="col">
-      <div class="text-center">
-        <label class="radio">
+      <div class="text-center radio_btn">
+        <label class="radio shadow-lg">
           <input (change)="filterPlanList()" [(ngModel)]="planType" class="monthly" id="monthly" name="drone"
             type="radio" value="monthly">
-          <span class="mr-2"> Monthly</span><label>
-            <label class="radio">
-              <input (change)="filterPlanList()" [(ngModel)]="planType" class="monthly" class="yearly" id="yearly"
-                name="drone" type="radio" value="yearly">
-              <span>Annual</span>
-              <span> (2 months free)</span>
-            </label>
-          </label>
+          <span class="ml-1">Monthly</span>
+        </label>
+        <label class="radio shadow-lg">
+          <input (change)="filterPlanList()" [(ngModel)]="planType" class="monthly" id="yearly" name="drone"
+            type="radio" value="yearly">
+          <span class="ml-1">Annual <small>(2 months free)</small></span>
         </label>
       </div>
     </div>
   </div>
 
-  <div class="demo mt-3 shadow-lg ">
+  <div class="demo mt-3">
     <div class="container py-4">
 
       <div *ngIf="planList.length === 0" class="bg-danger p-3 rounded">
         No Plan Details
       </div>
 
-      <div *ngIf="planList.length > 1" class="row pt-2">
+      <!-- <div *ngIf="planList.length > 1" class="row pt-2">
         <div *ngFor="let plan of planList; let i = indx;" class="col-md-4 col-sm-6">
-          <div class="pricingTable magenta">
+          <div class="pricingTable magenta shadow-lg mb-5">
             <div class="pricingTable-header">
               <div class="price-value">
                 <span class="amount">{{plan.price}}</span>
@@ -35,17 +33,40 @@
               </div>
               <h3 class="title">{{plan.name}}</h3>
             </div>
+            <ul class="pricing-content">
+              <li>Incoming Mail {{plan.incoming_mail}} Items</li>
+              <li>Open & Scan * {{plan.open_scan}} items</li>
+              <li>Recipients {{plan.recipients}}</li>
+            </ul>
             <div class="pricingTable-signup">
               <a [routerLink]="'/'+ frontEndRoutesPath.planRegistration" [state]="{plan:plan}">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div *ngIf="planList.length > 1" class="row pt-2">
+        <div *ngFor="let plan of planList; let i = indx;" class="col-md-4 col-sm-6">
+          <div class="pricingTable magenta shadow-lg mb-5 new_pr">
+            <div class="pricingTable-header">
+              <div class="price-value">
+                <span class="amount">{{plan.price}}</span>
+                <span class="duration">{{plan.type}}</span>
+              </div>
+              <h3 class="title">{{plan.name}}</h3>
             </div>
             <ul class="pricing-content">
               <li>Incoming Mail {{plan.incoming_mail}} Items</li>
               <li>Open & Scan * {{plan.open_scan}} items</li>
               <li>Recipients {{plan.recipients}}</li>
             </ul>
+            <div class="pricingTable-signup">
+              <a [routerLink]="'/'+ frontEndRoutesPath.planRegistration" [state]="{plan:plan}">Sign Up</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
