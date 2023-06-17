@@ -26,8 +26,8 @@
         <div class="card">
 
           <div class="card-body">
-            <div class="tab-content p-0 tabhover" (click)="showDetailDailog(item)">
-              <img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)">
+            <div class="tab-content p-0 tabhover {{ environment.API_URL+'/uploads/'  + item?.file[0]}}"  (click)="showDetailDailog(item)">
+              <img class="img-responsive size" src="{{ environment.API_URL+'/uploads/'  + item?.file[0]}}" (error)="doSomethingOnError($event)">
             </div>
             <div class="row">
 
@@ -62,11 +62,9 @@
 
           <div class="card-body">
             <div class="tab-content p-0 tabhover" (click)="showDetailDailog(item)">
-              <img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)">
+              <img class="img-responsive size" src="{{ environment.API_URL+'/uploads/'  + item?.file[0] }}" (error)="doSomethingOnError($event)">
             </div>
-            <div class="row">
 
-            </div>
             <div class="button-block">
               <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
 
@@ -93,7 +91,7 @@
   [(visible)]="showDetail" (onHide)="closeDialog()">
   <div class="card-body">
     <div class="tab-content p-0">
-      <img class="img-responsive size" src="../../../assets/img/pay.jpg">
+      <img class="img-responsive size" src="../../../assets/images/no-image-icon-23486.gif">
     </div>
     <div class="button-block">
       <i class="far fa-envelope"></i> {{ mailBoxInfo?.mail_type | titlecase }}
@@ -109,11 +107,12 @@
       <label class="float-right">Time {{ mailBoxInfo?.createdAt | date:'h:mm a' }}</label>
     </div>
     <hr>
+    <form [formGroup]="assignForm">
     <div class="row">
       <div class="col-lg-6">
         <label class="form-label">Mailbox or Recipient Name</label>
         <div class="flex justify-content-center">
-          <p-dropdown [style]="{'width':'100%'}" (onChange)="change($event)" [options]="customers"
+          <p-dropdown formControlName="mailbox_id" [style]="{'width':'100%'}" (onChange)="change($event)" [options]="customers"
             [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
             placeholder="Select a Recipient">
             <ng-template pTemplate="selectedItem">
@@ -135,30 +134,31 @@
       </div>
       <div class="col-lg-6">
         <label class="form-label">Sender Name</label>
-        <input type="text" class="form-control">
+        <input formControlName="mailbox_id" type="text" class="form-control">
 
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6">
         <label class="form-label">Mail Id</label>
-        <input disabled type="number" value="{{ mailBoxInfo?.mail_box_id }}" class="form-control">
+        <input formControlName="mailbox_id" disabled type="number" value="{{ mailBoxInfo?.mail_box_id }}" class="form-control">
       </div>
       <div class="col-lg-6">
         <label class="form-label">Item Type</label>
-        <input disabled type="text" value="{{ mailBoxInfo?.mail_type | titlecase }}" class="form-control">
+        <input formControlName="mailbox_id" disabled type="text" value="{{ mailBoxInfo?.mail_type | titlecase }}" class="form-control">
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-4">
         <label class="form-label">Weight(lb)</label>
         <input type="number" class="form-control">
       </div>
-    </div>
+    </div> -->
     <hr>
     <div class="row float-right">
       <button class="btn btn-primary" style="margin-right: 7px;">Assign</button>
       <button class="btn btn-secondary" (click)="closeDialog()">Close</button>
     </div>
+  </form>
   </div>
 </p-dialog>

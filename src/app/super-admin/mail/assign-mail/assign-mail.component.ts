@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MailService } from '../mail.services';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { OpCustomersService } from '@/super-admin/op-customers/op-customers.services';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from "environments/environment";
 
 @Component({
   selector: 'app-assign-mail',
@@ -17,6 +19,10 @@ export class AssignMailComponent {
   customers = [];
   loading = true;
   selectedCustomer: any;
+  assignForm: FormGroup;
+  environment=environment;
+  
+
 
   constructor(private mailService: MailService,
     private messageService: MessageService,
@@ -25,6 +31,9 @@ export class AssignMailComponent {
   }
 
   ngOnInit() {
+    this.assignForm = new FormGroup({
+      mailbox_id : new FormControl('', Validators.required),
+    });
     this.getPendingAssingMailList("pending");
     this.getCustomerList();
   }
@@ -39,7 +48,7 @@ export class AssignMailComponent {
   }
 
   doSomethingOnError(event: any) {
-    event.target.src = '../../../assets/img/pay.jpg'
+    event.target.src = '../../../../assets/images/no-image-icon-23486.gif'
   }
 
   getPendingAssingMailList(status = "pending") {
