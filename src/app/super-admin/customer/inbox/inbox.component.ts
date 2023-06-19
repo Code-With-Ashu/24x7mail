@@ -38,7 +38,7 @@ export class InboxComponent {
 
   checkUncheckAll() {
     this.isChecked = true;
-  }
+  } 
 
   getCustomerAssignMailList() {
     console.log(this.page_no,this.limit,this.totalRows)
