@@ -5,12 +5,40 @@
         <h3 class="card-title">Inbox</h3>
 
         <div class="card-tools">
-          <div class="input-group input-group-sm">
+          <!-- <div class="input-group input-group-sm">
             <input class="form-control" placeholder="Search Mail" type="text">
             <div class="input-group-append">
               <div class="btn btn-primary">
                 <i class="fas fa-search"></i>
               </div>
+            </div>
+          </div> -->
+          <div class="custom_sort">
+            <button class="sortby">Sort by <i class="fas fa-chevron-down"></i></button>
+            <div class="c_sort_box">
+              <ul>
+                <li class="f_li">
+                  <p>Sortby</p>
+                  <ul class="se_ul">
+                    <li>
+                      <a href="">Receved Date</a>
+                    </li>
+                    <li>
+                      <a href="">Sender Mail</a>
+                    </li>
+                    <li>
+                      <a href="">Status</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="f_li">
+                  <p>Sort Order</p>
+                  <ul class="se_ul">
+                    <li><a href="">Ascending</a></li>
+                    <li><a href="">Descending</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -22,7 +50,9 @@
           <!-- Check all button -->
           <div class="btn-group">
             <div class="icheck-primary">
-              <input id="check1" (change)="checkUncheckAll()" type="checkbox">
+              <!-- <input id="check1" (change)="checkUncheckAll()" type="checkbox">
+              <label for="check1"></label> -->
+              <input class="styled-checkbox" id="check1" (change)="checkUncheckAll()" type="checkbox">
               <label for="check1"></label>
             </div>
 
@@ -49,14 +79,18 @@
 
               <tr (click)="viewInbox()" *ngFor="let mail of mailList; let i=index;">
 
-                <td>
-                  <div class="icheck-primary">
-                    <input id="check5" [(ngModel)]="isChecked" type="checkbox">
+                <td class="first_td">
+                  <span class="icheck-primary">
+                    <input id="check5" [(ngModel)]="isChecked" type="checkbox" class="styled-checkbox">
                     <label for="check5"></label>
-                  </div>
+                  </span>
+                  <span class="mailbox-star">
+                    <a href="#"><i class="fas fa-star text-warning"></i></a>
+                  </span>
+                  <span>
+                    <i class="fas fa-envelope text-warning"></i>
+                  </span>
                 </td>
-                <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                <td><i class="fas fa-envelope text-warning"></i></td>
                 <td class="mailbox-name"><a href="read-mail.html">Enevelope</a></td>
                 <td class="mailbox-subject"> {{ mail?.createdAt | date:'dd/MM/yyyy'}}</td>
                 <td class="mailbox-attachment"><img class="img-responsive size" src="{{DEFAULT_IMAGE}}" width="50"></td>
