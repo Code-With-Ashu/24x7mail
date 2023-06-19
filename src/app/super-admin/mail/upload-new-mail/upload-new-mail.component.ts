@@ -59,27 +59,23 @@ export class UploadNewMailComponent {
 
     this.isFileSelect = true;
     var reader = new FileReader();
-   var a = reader.readAsDataURL(event.target.files[0]);
- 
+    var a = reader.readAsDataURL(event.target.files[0]);
+
     reader.onload = (_event) => {
       _event.preventDefault()
 
       this.url = reader.result;
 
       if (mailtype != 'postcard') {
-        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], 'weight': 0, lbs: 0.8 });
+        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], "weight": "0", "lbs": "0.8" });
       }
       //if postcard then only select front and back 
       if (mailtype == 'postcard' && this.filesArray.length <= 1) {
-        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], 'weight': 0, lbs: 0.8 });
+        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], "weight": "0", "lbs": "0.8" });
       }
     }
-    
-    console.log(this.filesArray)
 
-    // reader.onload = (_event) => {
-    //   this.url = reader.result;
-    // }
+    console.log(this.filesArray)
   }
 
   onType(searchValue: string, index): void {
@@ -110,16 +106,29 @@ export class UploadNewMailComponent {
 
   upload() {
 
-    if (this.uploadNewMailForm.invalid) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select required fields.' });
-      return;
-    }
+    // if (this.uploadNewMailForm.invalid) {
+    //   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select required fields.' });
+    //   return;
+    // }
     let user = this.getLoginUserInfo();
 
     let formData = new FormData();
 
+    let measurements = this.filesArray.map(e=>({
+      "lbs":e.lbs,
+      "weight":e.weight
+    }))
+    // var measurements : any = [
+    //   {"weight":"2","lbs":"5"},
+    //   {"weight":"4","lbs":"6"}
+    // ];
+    let filesObject = this.filesArray.map(e=>(e.file))
+
+    console.log("measurements",measurements,
+    "filesObject",filesObject)
     formData.append('mail_type', this.uploadNewMailForm.value.mail_type);
-    formData.append('mail', this.filesArray);
+    formData.append('mail', filesObject);
+    formData.append('measurements', JSON.stringify(measurements));
     formData.append('user', user._id);
     if (this.isPackageSelect) {
       formData.append('thickness', this.uploadNewMailForm.value.thickness || null);
@@ -127,7 +136,8 @@ export class UploadNewMailComponent {
       formData.append('height', this.uploadNewMailForm.value.height);
       formData.append('length', this.uploadNewMailForm.value.length);
     }
-    console.log("filesArray", this.filesArray)
+
+   
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
         this.uploadNewMailForm.reset()

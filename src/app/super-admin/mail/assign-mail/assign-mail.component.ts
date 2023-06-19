@@ -20,8 +20,8 @@ export class AssignMailComponent {
   loading = true;
   selectedCustomer: any;
   assignForm: FormGroup;
-  environment=environment;
-  
+  environment = environment;
+
 
 
   constructor(private mailService: MailService,
@@ -32,7 +32,7 @@ export class AssignMailComponent {
 
   ngOnInit() {
     this.assignForm = new FormGroup({
-      mailbox_id : new FormControl('', Validators.required),
+      mailbox_id: new FormControl('', Validators.required),
     });
     this.getPendingAssingMailList("pending");
     this.getCustomerList();
@@ -52,7 +52,7 @@ export class AssignMailComponent {
   }
 
   getPendingAssingMailList(status = "pending") {
-    console.log(status)
+    this.loading = true;
     this.mailService.getAssingMailList(status).subscribe(
       (res: any) => {
         this.loading = false;
@@ -64,7 +64,7 @@ export class AssignMailComponent {
     );
   }
 
-  deleteConfirm(event: Event,_id) {
+  deleteConfirm(event: Event, _id) {
     this.confirmationService.confirm({
       target: event.target,
       message: 'Are you sure that you want to delete this mail?',
@@ -88,7 +88,7 @@ export class AssignMailComponent {
     });
   }
 
-  flaggedConfirm(event: Event,_id,status) {
+  flaggedConfirm(event: Event, _id, status) {
     this.confirmationService.confirm({
       target: event.target,
       message: `Are you sure that you want to ${status} this mail?`,
@@ -96,8 +96,8 @@ export class AssignMailComponent {
       accept: () => {
         this.loading = true;
 
-        let payload = {status : 'flagged'};
-        this.mailService.updateStatus(payload,_id).subscribe(
+        let payload = { status: 'flagged' };
+        this.mailService.updateStatus(payload, _id).subscribe(
           (res: any) => {
             this.loading = false;
             this.list = res?.data || [];
@@ -118,7 +118,7 @@ export class AssignMailComponent {
   getCustomerList() {
     this.opCustomersService.getCustomersList().subscribe(
       (res: any) => {
-        this.customers = res.data.map(e => ({ name: e.mail_box_num +' '+e.fname +' '+ e.lname}));
+        this.customers = res.data.map(e => ({ name: e.mail_box_num + ' ' + e.fname + ' ' + e.lname }));
       }, (err) => {
       }
     );
