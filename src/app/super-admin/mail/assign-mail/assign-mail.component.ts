@@ -41,6 +41,7 @@ export class AssignMailComponent {
   showDetailDailog(data) {
     this.showDetail = true;
     this.mailBoxInfo = data || {};
+    console.log(this.mailBoxInfo)
   }
 
   closeDialog() {

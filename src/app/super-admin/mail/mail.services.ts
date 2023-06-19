@@ -80,5 +80,11 @@ export class MailService {
       );
   }
 
+  assignMail(){
+    const API_URL = `${environment.API_URL}/assign`;
+    return this.http.get(API_URL,this.setHeaders());
+
+  }
+
 
 }
