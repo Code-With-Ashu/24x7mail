@@ -35,6 +35,36 @@ tr {
             color: #0082ad;
         }
     }
+    .group_header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left_le{
+            display: flex;
+            .new_filter{
+                ul{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    li{
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+                        a{
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            padding: 0 10px;
+                            color: #212529;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 .custom_sort{
     position: relative;
