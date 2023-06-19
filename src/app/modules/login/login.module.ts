@@ -19,7 +19,8 @@ import { ForgotPasswordComponent } from '@modules/forgot-password/forgot-passwor
     CommonModule,
     LoginRoutingModule,
     SharedModule,
-    SocialLoginModule
+    SocialLoginModule,
+    
   ],
   providers: [
     {

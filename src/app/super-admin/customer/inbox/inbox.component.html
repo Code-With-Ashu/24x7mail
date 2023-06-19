@@ -30,7 +30,7 @@
             <button class="btn btn-default btn-sm" type="button"><i class="fas fa-reply"></i></button>
             <button class="btn btn-default btn-sm" type="button"><i class="fas fa-share"></i></button>
             <button class="btn btn-default btn-sm" type="button"><i class="fas fa-sync-alt"></i></button>
-         
+
           </div>
           <!-- /.btn-group -->
           <div class="float-right">
@@ -47,43 +47,27 @@
           <table class="table table-hover table-striped">
             <tbody>
 
-              <tr (click)="viewInbox()">
+              <tr (click)="viewInbox()" *ngFor="let mail of mailList; let i=index;">
 
                 <td>
                   <div class="icheck-primary">
                     <input id="check5" [(ngModel)]="isChecked" type="checkbox">
                     <label for="check5"></label>
-
                   </div>
-
                 </td>
                 <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
                 <td><i class="fas fa-envelope text-warning"></i></td>
-                <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                <td class="mailbox-subject"><b>Virtual Mail 3.0 Issue</b> - Trying to find a solution to this problem...
-                </td>
-                <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                <td class="mailbox-date">Yesterday</td>
+                <td class="mailbox-name"><a href="read-mail.html">Enevelope</a></td>
+                <td class="mailbox-subject"> {{ mail?.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td class="mailbox-attachment"><img class="img-responsive size" src="{{DEFAULT_IMAGE}}" width="50"></td>
+                <td class="mailbox-date">{{mail?.mail_id?.mail_box_id || '--'}}</td>
               </tr>
-              <tr>
-                <td>
-                  <div class="icheck-primary">
-                    <input id="check56" [(ngModel)]="isChecked" type="checkbox">
-                    <label for="check56"></label>
-                  </div>
-                </td>
-                <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                <td><i class="fas fa-inbox "></i></td>
-                <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                <td class="mailbox-subject"><b>Virtual Mail 3.0 Issue</b> - Trying to find a solution to this problem...
-                </td>
-                <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                <td class="mailbox-date">Yesterday</td>
-              </tr>
-
-
             </tbody>
           </table>
+          <div class="flex justify-content-center">
+            <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="limit" [totalRecords]="totalRows"
+              [rowsPerPageOptions]="[5, 10, 30,50]"></p-paginator>
+          </div>
           <!-- /.table -->
         </div>
       </div>

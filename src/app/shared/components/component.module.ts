@@ -13,6 +13,8 @@ import {LoadingComponent} from './loading/loading.component';
 import {LoadingProcessComponent} from './loading-process/loading-process.component';
 import { NgtoastComponent } from './ngtoast/ngtoast.component';
 import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { PrimengMessageComponent } from './primeng-message/primeng-message.component';
 
 const components: any = [
   CameraComponent,
@@ -23,19 +25,22 @@ const components: any = [
   NoDataComponent,
   LoadingComponent,
   LoadingProcessComponent,
-  NgtoastComponent
+  NgtoastComponent,
+  PrimengMessageComponent
+  
 ];
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
   ],
   imports: [
     CommonModule,
     ImageModule,
     RouterModule,
     WebcamModule,
-    ToastModule
+    ToastModule,
+    MessagesModule
   ],
   exports: [
     ...components

@@ -22,6 +22,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ComponentModule } from './shared/components/component.module';
 
 
 defineCustomElements();
@@ -52,7 +53,7 @@ export function playerFactory() {
     SocialLoginModule,
     DialogModule,
     ButtonModule,
-    ToastModule
+    ComponentModule
   ],
   providers: [
     AuthGuard,
