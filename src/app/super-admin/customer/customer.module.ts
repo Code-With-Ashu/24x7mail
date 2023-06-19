@@ -11,6 +11,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { FormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     OverlayPanelModule,
     ButtonModule,
     ConfirmPopupModule,
-    FormsModule
+    FormsModule,
+    PaginatorModule
   ]
 })
 export class CustomerModule {

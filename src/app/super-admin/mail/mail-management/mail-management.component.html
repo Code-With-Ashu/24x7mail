@@ -3,32 +3,27 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button aria-controls="home" aria-selected="true" class="nav-link active" data-target="#home" data-toggle="tab"
-            id="home-tab"
-            role="tab" type="button">Local Pickup
+      id="home-tab" role="tab" type="button">Local Pickup
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button aria-controls="pastSipment" aria-selected="false" class="nav-link" data-target="#pastSipment" data-toggle="tab"
-            id="past-shipment"
-            role="tab" type="button">Past Shipment
+    <button aria-controls="pastSipment" aria-selected="false" class="nav-link" data-target="#pastSipment"
+      data-toggle="tab" id="past-shipment" role="tab" type="button">Past Shipment
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#assigned-mail" data-toggle="tab"
-            id="assignedMail"
-            role="tab" type="button">Assigned Mail
+    <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#assigned-mail"
+      data-toggle="tab" id="assignedMail" role="tab" type="button">Assigned Mail
     </button>
   </li>
   <li class="nav-item" role="presentation">
     <button aria-controls="profile" aria-selected="false" class="nav-link" data-target="#post-pickup" data-toggle="tab"
-            id="postPickup"
-            role="tab" type="button">Past Pickups
+      id="postPickup" role="tab" type="button">Past Pickups
     </button>
   </li>
   <li class="nav-item" role="presentation">
     <button aria-controls="search-email" aria-selected="false" class="nav-link" data-target="#search" data-toggle="tab"
-            id="search-email"
-            role="tab" type="button">Search Mail
+      id="search-email" role="tab" type="button">Search Mail
     </button>
   </li>
 
@@ -38,242 +33,245 @@
   <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
     <table class="table">
       <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Mailbox</th>
-        <th scope="col">Customer</th>
-        <th scope="col">Items</th>
-       
-      </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Mailbox</th>
+          <th scope="col">Customer</th>
+          <th scope="col">Items</th>
+
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>3</td>
-      
-      </tr>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>3</td>
 
-      <tr>
-        <th scope="row">1</th>
-        <td>Jems</td>
-        <td>Fun</td>
-        <td>0</td>
-       
-      </tr>
+        </tr>
+
+        <tr>
+          <th scope="row">1</th>
+          <td>Jems</td>
+          <td>Fun</td>
+          <td>0</td>
+
+        </tr>
       </tbody>
     </table>
   </div>
   <div aria-labelledby="profile-tab" class="tab-pane fade" id="pastSipment" role="tabpanel">
 
-  <div class="search-main">
+    <div class="search-main">
 
-    <div class="row">
+      <div class="row">
 
-      <div class="col-4 search-section">
-           <h5>Search </h5>
-<div class="input-search">
-           <input type="text" placeholder="Mailbox, Name or Tracking Number" /><i class="fas icon-search fa-search" style="color:white"></i>
+        <div class="col-4 search-section">
+          <h5>Search </h5>
+          <div class="input-search">
+            <input type="text" placeholder="Mailbox, Name or Tracking Number" /><i class="fas icon-search fa-search"
+              style="color:white"></i>
           </div>
+        </div>
+
+        <div class="col-4 ">
+          <h5>Date </h5>
+          <div class="card flex justify-content-center">
+            <p-calendar [(ngModel)]="date" [showIcon]="true"></p-calendar>
+          </div>
+
+        </div>
+
       </div>
-
-      <div class="col-4 ">
-        <h5>Date </h5>
-        <div class="card flex justify-content-center">
-          <p-calendar [(ngModel)]="date"   [showIcon]="true"></p-calendar>
-      </div>
-
-   </div>
-
     </div>
-  </div>
 
 
-  <div >
-    <table class="table table-striped table-hover cursor past-shipment-table">
+    <div>
+      <table class="table table-striped table-hover cursor past-shipment-table">
         <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Customers Name</th>
-                <th scope="col">Items</th>
-                <th scope="col">Shipping Address</th>
-                <th scope="col">Shipping Method</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Ship Date</th>
-                <th scope="col">Tracking Number </th>
-                
-            </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customers Name</th>
+            <th scope="col">Items</th>
+            <th scope="col">Shipping Address</th>
+            <th scope="col">Shipping Method</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Ship Date</th>
+            <th scope="col">Tracking Number </th>
+
+          </tr>
         </thead>
         <tbody>
-            <tr  (click)="shipDetai()"
->
-                <th scope="row">jnd</th>
-                <td>1081</td>
-                <td>xyz</td>
-                <td>dfd</td>
-                <td>5</td>
-                <td>44</td>
-                <td>07-01-2022</td>
-                <td>9988474883  <i class="fas  fa-eye" style="color:#085ae7"></i></td>
-                
-               
-            </tr>
-           
+          <tr (click)="shipDetai()">
+            <th scope="row">jnd</th>
+            <td>1081</td>
+            <td>xyz</td>
+            <td>dfd</td>
+            <td>5</td>
+            <td>44</td>
+            <td>07-01-2022</td>
+            <td>9988474883 <i class="fas  fa-eye" style="color:#085ae7"></i></td>
+
+
+          </tr>
+
         </tbody>
 
-        
-    </table>
 
-    <div class="pagination">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </table>
+
+      <div class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+      </div>
 
     </div>
-
-</div>
   </div>
 
 
   <div aria-labelledby="profile-tab" class="tab-pane fade" id="assigned-mail" role="tabpanel">
 
     <div class="search-main">
-  
+
       <div class="row">
-  
+
         <div class="col-3 search-section">
-             <h5>Search </h5>
-  <div class="input-search">
-             <input type="text" placeholder="Mailbox, Name or Tracking Number" /><i class="fas icon-search fa-search" style="color:white"></i>
-            </div>
+          <h5>Search </h5>
+          <div class="input-search">
+            <input type="text" placeholder="Mailbox, Name or Tracking Number" /><i class="fas icon-search fa-search"
+              style="color:white"></i>
+          </div>
         </div>
-  
+
         <div class="col-3 ">
           <h5>Date </h5>
           <div class="card flex justify-content-center">
             <p-calendar [(ngModel)]="date" class="max-w-full" [showIcon]="true"></p-calendar>
-        </div>
-  
-     </div>
-     <div class="col-3 ">
-      <h5>Select</h5>
-      <select class="form-control"  >
-        <option value="">All</option>
-        <option value="envelope">Assigned</option>
-        <option value="large_envelope">Scan</option>
-        <option value="package">Forward</option>
-        <option value="postcard">Shred</option>
-        <option value="magzine">Recycle</option>
-      </select>
-      
+          </div>
 
- </div>
-  
+        </div>
+        <div class="col-3 ">
+          <h5>Select</h5>
+          <select class="form-control">
+            <option value="">All</option>
+            <option value="envelope">Assigned</option>
+            <option value="large_envelope">Scan</option>
+            <option value="package">Forward</option>
+            <option value="postcard">Shred</option>
+            <option value="magzine">Recycle</option>
+          </select>
+
+
+        </div>
+
       </div>
     </div>
-  
-  
-    <div >
+
+
+    <div>
       <table class="table table-striped table-hover cursor past-shipment-table">
-          <thead>
-              <tr>
-                  
-                  <th scope="col">Mailbox Number</th>
-                  <th scope="col">Customers Name</th>
-                  <th scope="col">Sender Name</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Ship Date</th>
-                  <th scope="col"> Mail ID </th>
-                  
-              </tr>
-          </thead>
-          <tbody>
-              <tr  (click)="assignedmail()">
-                  <td>1081</td>
-                  <td>xyz</td>
-                  <td>dfd</td>
-                  <td>Assigned Complete</td>
-                  
-                  <td>07-01-2022</td>
-                  <td>9988</td>  
-              </tr>
-          </tbody>
-  
-          
+        <thead>
+          <tr>
+            <th scope="col">Mailbox Number</th>
+            <th scope="col">Customers Name</th>
+            <th scope="col">Sender Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ship Date</th>
+            <th scope="col"> Mail ID </th>
+
+          </tr>
+        </thead>
+        <tbody *ngFor="let assigns of assign">
+          <tr (click)="assignedmail(assigns)" >
+            <td> {{ assigns.reciver.mail_box_num }} </td>
+            <td>{{ assigns.reciver.fname}}</td>
+            <td>{{ assigns.sender}}</td>
+            <td>{{assigns.assingn_status}}</td>
+            <td>07-01-2022</td>
+            <td>{{ assigns.mail_id.mail_box_id  }}</td>
+          </tr>
+
+          <tr *ngIf="assign.length == 0" style="text-align: center;" class="no-records-found">
+            <td colspan="11">No Record Found</td>
+          </tr>
+        </tbody>
+
+
       </table>
-  
+
+      <div class="card-footer clearfix" *ngIf="assign.length != 0">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+    </div>
+  </div>
+
+  <div aria-labelledby="profile-tab" class="tab-pane fade" id="post-pickup" role="tabpanel">
+
+    <div class="search-main">
+
+      <div class="row">
+
+        <div class="col-3 search-section">
+          <h5>Search </h5>
+          <div class="input-search">
+            <input type="text" placeholder="Mailbox, Name or Tracking Number" /><i class="fas icon-search fa-search"
+              style="color:white"></i>
+          </div>
+        </div>
+
+        <div class="col-3 ">
+          <h5>Date </h5>
+          <div class="card flex justify-content-center">
+            <p-calendar [(ngModel)]="date" class="max-w-full" [showIcon]="true"></p-calendar>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <div>
+      <table class="table table-striped table-hover cursor past-shipment-table">
+        <thead>
+          <tr>
+
+            <th scope="col">Account Number </th>
+            <th scope="col">Mailbox Number</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Numbers Of items</th>
+            <th scope="col">Date</th>
+            <th scope="col"> </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1081</td>
+            <td>1233</td>
+            <td>dfd</td>
+            <td>4</td>
+            <td>07-01-2022</td>
+            <td>
+              <button class="btn btn-primary">
+                Undo Pickup
+              </button>
+            </td>
+          </tr>
+        </tbody>
+
+
+      </table>
+
       <div class="pagination">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  
+
       </div>
-  
+
+    </div>
   </div>
-    </div>
-
-    <div aria-labelledby="profile-tab" class="tab-pane fade" id="post-pickup" role="tabpanel">
-
-      <div class="search-main">
-    
-        <div class="row">
-    
-          <div class="col-3 search-section">
-               <h5>Search </h5>
-    <div class="input-search">
-               <input type="text" placeholder="Mailbox, Name or Tracking Number" /><i class="fas icon-search fa-search" style="color:white"></i>
-              </div>
-          </div>
-    
-          <div class="col-3 ">
-            <h5>Date </h5>
-            <div class="card flex justify-content-center">
-              <p-calendar [(ngModel)]="date" class="max-w-full" [showIcon]="true"></p-calendar>
-          </div>
-    
-       </div>
-      
-    
-        </div>
-      </div>
-    
-    
-      <div >
-        <table class="table table-striped table-hover cursor past-shipment-table">
-            <thead>
-                <tr>
-                    
-                    <th scope="col">Account Number </th>
-                    <th scope="col">Mailbox Number</th>
-                    <th scope="col">Owner</th>
-                    <th scope="col">Numbers Of items</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">  </th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr >
-                    <td>1081</td>
-                    <td>1233</td>
-                    <td>dfd</td>
-                    <td>4</td>
-                    <td>07-01-2022</td>
-                    <td>
-                      <button class="btn btn-primary">
-                        Undo Pickup
-                      </button>
-                    </td>  
-                </tr>
-            </tbody>
-    
-            
-        </table>
-    
-        <div class="pagination">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    
-        </div>
-    
-    </div>
-      </div>
 
 
 
@@ -281,118 +279,120 @@
 
 
   <div aria-labelledby="search-email" class="tab-pane fade" id="search" role="tabpanel">
-    
-          <div class="card-body">
-          <h6>Search Mail</h6>
 
-          <div class="row">
-            <div class="col-3">
-              <input type="text" class="form-control" placeholder="Mailbox, Name or Email">
+    <div class="card-body">
+      <h6>Search Mail</h6>
+
+      <div class="row">
+        <div class="col-3">
+          <input type="text" class="form-control" placeholder="Mailbox, Name or Email">
+        </div>
+      </div>
+
+      <br />
+      <div class="row info">
+        <div class="col-sm-6">
+          <h4>
+            <strong>Information</strong>
+          </h4>
+          <br />
+          <div class="row d-flex">
+            <div class="col-sm-4">Mailbox Number:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-sm-4">Account Number:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-sm-4">Customer Name:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-sm-4">Mail Item ID:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-sm-4">Recipient Name:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-sm-4">Sender Name:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <div class="col-sm-4">Received:</div>
+            <div class="col-sm-1">
+              <span>XYZ</span>
+            </div>
           </div>
         </div>
 
-        <br />
-            <div class="row info">
-                <div class="col-sm-6">
-                    <h4>
-                        <strong>Information</strong>
-                    </h4>
-                    <br />
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Mailbox Number:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Account Number:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Customer Name:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Mail Item ID:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Recipient Name:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Sender Name:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                    <div class="row d-flex">
-                        <div class="col-sm-4">Received:</div>
-                        <div class="col-sm-1">
-                            <span>XYZ</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <h4><strong>Operation History</strong></h4>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label>Date</label>
-                            <p>11/06/2023 1:04 am</p>
-                            <p>11/06/2023 1:04 am</p>
-                            <p>11/06/2023 1:04 am</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Request</label>
-                            <p>Item Assigned</p>
-                            <p>Assigned Pending</p>
-                            <p>Item Uploaded</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Processed By</label>
-                            <p>Maratha Calistro</p>
-                            <p>----</p>
-                            <p>Maratha Calistro</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-sm-6">
+          <h4><strong>Operation History</strong></h4>
+          <br />
+          <div class="row">
+            <div class="col-sm-4">
+              <label>Date</label>
+              <p>11/06/2023 1:04 am</p>
+              <p>11/06/2023 1:04 am</p>
+              <p>11/06/2023 1:04 am</p>
             </div>
-            <br />
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-6">
-                    <img class="logo" src="/assets/img/home-banner1.jpg" />
-                </div>
+            <div class="col-sm-4">
+              <label>Request</label>
+              <p>Item Assigned</p>
+              <p>Assigned Pending</p>
+              <p>Item Uploaded</p>
             </div>
-        
-
-  
+            <div class="col-sm-4">
+              <label>Processed By</label>
+              <p>Maratha Calistro</p>
+              <p>----</p>
+              <p>Maratha Calistro</p>
+            </div>
+          </div>
         </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+          <img class="logo" src="/assets/img/home-banner1.jpg" />
         </div>
-        
+      </div>
 
+
+
+    </div>
   </div>
 
 
+</div>
 
 
 
 
-<p-dialog [draggable]="false" widgetVar="dlg4" showEffect="fade" modal="true" width="900" [style]="{width: '50vw'}" height="800" styleClass="addDialogEdit" header="Past Shipment Items" [(visible)]="assignedMail">
-  <app-assigned-mail></app-assigned-mail>
+
+
+<p-dialog [draggable]="false" widgetVar="dlg4" showEffect="fade" modal="true" width="900" [style]="{width: '50vw'}"
+  height="800" styleClass="addDialogEdit" header="Past Shipment Items" [(visible)]="assignedMail">
+  <app-assigned-mail [assignData] ="dataBoxInfo"  [mailData]="mailId" [mailFileimg] ="mailFile" ></app-assigned-mail>
 </p-dialog>
 
 
-<p-dialog [draggable]="false" widgetVar="dlg4" showEffect="fade" modal="true" width="900" [style]="{width: '50vw'}" height="800" styleClass="addDialogEdit" header="Past Shipment Items" [(visible)]="openshipDetail">
+<p-dialog [draggable]="false" widgetVar="dlg4" showEffect="fade" modal="true" width="900" [style]="{width: '50vw'}"
+  height="800" styleClass="addDialogEdit" header="Past Shipment Items" [(visible)]="openshipDetail">
   <app-past-shipment></app-past-shipment>
 </p-dialog>

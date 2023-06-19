@@ -8,7 +8,6 @@ import { MessageService } from 'primeng/api';
   selector: 'app-upload-new-mail',
   templateUrl: './upload-new-mail.component.html',
   styleUrls: ['./upload-new-mail.component.scss'],
-  providers: [MessageService]
 
 })
 export class UploadNewMailComponent {
@@ -26,12 +25,12 @@ export class UploadNewMailComponent {
   _fileObject = null;
   mail_type: string = 'enevelope';
   filesArray: any = [];
+  msgObject: any;
 
-
-  constructor(private mailService: MailService,
-    private messageService: MessageService) { }
+  constructor(private mailService: MailService, public Messa :MessageService ) { }
 
   ngOnInit() {
+  
     this.uploadNewMailForm = new FormGroup({
       mail_type: new FormControl('', Validators.required),
       weight: new FormControl(''),
@@ -45,11 +44,11 @@ export class UploadNewMailComponent {
 
 
   onChangeSelectItemType(item) {
-    this.isPackageSelect = (item.target.value == 'package' || item.target.value == 'magzine') ? true : false;
     this.mail_type = item.target.value;
     this.uploadNewMailForm.controls['length'].setValidators([Validators.required]);
     this.uploadNewMailForm.controls['width'].setValidators([Validators.required]);
     this.uploadNewMailForm.controls['height'].setValidators([Validators.required]);
+    this.isPackageSelect = (item.target.value == 'package' || item.target.value == 'magzine') ? true : false;
     !this.isPackageSelect || this.uploadNewMailForm.controls['thickness'].setValidators([Validators.required])
   }
 
@@ -59,27 +58,20 @@ export class UploadNewMailComponent {
 
     this.isFileSelect = true;
     var reader = new FileReader();
-   var a = reader.readAsDataURL(event.target.files[0]);
- 
+    var a = reader.readAsDataURL(event.target.files[0]);
+
     reader.onload = (_event) => {
       _event.preventDefault()
-
       this.url = reader.result;
 
       if (mailtype != 'postcard') {
-        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], 'weight': 0, lbs: 0.8 });
+        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], "weight": "0", "lbs": "0.8" });
       }
       //if postcard then only select front and back 
       if (mailtype == 'postcard' && this.filesArray.length <= 1) {
-        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], 'weight': 0, lbs: 0.8 });
+        this.filesArray.push({ 'url': reader.result, 'name': event.target.files[0].name, 'file': event.target.files[0], "weight": "0", "lbs": "0.8" });
       }
     }
-    
-    console.log(this.filesArray)
-
-    // reader.onload = (_event) => {
-    //   this.url = reader.result;
-    // }
   }
 
   onType(searchValue: string, index): void {
@@ -109,17 +101,23 @@ export class UploadNewMailComponent {
 
 
   upload() {
-
     if (this.uploadNewMailForm.invalid) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select required fields.' });
+      // this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select required fields.' });
       return;
     }
     let user = this.getLoginUserInfo();
 
     let formData = new FormData();
 
+    let measurements = this.filesArray.map(e => ({
+      "lbs": e.lbs,
+      "weight": e.weight
+    }))
+
+    this.filesArray.map(e => (formData.append('mail', e.file)))
+
     formData.append('mail_type', this.uploadNewMailForm.value.mail_type);
-    formData.append('mail', this.filesArray);
+    formData.append('measurements', JSON.stringify(measurements));
     formData.append('user', user._id);
     if (this.isPackageSelect) {
       formData.append('thickness', this.uploadNewMailForm.value.thickness || null);
@@ -127,16 +125,27 @@ export class UploadNewMailComponent {
       formData.append('height', this.uploadNewMailForm.value.height);
       formData.append('length', this.uploadNewMailForm.value.length);
     }
-    console.log("filesArray", this.filesArray)
+
+
     this.mailService.uploadFile(formData).subscribe(
       (res: any) => {
+        this.msgObject = {
+          severity: "success",
+          summary: 'Success',
+          detail: 'Mail uploaded successfully!'
+        };
         this.uploadNewMailForm.reset()
         this.isPackageSelect = false;
+
         this.clearImg(0);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Mail is uploaded successfully!' });
+        console.log(this.msgObject)
       },
       (err) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+        this.msgObject = {
+          severity: "error",
+          summary: 'Error',
+          detail: 'Something went wrong!'
+        };
       }
     );
   }

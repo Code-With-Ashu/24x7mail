@@ -60,8 +60,8 @@ export class MailService {
     return this.http.post(API_URL,data);
   }
 
-  getAssingMailList(status: any): Observable<any> {
-    const API_URL = `${environment.API_URL}/mails?assign_status=${status}`;
+  getAssingMailList(status: any,page,limit): Observable<any> {
+    const API_URL = `${environment.API_URL}/mails?assign_status=${status}&page=${page}&limit=${limit}`;
     return this.http.get(API_URL,this.setHeaders());
   }
  
@@ -80,5 +80,14 @@ export class MailService {
       );
   }
 
+  assignMail(){
+    const API_URL = `${environment.API_URL}/assign`;
+    return this.http.get(API_URL,this.setHeaders());
+  }
 
+  
+  createAssignMail(payload){
+    const API_URL = `${environment.API_URL}/assign`;
+    return this.http.post(API_URL,payload,this.setHeaders());
+  }
 }

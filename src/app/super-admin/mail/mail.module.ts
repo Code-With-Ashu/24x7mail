@@ -25,6 +25,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DropdownModule } from 'primeng/dropdown';
 import { CustomerMailboxComponent } from './customer-mailbox/customer-mailbox.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     CalendarModule,
     ConfirmPopupModule,
     DropdownModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    PaginatorModule
     
     
   ],

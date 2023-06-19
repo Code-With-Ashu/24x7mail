@@ -1,5 +1,4 @@
 <app-loading-process *ngIf="loading"></app-loading-process>
-
 <h3 *ngIf="!loading" class="font-weight-bold">Assign Mail</h3>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist" *ngIf="!loading">
@@ -27,7 +26,10 @@
 
           <div class="card-body">
             <div class="tab-content p-0 tabhover" (click)="showDetailDailog(item)">
-              <img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)">
+              <img class="img-responsive size" *ngIf="item?.file"
+                src="{{ environment.API_URL+'/uploads/'  + item?.file[0]}}" (error)="doSomethingOnError($event)">
+              <img class="img-responsive size" *ngIf="!item?.file" src="{{DEFAULT_IMAGE}}">
+
             </div>
             <div class="row">
 
@@ -48,9 +50,15 @@
             </div>
           </div>
         </div>
+
       </section>
+
       <h1 *ngIf="list.length == 0" class="text-center">No Results.</h1>
 
+    </div>
+    <div class="flex justify-content-center">
+      <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="limit" [totalRecords]="totalRows"
+        [rowsPerPageOptions]="[10, 20, 30,50]"></p-paginator>
     </div>
   </div>
   <div aria-labelledby="flagged-tab" class="tab-pane fade" id="flagged" role="tabpanel">
@@ -62,11 +70,11 @@
 
           <div class="card-body">
             <div class="tab-content p-0 tabhover" (click)="showDetailDailog(item)">
-              <img class="img-responsive size" src="{{ item?.mail}}" (error)="doSomethingOnError($event)">
+              <img *ngIf="item?.file" class="img-responsive size"
+                src="{{ environment.API_URL+'/uploads/'  + item?.file[0] }}" (error)="doSomethingOnError($event)">
+              <img class="img-responsive size" *ngIf="!item?.file" src="{{DEFAULT_IMAGE}}">
             </div>
-            <div class="row">
 
-            </div>
             <div class="button-block">
               <i class="far fa-envelope"></i> {{ item?.mail_type | titlecase }}
 
@@ -83,6 +91,8 @@
           </div>
         </div>
       </section>
+
+
       <h1 *ngIf="list.length == 0" class="text-center">No Results.</h1>
 
     </div>
@@ -91,9 +101,11 @@
 
 <p-dialog [draggable]="false" showEffect="fade" modal="true" styleClass="addDialog" [style]="{ width: '50vw' }"
   [(visible)]="showDetail" (onHide)="closeDialog()">
+
   <div class="card-body">
+
     <div class="tab-content p-0">
-      <img class="img-responsive size" src="../../../assets/img/pay.jpg">
+      <img class="img-responsive size" src="../../../assets/images/no-image-icon-23486.gif">
     </div>
     <div class="button-block">
       <i class="far fa-envelope"></i> {{ mailBoxInfo?.mail_type | titlecase }}
@@ -109,56 +121,86 @@
       <label class="float-right">Time {{ mailBoxInfo?.createdAt | date:'h:mm a' }}</label>
     </div>
     <hr>
-    <div class="row">
-      <div class="col-lg-6">
-        <label class="form-label">Mailbox or Recipient Name</label>
-        <div class="flex justify-content-center">
-          <p-dropdown [style]="{'width':'100%'}" (onChange)="change($event)" [options]="customers"
-            [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
-            placeholder="Select a Recipient">
-            <ng-template pTemplate="selectedItem">
-              <div class="flex align-items-center gap-2" *ngIf="selectedCustomer">
-                <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+    <form [formGroup]="assignForm">
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="form-label">Mailbox or Recipient Name</label>
+          <div class="flex justify-content-center">
+            <p-dropdown formControlName="mailbox_id" [style]="{'width':'100%'}" (onChange)="selectMailbox($event)"
+              [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="name" [filter]="true" filterBy="name"
+              [showClear]="true" placeholder="Select a Recipient">
+              <ng-template pTemplate="selectedItem">
+                <div class="flex align-items-center gap-2" *ngIf="selectedCustomer">
+                  <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
                   [class]="'flag flag-' + selectedCustomer.code.toLowerCase()" style="width: 18px" /> -->
-                <div>{{ selectedCustomer?.name | titlecase }}</div>
-              </div>
-            </ng-template>
-            <ng-template let-sender pTemplate="item">
-              <div class="flex align-items-center gap-2">
-                <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                  <div>{{ selectedCustomer?.name | titlecase }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-sender pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
                   [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" /> -->
-                <div>{{ sender.name | titlecase}}</div>
+                  <div>{{ sender.name | titlecase}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+            <div *ngIf="submitted && assignForm.controls.mailbox_id.errors" class="inp_error">
+              <div *ngIf="assignForm.controls.mailbox_id.errors.required">
+                Mailbox or Recipient Name is required
               </div>
-            </ng-template>
-          </p-dropdown>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-6">
-        <label class="form-label">Sender Name</label>
-        <input type="text" class="form-control">
+        <div class="col-lg-6">
+          <label class="form-label">Sender Name</label>
+          <input formControlName="sender_name" type="text" class="form-control">
+          <div *ngIf="submitted && assignForm.controls.sender_name.errors" class="inp_error">
+            <div *ngIf="assignForm.controls.sender_name.errors.required">
+              Sender Name is required
+            </div>
+          </div>
+        </div>
 
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <label class="form-label">Mail Id</label>
-        <input disabled type="number" value="{{ mailBoxInfo?.mail_box_id }}" class="form-control">
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="form-label">Mail Id</label>
+          <input formControlName="mail_id" type="number" class="form-control">
+          <div *ngIf="submitted && assignForm.controls.mail_id.errors" class="inp_error">
+            <div *ngIf="assignForm.controls.mail_id.errors.required">
+              Mail Id is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <label class="form-label">Item Type</label>
+          <input formControlName="mail_type" type="text" class="form-control">
+          <div *ngIf="submitted && assignForm.controls.mail_type.errors" class="inp_error">
+            <div *ngIf="assignForm.controls.mail_type.errors.required">
+              Mail Type is required
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="col-lg-6">
-        <label class="form-label">Item Type</label>
-        <input disabled type="text" value="{{ mailBoxInfo?.mail_type | titlecase }}" class="form-control">
-      </div>
-    </div>
-    <div class="row">
+      <!-- <div class="row">
       <div class="col-lg-4">
         <label class="form-label">Weight(lb)</label>
         <input type="number" class="form-control">
       </div>
-    </div>
-    <hr>
-    <div class="row float-right">
-      <button class="btn btn-primary" style="margin-right: 7px;">Assign</button>
-      <button class="btn btn-secondary" (click)="closeDialog()">Close</button>
-    </div>
+    </div> -->
+      <hr>
+
+      <div class="row float-right">
+        <button class="btn btn-info" style="margin-right: 7px;" (click)="assigneMail()">
+          <div class="spinner-border text-light" role="status" *ngIf="submitted">
+            <span class="sr-only">Loading...</span>
+          </div> Assign
+        </button>
+        <button class="btn btn-secondary" (click)="closeDialog()">Close</button>
+      </div>
+    </form>
+
   </div>
 </p-dialog>

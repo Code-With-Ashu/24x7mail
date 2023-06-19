@@ -1,4 +1,5 @@
-<p-toast></p-toast>
+<!-- <app-primeng-message *ngIf="msgObject.severity != 'undefined'" [itemObject]="msgObject"></app-primeng-message> -->
+
 <h3 class="font-weight-bold">Upload New Mail</h3>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
@@ -25,7 +26,7 @@
         <select class="form-control" formControlName="mail_type" (change)="onChangeSelectItemType($event)">
           <option value="">Select Mail Type</option>
           <option value="envelope">Envelope</option>
-          <option value="large_envelope">Large Envelope</option>
+          <option value="large envelope">Large Envelope</option>
           <option value="package">Package</option>
           <option value="postcard">Postcard</option>
           <option value="magzine">Magzine</option>
@@ -343,3 +344,4 @@
 
 
 </div>
+
